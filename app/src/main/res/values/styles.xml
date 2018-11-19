@@ -7,5 +7,22 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    
+    <!--Tema aplicado a la SplashActivity-->
+    <style name="AppTheme.SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+    
+    <!--Tema aplicado al mapa-->
+    <style name="AppTheme.MapTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+    
+    <!--Tema aplicado al BottomNavigationView-->
+    <style name="AppTheme.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="itemBackground">@color/colorPrimary</item>
+        <item name="itemHorizontalTranslationEnabled">true</item>
+        <item name="itemIconSize">16dp</item>
+    </style>
 
 </resources>

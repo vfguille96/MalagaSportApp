@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MalagaSport</string>
+    <string name="title_activity_mapa">Map</string>
+    <string name="instalaciones_title">Instalaciones</string>
+    <string name="mapa_title">Mapa</string>
 </resources>
