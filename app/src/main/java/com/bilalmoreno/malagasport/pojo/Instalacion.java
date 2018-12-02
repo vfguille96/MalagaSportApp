@@ -1,5 +1,8 @@
 package com.bilalmoreno.malagasport.pojo;
 
+import com.bilalmoreno.malagasport.repository.MaquinaRepository;
+import com.bilalmoreno.malagasport.repository.PistaRepository;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -34,6 +37,14 @@ public class Instalacion {
 
     public Instalacion(int id) {
         this.id = id;
+        this.nombre = "";
+        this.direccion = "";
+        this.latitud = 0;
+        this.longitud = 0;
+        this.tarjetaJoven = false;
+        this.accesoMovReducida = false;
+        pistas = new ArrayList<>();
+        maquinas = new ArrayList<>();
     }
 
     public int getId() {
@@ -159,6 +170,38 @@ public class Instalacion {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(id);
+    }
+
+    public String getNiveles() {
+        if (maquinas.size() == 0) {
+            return "0";
+        }
+        int nivelMinimo = MaquinaRepository.getRepository().getMaquina(maquinas.get(0)).getNivel();
+        int nivelMaximo = MaquinaRepository.getRepository().getMaquina(maquinas.get(0)).getNivel();
+        for (int idMaquina :
+                maquinas) {
+            Maquina maquina = MaquinaRepository.getRepository().getMaquina(idMaquina);
+            if (maquina.getNivel() < nivelMinimo) {
+                nivelMinimo = maquina.getNivel();
+            } else if (maquina.getNivel() > nivelMaximo) {
+                nivelMaximo = maquina.getNivel();
+            }
+        }
+        if (nivelMaximo == nivelMinimo) {
+            return String.valueOf(nivelMaximo);
+        }
+        return String.valueOf(nivelMinimo) + "-" + String.valueOf(nivelMaximo);
+    }
+
+    public boolean getIluminacion() {
+        for (int idPista :
+                pistas) {
+            Pista pista = PistaRepository.getRepository().getPista(idPista);
+            if (pista.getIluminacion()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -15,9 +15,11 @@ public class PistaRepository {
 
     private void inicializar() {
         //TODO Inicializar PistaRepository
+        add(new Pista(1, "Basket", true, "30x25 m"));
+        add(new Pista(2, "Basket", true, "30x25 m"));
     }
 
-    private void add(Pista pista){
+    private void add(Pista pista) {
         pistas.add(pista);
     }
 
@@ -31,5 +33,16 @@ public class PistaRepository {
 
     public static PistaRepository getRepository() {
         return repository;
+    }
+
+    public Pista getPista(int idPista) {
+        Pista pistaBuscada = new Pista(idPista);
+        for (Pista pista :
+                pistas) {
+            if (pista.getId() == pistaBuscada.getId()) {
+                return pista;
+            }
+        }
+        return null;
     }
 }

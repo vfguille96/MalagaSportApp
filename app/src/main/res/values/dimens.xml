@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="mapa_search_button_margin">16dp</dimen>
+    <dimen name="dashboard_button_radius">16dp</dimen>
+    <dimen name="dashboard_button_padding">8dp</dimen>
+    <dimen name="floatting_button_margin">16dp</dimen>
+    <dimen name="item_card_padding">8dp</dimen>
+    <dimen name="item_margin">8dp</dimen>
+    <dimen name="item_radius">8dp</dimen>
+    <dimen name="list_padding">8dp</dimen>
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="button_padding">8dp</dimen>
 </resources>

@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Maquina {
     private int id;
     private String nombre;
-    private String nivel;
+    private int nivel;
     private String funcion;
     private String desarollo;
     private String precauciones;
@@ -14,7 +14,7 @@ public class Maquina {
         this.id = id;
     }
 
-    public Maquina(int id, String nombre, String nivel, String funcion, String desarollo, String precauciones) {
+    public Maquina(int id, String nombre, int nivel, String funcion, String desarollo, String precauciones) {
         this.id = id;
         this.nombre = nombre;
         this.nivel = nivel;
@@ -31,7 +31,7 @@ public class Maquina {
         return nombre;
     }
 
-    public String getNivel() {
+    public int getNivel() {
         return nivel;
     }
 
@@ -51,7 +51,7 @@ public class Maquina {
         this.nombre = nombre;
     }
 
-    public void setNivel(String nivel) {
+    public void setNivel(int nivel) {
         this.nivel = nivel;
     }
 

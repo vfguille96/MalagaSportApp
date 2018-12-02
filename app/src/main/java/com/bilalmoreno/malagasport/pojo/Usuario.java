@@ -3,13 +3,14 @@ package com.bilalmoreno.malagasport.pojo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Usuario {
     private String id;
     private String email;
     private String nombre;
-    private LocalDate fechaNacimiento;
+    private Calendar fechaNacimiento;
     private String fotoURL;
     private ArrayList<Integer> favoritos; //Instalaciones favoritas
     private ArrayList<Integer> seguidos; //Eventos seguidos
@@ -19,13 +20,17 @@ public class Usuario {
         this.id = id;
         favoritos = new ArrayList<>();
         seguidos = new ArrayList<>();
+        filtros = new ArrayList<>();
     }
 
-    public Usuario(String id, String email, String nombre, LocalDate fechaNacimiento) {
+    public Usuario(String id, String email, String nombre, Calendar fechaNacimiento) {
         this.id = id;
         this.email = email;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
+        favoritos = new ArrayList<>();
+        seguidos = new ArrayList<>();
+        filtros = new ArrayList<>();
     }
 
     public String getId() {
@@ -52,11 +57,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public Calendar getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(Calendar fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

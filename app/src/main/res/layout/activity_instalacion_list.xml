@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.InstalacionListActivity">
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/floatting_button_margin"
+        android:layout_marginBottom="@dimen/floatting_button_margin"
+        android:clickable="true"
+        android:focusable="true"
+        app:srcCompat="@android:drawable/ic_menu_search" />
+
+    <ListView
+        android:id="@+id/lvInstalaciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</android.support.design.widget.CoordinatorLayout>

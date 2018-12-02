@@ -1,7 +1,7 @@
 package com.bilalmoreno.malagasport.pojo;
 
 
-import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Evento {
@@ -9,13 +9,13 @@ public class Evento {
     private String nombre;
     private int idLugar;
     private String lugar;
-    private LocalDate fechaInicio;
-    private LocalDate fechaFin;
+    private Calendar fechaInicio;
+    private Calendar fechaFin;
     private String horario;
     private String descripcion;
     private boolean accesoMovReducida;
     private String organizador;
-    private String destinatarios;
+    private int destinatarios;
     private String telefono;
     private String correo;
     private String web;
@@ -24,11 +24,25 @@ public class Evento {
         this.id = id;
     }
 
-    public Evento(String id, String nombre, int idLugar, String lugar, LocalDate fechaInicio, LocalDate fechaFin, String horario, String descripcion, boolean accesoMovReducida, String organizador, String destinatarios) {
+    public Evento(String id, String nombre, String lugar, Calendar fechaInicio, Calendar fechaFin, String horario, String descripcion, boolean accesoMovReducida, String organizador, int destinatarios) {
+        this.id = id;
+        this.nombre = nombre;
+        this.idLugar = -1;
+        this.lugar = lugar;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.horario = horario;
+        this.descripcion = descripcion;
+        this.accesoMovReducida = accesoMovReducida;
+        this.organizador = organizador;
+        this.destinatarios = destinatarios;
+    }
+
+    public Evento(String id, String nombre, int idLugar, Calendar fechaInicio, Calendar fechaFin, String horario, String descripcion, boolean accesoMovReducida, String organizador, int destinatarios) {
         this.id = id;
         this.nombre = nombre;
         this.idLugar = idLugar;
-        this.lugar = lugar;
+        this.lugar = "";
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.horario = horario;
@@ -66,19 +80,19 @@ public class Evento {
         this.lugar = lugar;
     }
 
-    public LocalDate getFechaInicio() {
+    public Calendar getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
+    public void setFechaInicio(Calendar fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDate getFechaFin() {
+    public Calendar getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDate fechaFin) {
+    public void setFechaFin(Calendar fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -114,11 +128,11 @@ public class Evento {
         this.organizador = organizador;
     }
 
-    public String getDestinatarios() {
+    public int getDestinatarios() {
         return destinatarios;
     }
 
-    public void setDestinatarios(String destinatarios) {
+    public void setDestinatarios(int destinatarios) {
         this.destinatarios = destinatarios;
     }
 
@@ -154,5 +168,13 @@ public class Evento {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public static final class Destinatarios {
+        private static final int ADULTOS = 1;
+        private static final int JOVENES = 2;
+        private static final int INFANTIL = 3;
+        private static final int TERCERA_EDAD = 4;
+        private static final int TODOS_PUBLICOS = 5;
     }
 }

@@ -7,7 +7,7 @@ public class Pista {
     private String nombre;
     private boolean iluminacion;
     private String dimensiones;
-    private ActividadDeportiva actividadDeportiva;
+    private int actividadDeportiva;
     private String pavimento;
 
     public Pista(int id) {
@@ -35,7 +35,7 @@ public class Pista {
         return dimensiones;
     }
 
-    public ActividadDeportiva getActividadDeportiva() { return actividadDeportiva; }
+    public int getActividadDeportiva() { return actividadDeportiva; }
 
     public String getPavimento() {
         return pavimento;
@@ -51,7 +51,7 @@ public class Pista {
         this.dimensiones = dimensiones;
     }
 
-    public void setActividadDeportiva(ActividadDeportiva actividadDeportiva) {
+    public void setActividadDeportiva(int actividadDeportiva) {
         this.actividadDeportiva = actividadDeportiva;
     }
 

@@ -1,12 +1,12 @@
 package com.bilalmoreno.malagasport.pojo;
 
-import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Valoracion {
     private int idInstlacion;
     private int idUsuario;
-    private LocalDateTime fecha;
+    private Calendar fecha;
     private int estrellas;
     private String comentario;
 
@@ -15,7 +15,7 @@ public class Valoracion {
         this.idUsuario = idUsuario;
     }
 
-    public Valoracion(int idInstlacion, int idUsuario, LocalDateTime fecha, int estrellas, String comentario) {
+    public Valoracion(int idInstlacion, int idUsuario, Calendar fecha, int estrellas, String comentario) {
         this.idInstlacion = idInstlacion;
         this.idUsuario = idUsuario;
         this.fecha = fecha;
@@ -31,11 +31,11 @@ public class Valoracion {
         return idUsuario;
     }
 
-    public LocalDateTime getFecha() {
+    public Calendar getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(Calendar fecha) {
         this.fecha = fecha;
     }
 
