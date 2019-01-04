@@ -1,7 +1,10 @@
 package com.bilalmoreno.malagasport.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.bilalmoreno.malagasport.R;
@@ -27,5 +30,19 @@ public class InstalacionListActivity extends AppCompatActivity {
 
         adapter = new InstalacionAdapter(getApplicationContext());
         lvInstalaciones.setAdapter(adapter);
+        lvInstalaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(InstalacionListActivity.this, InstalacionActivity.class);
+                intent.putExtra(Instalacion.TAG, adapter.getItem(position).getId());
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

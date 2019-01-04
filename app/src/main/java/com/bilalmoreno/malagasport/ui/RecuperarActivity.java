@@ -86,6 +86,7 @@ public class RecuperarActivity extends AppCompatActivity {
     private boolean validarPassword() {
         if (tiedPassword.getText().length() < MIN_PASSWORD_LENGTH || tiedPassword.getText().length() > MAX_PASSWORD_LENGTH) {
             tilPassword.setError(getString(R.string.msg_err_invalid_password));
+            return false;
         }
         if (!tiedPassword.getText().toString().equals(tiedPasswordRepeat.getText().toString())) {
             tilPasswordRepeat.setError(getString(R.string.msg_err_invalid_repeat_password));
@@ -94,5 +95,11 @@ public class RecuperarActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

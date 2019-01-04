@@ -36,7 +36,7 @@ public class WorkoutListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 intent = new Intent(WorkoutListActivity.this, MaquinaListActivity.class);
-                intent.putExtra("instalacion", ((Instalacion) adapter.getItem(rvWorkout.getChildAdapterPosition(view))).getId());
+                intent.putExtra("instalacion",  adapter.getItem(rvWorkout.getChildAdapterPosition(view)).getId());
                 startActivity(intent);
             }
         };
@@ -50,5 +50,11 @@ public class WorkoutListActivity extends AppCompatActivity {
                 Toast.makeText(WorkoutListActivity.this, "", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

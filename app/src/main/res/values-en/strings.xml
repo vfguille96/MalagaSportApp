@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MálagaSport</string>
+    <string name="desarrollado_por">Developed by Bilal Moreno Ahmed</string>
+    <string name="instalaciones_title">Installations</string>
+    <string name="mapa_title">Map</string>
+    <string name="instalaciones">Installations</string>
+    <string name="favoritos">Favorites</string>
+    <string name="eventos">Events</string>
+    <string name="configuracion">Configuration</string>
+    <string name="acerca_de">About</string>
+    <string name="email">Email</string>
+    <string name="usuario">User</string>
+    <string name="password">Password</string>
+    <string name="password_missing"><u>Password recovery</u></string>
+    <string name="keep_loged_in">Remember session</string>
+    <string name="login_button">Sign in</string>
+    <string name="register">Sign up</string>
+    <string name="nivel">Level:</string>
+    <string name="num_maquinas">Machines:</string>
+    <string name="nombre_usuario">Username:</string>
+    <string name="password_repeat">Repeat password</string>
+    <string name="fecha_nacimiento">Birthdate</string>
+    <string name="msg_err_empty_email">Email can\'t be empty</string>
+    <string name="msg_err_empty_password">Password can\'t be empty</string>
+    <string name="msg_err_empty_name">Username can\'t be empty</string>
+    <string name="msg_err_invalid_email">You must enter a valid email</string>
+    <string name="msg_err_invalid_credentials">Email or password are not correct</string>
+    <string name="msg_err_empty_fecha_nac">You must enter a birthday</string>
+    <string name="msg_err_invalid_repeat_password">Password not match</string>
+    <string name="msg_err_invalid_password">Password must have into 6 and 20 characters</string>
+    <string name="new_password">New password</string>
+    <string name="recuperar">Password recovery</string>
+    <string name="msg_password_changed">Password has been changed</string>
+    <string name="orden_ascendente">Ascending order</string>
+    <string name="orden_desdendente">Descending order</string>
+    <string name="workout">Workout</string>
+    <string name="app_description">MálagaSport is a App to offer to citizens information about sport installations (sport tracks, workout, skateparks, ...) and sport events of Málaga. User can valorate installations and comment to informate to other users about the state of place where they want to go.</string>
+</resources>

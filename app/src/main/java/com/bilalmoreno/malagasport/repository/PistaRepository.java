@@ -16,7 +16,11 @@ public class PistaRepository {
     private void inicializar() {
         //TODO Inicializar PistaRepository
         add(new Pista(1, "Basket", true, "30x25 m"));
-        add(new Pista(2, "Basket", true, "30x25 m"));
+        add(new Pista(2, "Basket", false, "30x25 m"));
+        add(new Pista(3, "Futbol sala", true, "60x30 m"));
+        add(new Pista(4, "Futbol sala", false, "60x30 m"));
+        add(new Pista(5,"Volleyball",true, "6x3 m"));
+        add(new Pista(6, "Volley-Playa",false,"6x3 m"));
     }
 
     private void add(Pista pista) {

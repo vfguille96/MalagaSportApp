@@ -39,7 +39,10 @@
         <activity android:name=".ui.RegisterActivity" />
         <activity android:name=".ui.AboutActivity" />
         <activity android:name=".ui.RecuperarActivity" />
-        <activity android:name=".ui.MaquinaListActivity"></activity>
+        <activity android:name=".ui.MaquinaListActivity" />
+        <activity android:name=".ui.PreferenciasActivity" />
+        <activity android:name=".ui.InstalacionActivity" />
+        <activity android:name=".ui.ValoracionActivity"></activity>
     </application>
 
 </manifest>

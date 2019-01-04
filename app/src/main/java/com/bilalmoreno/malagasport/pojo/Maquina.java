@@ -1,5 +1,6 @@
 package com.bilalmoreno.malagasport.pojo;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Maquina {
@@ -73,5 +74,23 @@ public class Maquina {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public static class OrdenNivelAscendente implements Comparator<Maquina> {
+
+        @Override
+        public int compare(Maquina maquinaA, Maquina maquinaB) {
+
+            return maquinaA.getNivel() - maquinaB.getNivel();
+        }
+    }
+
+    public static class OrdenNivelDescendente implements Comparator<Maquina> {
+
+        @Override
+        public int compare(Maquina maquinaA, Maquina maquinaB) {
+
+            return maquinaB.getNivel() - maquinaA.getNivel();
+        }
     }
 }

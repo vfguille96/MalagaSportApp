@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Instalacion {
+    public static final String TAG = "instlacion";
     private int id;
     private String nombre;
     private String direccion;

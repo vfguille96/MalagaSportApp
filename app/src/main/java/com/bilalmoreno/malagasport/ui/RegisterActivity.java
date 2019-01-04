@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bilalmoreno.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.pojo.Usuario;
 import com.bilalmoreno.malagasport.repository.UsuarioRepository;
@@ -27,13 +28,11 @@ import java.util.regex.Pattern;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private static final int MIN_PASSWORD_LENGTH = 6;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     @BindView(R.id.tilNombre)
     TextInputLayout tilNombre;
@@ -76,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
     @OnClick(R.id.tiedFechaNac)
     public void seleccionarFecha(View view) {
         DialogFragment datePicker = new DatePickerFragment();
-        ((DatePickerFragment) datePicker).setDateFormat(dateFormat);
+        ((DatePickerFragment) datePicker).setDateFormat(MalagaSportApplication.DATE_FORMAT);
         ((DatePickerFragment) datePicker).setEditText((EditText) view);
         datePicker.show(getSupportFragmentManager(), "datePicker");
     }
@@ -86,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         if (validar()) {
             try {
-                calendar.setTime(dateFormat.parse(tiedFechaNac.getText().toString()));
+                calendar.setTime(MalagaSportApplication.DATE_FORMAT.parse(tiedFechaNac.getText().toString()));
             } catch (ParseException e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -103,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean validar() {
-        return validarNombre() && validarEmail() && validarPassword() && validarFechaNac();
+        return validarNombre() & validarEmail() & validarPassword() & validarPasswordRepeat() & validarFechaNac();
     }
 
     private boolean validarFechaNac() {
@@ -118,13 +117,21 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validarPassword() {
         if (tiedPassword.getText().length() < MIN_PASSWORD_LENGTH || tiedPassword.getText().length() > 20) {
             tilPassword.setError(getString(R.string.msg_err_invalid_password));
+            requestFocus(tiedPassword);
+            return false;
         }
+        tilPassword.setErrorEnabled(false);
+        return true;
+    }
+
+    private boolean validarPasswordRepeat() {
         if (!tiedPassword.getText().toString().equals(tiedPasswordRepeat.getText().toString())) {
             tilPasswordRepeat.setError(getString(R.string.msg_err_invalid_repeat_password));
-            tilPassword.setErrorEnabled(true);
+            tilPasswordRepeat.setErrorEnabled(true);
             requestFocus(tiedPasswordRepeat);
             return false;
         }
+        tilPasswordRepeat.setErrorEnabled(false);
         return true;
     }
 
@@ -133,7 +140,7 @@ public class RegisterActivity extends AppCompatActivity {
             tilEmail.setError(getString(R.string.msg_err_empty_email));
             return false;
         }
-        if (!VALID_EMAIL_ADDRESS_REGEX.matcher(tiedEmail.getText().toString()).find()) {
+        if (!MalagaSportApplication.VALID_EMAIL_ADDRESS_REGEX.matcher(tiedEmail.getText().toString()).find()) {
             tilEmail.setError(getString(R.string.msg_err_invalid_email));
             return false;
         }
@@ -148,6 +155,12 @@ public class RegisterActivity extends AppCompatActivity {
         }
         tilNombre.setErrorEnabled(false);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     public static class DatePickerFragment extends DialogFragment
@@ -184,6 +197,7 @@ public class RegisterActivity extends AppCompatActivity {
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
 
+        @Override
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
             calendar.set(year, month, day);

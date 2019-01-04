@@ -15,9 +15,16 @@ import com.bilalmoreno.malagasport.pojo.Instalacion;
 import com.bilalmoreno.malagasport.repository.InstalacionRepository;
 import com.bilalmoreno.malagasport.repository.UsuarioRepository;
 
+import java.util.ArrayList;
+
 public class InstalacionAdapter extends ArrayAdapter {
+
+    ArrayList<Instalacion> instalaciones;
+
     public InstalacionAdapter(@NonNull Context context) {
-        super(context, R.layout.item_instalacion, InstalacionRepository.getRepository().getInstalaciones());
+        super(context, R.layout.item_instalacion);
+        instalaciones = InstalacionRepository.getRepository().getInstalaciones();
+        addAll(instalaciones);
     }
 
     @NonNull
@@ -41,7 +48,7 @@ public class InstalacionAdapter extends ArrayAdapter {
             instalacionHolder = (InstalacionHolder) view.getTag();
         }
 
-        instalacion = (Instalacion) getItem(position);
+        instalacion = getItem(position);
         instalacionHolder.tvNombre.setText(instalacion.getNombre());
         instalacionHolder.tvDireccion.setText(instalacion.getDireccion());
         instalacionHolder.ivIluminacion.setImageResource(R.drawable.ic_iluminacion);
@@ -58,6 +65,10 @@ public class InstalacionAdapter extends ArrayAdapter {
             instalacionHolder.ivFav.setImageResource(R.drawable.ic_no_fav_32dp);
         }
         return view;
+    }
+
+    public Instalacion getItem(int position) {
+        return instalaciones.get(position);
     }
 
     private class InstalacionHolder {

@@ -1,24 +1,29 @@
 package com.bilalmoreno.malagasport.pojo;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
-public class Valoracion {
+public class Valoracion implements Serializable {
+    public static final String TAG = "valoracion";
     private int idInstlacion;
-    private int idUsuario;
-    private Calendar fecha;
+    private String idUsuario;
+    private Date fecha;
+    private Date fechaEdicion;
     private int estrellas;
     private String comentario;
 
-    public Valoracion(int idInstlacion, int idUsuario) {
+    public Valoracion(int idInstlacion, String idUsuario) {
         this.idInstlacion = idInstlacion;
         this.idUsuario = idUsuario;
     }
 
-    public Valoracion(int idInstlacion, int idUsuario, Calendar fecha, int estrellas, String comentario) {
+    public Valoracion(int idInstlacion, String idUsuario, Date fecha, int estrellas, String comentario) {
         this.idInstlacion = idInstlacion;
         this.idUsuario = idUsuario;
         this.fecha = fecha;
+        this.fechaEdicion = fecha;
         this.estrellas = estrellas;
         this.comentario = comentario;
     }
@@ -27,16 +32,24 @@ public class Valoracion {
         return idInstlacion;
     }
 
-    public int getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public Calendar getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Calendar fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Date getFechaEdicion() {
+        return fechaEdicion;
+    }
+
+    public void setFechaEdicion(Date fechaEdicion) {
+        this.fechaEdicion = fechaEdicion;
     }
 
     public int getEstrellas() {
@@ -57,9 +70,12 @@ public class Valoracion {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof Valoracion
-                && idInstlacion == ((Valoracion) o).idInstlacion
-                && idUsuario == ((Valoracion) o).idUsuario;
+        if (this == o) return true;
+        if (!(o instanceof Valoracion)) return false;
+        Valoracion that = (Valoracion) o;
+        return idInstlacion == that.idInstlacion &&
+                Objects.equals(idUsuario, that.idUsuario) &&
+                Objects.equals(fecha, that.fecha);
     }
 
     @Override

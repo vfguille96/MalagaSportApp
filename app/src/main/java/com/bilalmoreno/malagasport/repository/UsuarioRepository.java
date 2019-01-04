@@ -4,7 +4,6 @@ import com.bilalmoreno.malagasport.pojo.Usuario;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.regex.Pattern;
 
 public class UsuarioRepository {
 
@@ -19,6 +18,10 @@ public class UsuarioRepository {
         passwords = new ArrayList<>();
         usuarios.add(new Usuario("bilalmoreno92@gmail.com", "bilalmoreno92@gmail.com", "Bilal", Calendar.getInstance()));
         passwords.add("123456");
+        usuarios.add(new Usuario("fjgomezflorido@gmail.com", "fjgomezflorido@gmail.com", "Construk", Calendar.getInstance()));
+        passwords.add("012345");
+        usuarios.add(new Usuario("hola@gmail.com", "hola@gmail.com", "Saludo", Calendar.getInstance()));
+        passwords.add("hola12");
     }
 
     static {
@@ -64,5 +67,15 @@ public class UsuarioRepository {
             return true;
         }
         return false;
+    }
+
+    public Usuario getUsuario(String idUsuario) {
+        for (Usuario usuario :
+                usuarios) {
+            if (usuario.getId().equals(idUsuario)) {
+                return usuario;
+            }
+        }
+        return null;
     }
 }

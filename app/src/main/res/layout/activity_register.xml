@@ -27,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nombre_usuario"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:theme="@style/Widget.EditText.TextInputEditText" />
             </android.support.design.widget.TextInputLayout>
 
@@ -87,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password_repeat"
-                    android:inputType="textEmailAddress|textPassword"
+                    android:inputType="textPassword"
                     android:theme="@style/Widget.EditText.TextInputEditText" />
             </android.support.design.widget.TextInputLayout>
 

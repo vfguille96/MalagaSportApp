@@ -2,14 +2,17 @@ package com.bilalmoreno.malagasport.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.bilalmoreno.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.repository.UsuarioRepository;
 
@@ -21,7 +24,10 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    private static final String LOGIN_DATA_TAG = "loginData";
+    private static final String USER_TAG = "userEmail";
+    private static final String PASSWORD_TAG = "password";
+
 
     private Intent intent;
 
@@ -37,17 +43,32 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.tiedPassword)
     TextInputEditText tiedPassword;
 
+    @BindView(R.id.cbRecordar)
+    CheckBox cbRecordar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
+
+        SharedPreferences loginData = getSharedPreferences(LOGIN_DATA_TAG, Context.MODE_PRIVATE);
+        tiedUsuario.setText(loginData.getString(USER_TAG, ""));
+        tiedPassword.setText(loginData.getString(PASSWORD_TAG, ""));
     }
 
     @OnClick(R.id.btIniciar)
     public void iniciarSesion(View view) {
         if (validar()) {
+            if (cbRecordar.isChecked()) {
+                SharedPreferences loginData = getSharedPreferences(LOGIN_DATA_TAG, Context.MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = loginData.edit();
+                editor.putString(USER_TAG, tiedUsuario.getText().toString());
+                editor.putString(PASSWORD_TAG, tiedPassword.getText().toString());
+                editor.apply();
+            }
             intent = new Intent(LoginActivity.this, DashBoardActivity.class);
             startActivity(intent);
             finish();
@@ -70,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             requestFocus(tiedUsuario);
             return false;
         }
-        if (!VALID_EMAIL_ADDRESS_REGEX.matcher(tiedUsuario.getText().toString()).find()) {
+        if (!MalagaSportApplication.VALID_EMAIL_ADDRESS_REGEX.matcher(tiedUsuario.getText().toString()).find()) {
             tilUsuario.setError(getString(R.string.msg_err_invalid_email));
             return false;
         }

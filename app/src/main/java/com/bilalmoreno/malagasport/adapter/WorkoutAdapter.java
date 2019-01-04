@@ -16,8 +16,6 @@ import com.bilalmoreno.malagasport.repository.UsuarioRepository;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutHolder> {
 

@@ -46,7 +46,7 @@
         android:padding="@dimen/dashboard_button_padding"
         android:text="@string/favoritos"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/btConfiguracion"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btEventos"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,40 +61,10 @@
         android:padding="@dimen/dashboard_button_padding"
         android:text="@string/eventos"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/btAbout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btFavoritos"
         app:layout_constraintTop_toBottomOf="@+id/btWorkout" />
-
-    <Button
-        android:id="@+id/btConfiguracion"
-        style="@style/AppTheme.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/ic_config"
-        android:padding="@dimen/dashboard_button_padding"
-        android:text="@string/configuracion"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btAbout"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btFavoritos" />
-
-    <Button
-        android:id="@+id/btAbout"
-        style="@style/AppTheme.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/ic_about"
-        android:padding="@dimen/dashboard_button_padding"
-        android:text="@string/acerca_de"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btConfiguracion"
-        app:layout_constraintTop_toBottomOf="@+id/btEventos" />
 
 </android.support.constraint.ConstraintLayout>

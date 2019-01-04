@@ -16,7 +16,7 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         AboutView view = AboutBuilder.with(this)
-                .setPhoto(R.mipmap.profile_picture)
+                .setPhoto(R.drawable.logo_malagasport)
                 .setCover(R.drawable.malaga)
                 .setName(getString(R.string.app_name))
                 .setSubTitle(getString(R.string.desarrollado_por))
@@ -37,5 +37,11 @@ public class AboutActivity extends AppCompatActivity {
                 .build();
 
         addContentView(view, new AboutView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

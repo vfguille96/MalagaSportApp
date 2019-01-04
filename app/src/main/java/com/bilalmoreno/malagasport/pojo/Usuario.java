@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Objects;
 
 public class Usuario {
+    public static final String TAG = "usuario";
     private String id;
     private String email;
     private String nombre;
