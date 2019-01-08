@@ -36,7 +36,7 @@ public class AboutActivity extends AppCompatActivity {
                 .setActionsColumnsCount(1)
                 .build();
 
-        addContentView(view, new AboutView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
+        addContentView(view, new AboutView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
     @Override

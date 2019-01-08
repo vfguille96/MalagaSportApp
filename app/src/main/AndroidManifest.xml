@@ -33,16 +33,14 @@
         <!-- android:value="@integer/google_play_services_version" /> -->
 
         <activity android:name=".ui.DashBoardActivity" />
-        <activity android:name=".ui.InstalacionListActivity" />
-        <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".ui.WorkoutListActivity" />
-        <activity android:name=".ui.RegisterActivity" />
+        <activity android:name=".ui.Login.LoginActivity" />
+        <activity android:name=".ui.workout.WorkoutActivity" />
+        <activity android:name=".ui.Login.RegisterActivity" />
         <activity android:name=".ui.AboutActivity" />
-        <activity android:name=".ui.RecuperarActivity" />
-        <activity android:name=".ui.MaquinaListActivity" />
-        <activity android:name=".ui.PreferenciasActivity" />
-        <activity android:name=".ui.InstalacionActivity" />
-        <activity android:name=".ui.ValoracionActivity"></activity>
+        <activity android:name=".ui.Login.RecuperarActivity" />
+        <activity android:name=".ui.workout.MachineListFragment" />
+        <activity android:name=".ui.SettingsFragment" />
+        <activity android:name=".ui.installation.InstallationActivity" />
     </application>
 
 </manifest>

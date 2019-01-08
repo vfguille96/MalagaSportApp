@@ -1,0 +1,40 @@
+package com.bilalmoreno.malagasport.ui.base;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.view.View;
+
+import com.bilalmoreno.malagasport.R;
+
+public class ProgressDialogFragment extends DialogFragment {
+
+    public static final String TAG = "ProgressDialogFragment";
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_progress_dialog, null);
+        builder.setView(view);
+        return builder.create();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
+//        params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+//        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+//        getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+//    }
+}

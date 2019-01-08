@@ -1,16 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
-    
+
     <!--Tema aplicado a la SplashActivity-->
     <style name="AppTheme.SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textSize">@dimen/splash_title_text_size</item>
     </style>
 
     <!--Tema aplicado a la LoginActivity-->
@@ -31,8 +36,8 @@
         <item name="android:elevation">@dimen/button_elevation</item>
     </style>
 
-    <!--Tema para los TextView de títulos-->
-    <style name="AppTheme.TituloTextView" parent="TextAppearance.AppCompat.Headline"/>
+    <!--Tema para los TextView de títulos en los listados-->
+    <style name="AppTheme.TituloTextView" parent="TextAppearance.AppCompat.Headline" />
 
     <style name="Widget.TextInputLayout" parent="AppTheme">
         <item name="android:textColor">@color/colorPrimary</item>
@@ -52,6 +57,14 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
-    <dimen name="button_elevation">8dp</dimen>
-    <dimen name="til_text_size">16dp</dimen>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <dimen name="splash_title_text_size">30sp</dimen>
 </resources>

@@ -47,5 +47,14 @@
     <string name="editar_valoracion">Editar valoración</string>
     <string name="comentario">Tu comentario</string>
     <string name="msg_err_empty_comment">Debe indicar un comentario</string>
-    <string name="msg_err_valoracion">Debe indicar una valoración</string>
+    <string name="msg_err_valoracion">Debe puntuar almenos con una estrella</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_subtitle">La app para los deportistas de Málaga</string>
+    <string name="settings">Settings</string>
+    <string name="msg_error_general">Ocurrió un error inesperado.</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="app">App</string>
+    <string name="about">Acerca de...</string>
 </resources>
