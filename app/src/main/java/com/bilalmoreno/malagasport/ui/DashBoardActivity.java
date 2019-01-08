@@ -1,16 +1,18 @@
 package com.bilalmoreno.malagasport.ui;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.bilalmoreno.malagasport.R;
-import com.bilalmoreno.malagasport.pojo.Usuario;
-import com.bilalmoreno.malagasport.repository.UsuarioRepository;
+import com.bilalmoreno.malagasport.data.db.model.Usuario;
+import com.bilalmoreno.malagasport.data.db.repository.UsuarioRepository;
+import com.bilalmoreno.malagasport.ui.installation.InstallationActivity;
+import com.bilalmoreno.malagasport.ui.workout.WorkoutListFragment;
 
 import java.util.Calendar;
 
@@ -34,19 +36,19 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.btInstalaciones, R.id.btWorkout, R.id.btEventos, R.id.btFavoritos})
-    public void openActivity(View view){
+    public void openActivity(View view) {
         switch (view.getId()) {
             case R.id.btInstalaciones:
-                intent = new Intent(DashBoardActivity.this, InstalacionListActivity.class);
+                intent = new Intent(DashBoardActivity.this, InstallationActivity.class);
                 break;
             case R.id.btWorkout:
-                intent = new Intent(DashBoardActivity.this, WorkoutListActivity.class);
+                intent = new Intent(DashBoardActivity.this, WorkoutListFragment.class);
                 break;
             case R.id.btFavoritos:
                 intent = null;
                 break;
             case R.id.btEventos:
-                intent = null;
+                intent = new Intent(DashBoardActivity.this, AboutActivity.class);
                 break;
         }
         if (intent != null) {
@@ -64,7 +66,7 @@ public class DashBoardActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.miConfiguracion:
-                intent = new Intent(DashBoardActivity.this, PreferenciasActivity.class);
+                intent = new Intent(DashBoardActivity.this, SettingsFragment.class);
                 startActivity(intent);
                 return true;
             case R.id.miAbout:

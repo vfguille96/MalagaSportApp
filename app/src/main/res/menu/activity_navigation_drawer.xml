@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/map"
+            android:icon="@drawable/ic_action_map"
+            android:title="@string/mapa_title" />
+        <item
+            android:id="@+id/installationList"
+            android:checked="true"
+            android:icon="@drawable/ic_action_installation"
+            android:title="@string/instalaciones_title" />
+        <item
+            android:id="@+id/workoutList"
+            android:icon="@drawable/ic_action_workout"
+            android:title="@string/workout" />
+        <item
+            android:id="@+id/favs"
+            android:icon="@drawable/ic_action_fav"
+            android:title="@string/favoritos" />
+
+        <item
+            android:id="@+id/eventsList"
+            android:icon="@drawable/ic_action_calendar"
+            android:title="@string/eventos" />
+    </group>
+    <item android:title="@string/app">
+        <menu>
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/ic_action_settings"
+                android:title="@string/settings" />
+
+            <item
+                android:id="@+id/about"
+                android:icon="@android:drawable/ic_menu_help"
+                android:title="@string/about" />
+
+        </menu>
+    </item>
+</menu>
+
