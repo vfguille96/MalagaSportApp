@@ -6,19 +6,19 @@ import com.bilalmoreno.malagasport.data.db.model.Usuario;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class UsuarioRepository {
+public class UserRepository {
 
-    private static UsuarioRepository repository;
+    private static UserRepository repository;
 
     static {
-        repository = new UsuarioRepository();
+        repository = new UserRepository();
     }
 
     private Usuario usuario;
     private ArrayList<Usuario> usuarios;
     private ArrayList<String> passwords;
 
-    private UsuarioRepository() {
+    private UserRepository() {
         usuario = new Usuario("NoUser");
         usuarios = new ArrayList<>();
         passwords = new ArrayList<>();
@@ -30,7 +30,7 @@ public class UsuarioRepository {
         passwords.add("hola12");
     }
 
-    public static UsuarioRepository getRepository() {
+    public static UserRepository getRepository() {
         return repository;
     }
 
@@ -62,11 +62,12 @@ public class UsuarioRepository {
         return false;
     }
 
-    public boolean cambiarPassword(String email, String nuevaPassword) {
+    public boolean changePassword(String email, String nuevaPassword) {
         Usuario usuario = new Usuario(email.toLowerCase());
         if (usuarios.contains(usuario)) {
-            passwords.remove(usuarios.indexOf(usuario));
-            passwords.add(usuarios.indexOf(usuario), nuevaPassword);
+            int index = usuarios.indexOf(usuario);
+            passwords.remove(index);
+            passwords.add(index, nuevaPassword);
             return true;
         }
         return false;

@@ -16,7 +16,7 @@ import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.model.Usuario;
 import com.bilalmoreno.malagasport.data.db.model.Valoration;
-import com.bilalmoreno.malagasport.ui.base.BaseActivity;
+import com.bilalmoreno.malagasport.ui.MainNavigationActivity;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;
 
 import java.util.Calendar;
@@ -163,7 +163,7 @@ public class ValoracionFragment extends BaseFragment implements ValorationContra
 
     @Override
     public void onClick(View v) {
-        ((BaseActivity) getActivity()).hideKeyboard();
+        ((MainNavigationActivity) getActivity()).hideKeyboard();
         if (actionCode == VALORACION_ADD) {
             valoration = new Valoration(idInstalacion, idUsuario, Calendar.getInstance().getTime(), estrellas, tiedComentario.getText().toString());
             presenter.add(valoration);

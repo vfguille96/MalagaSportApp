@@ -82,8 +82,10 @@ public class Machine {
 
         @Override
         public int compare(Machine machineA, Machine machineB) {
-
-            return machineA.getNivel() - machineB.getNivel();
+            if (machineA.getNivel() - machineB.getNivel() != 0) {
+                return machineA.getNivel() - machineB.getNivel();
+            }
+            return machineA.getNombre().compareToIgnoreCase(machineB.getNombre());
         }
     }
 
@@ -91,8 +93,11 @@ public class Machine {
 
         @Override
         public int compare(Machine machineA, Machine machineB) {
+            if (machineB.getNivel() - machineA.getNivel() != 0) {
+                return machineB.getNivel() - machineA.getNivel();
+            }
+            return machineA.getNombre().compareToIgnoreCase(machineB.getNombre());
 
-            return machineB.getNivel() - machineA.getNivel();
         }
     }
 }

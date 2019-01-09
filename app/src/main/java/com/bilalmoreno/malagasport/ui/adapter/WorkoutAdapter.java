@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.repository.UsuarioRepository;
+import com.bilalmoreno.malagasport.data.db.repository.UserRepository;
 
 import java.util.ArrayList;
 
@@ -55,7 +55,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
         if (!installation.getAccesoMovReducida()) {
             workoutHolder.ivMovReducida.setVisibility(View.GONE);
         }
-        if (UsuarioRepository.getRepository().getUsuario().getFavoritos().contains(installation.getId())) {
+        if (UserRepository.getRepository().getUsuario().getFavoritos().contains(installation.getId())) {
             workoutHolder.ivFav.setImageResource(R.drawable.ic_fav_32dp);
         } else {
             workoutHolder.ivFav.setImageResource(R.drawable.ic_no_fav_32dp);

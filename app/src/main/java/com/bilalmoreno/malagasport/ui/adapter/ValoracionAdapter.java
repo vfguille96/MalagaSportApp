@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bilalmoreno.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Valoration;
-import com.bilalmoreno.malagasport.data.db.repository.UsuarioRepository;
+import com.bilalmoreno.malagasport.data.db.repository.UserRepository;
 
 public class ValoracionAdapter extends ArrayAdapter {
 
@@ -45,7 +45,7 @@ public class ValoracionAdapter extends ArrayAdapter {
         }
 
         valoration = getItem(position);
-        valoracionHolder.tvUsuario.setText(UsuarioRepository.getRepository().getUsuario(valoration.getIdUsuario()).getNombre());
+        valoracionHolder.tvUsuario.setText(UserRepository.getRepository().getUsuario(valoration.getIdUsuario()).getNombre());
         valoracionHolder.tvDate.setText(MalagaSportApplication.DATE_FORMAT.format(valoration.getFechaEdicion().getTime()));
         valoracionHolder.tvComentario.setText(valoration.getComentario());
         valoracionHolder.ivStar1.setImageResource(R.drawable.ic_no_fav_32dp);
@@ -72,13 +72,6 @@ public class ValoracionAdapter extends ArrayAdapter {
     @Override
     public Valoration getItem(int position) {
         return (Valoration) super.getItem(position);
-    }
-
-    public void reloadData(int idInstalacion) {
-//        clear();
-//        valoraciones = ValoracionRepository.getRepository().getValoraciones(idInstalacion);
-//        addAll(valoraciones);
-//        notifyDataSetChanged();
     }
 
     private class ValoracionHolder {

@@ -37,7 +37,7 @@
         <activity android:name=".ui.workout.WorkoutActivity" />
         <activity android:name=".ui.Login.RegisterActivity" />
         <activity android:name=".ui.AboutActivity" />
-        <activity android:name=".ui.Login.RecuperarActivity" />
+        <activity android:name=".ui.Login.RecoveryActivity" />
         <activity android:name=".ui.workout.MachineListFragment" />
         <activity android:name=".ui.SettingsFragment" />
         <activity android:name=".ui.installation.InstallationActivity" />

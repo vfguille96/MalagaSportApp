@@ -7,9 +7,9 @@ import android.support.v4.app.FragmentTransaction;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.model.Usuario;
-import com.bilalmoreno.malagasport.ui.base.BaseActivity;
+import com.bilalmoreno.malagasport.ui.MainNavigationActivity;
 
-public class InstallationActivity extends BaseActivity implements InstallationListFragment.OnInstallationShow, InstallationFragment.OnValorationShow, ValoracionFragment.OnValorationSavedChanges {
+public class InstallationActivity extends MainNavigationActivity implements InstallationListFragment.OnInstallationShow, InstallationFragment.OnValorationShow, ValoracionFragment.OnValorationSavedChanges {
 
     private InstallationListFragment installationListFragment;
     private InstallationFragment installationFragment;

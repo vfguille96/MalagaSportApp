@@ -3,7 +3,7 @@ package com.bilalmoreno.malagasport.ui.installation;
 import android.os.AsyncTask;
 
 import com.bilalmoreno.malagasport.data.db.model.Valoration;
-import com.bilalmoreno.malagasport.data.db.repository.ValoracionRepository;
+import com.bilalmoreno.malagasport.data.db.repository.ValorationRepository;
 
 import java.util.ArrayList;
 
@@ -19,14 +19,14 @@ class ValorationInteractor {
 
     public void addValoration(Valoration valoration) {
         if (validate(valoration.getEstrellas(), valoration.getComentario())) {
-            ValoracionRepository.getRepository().add(valoration);
+            ValorationRepository.getRepository().add(valoration);
             listener.onSavedChanges();
         }
     }
 
     public void editValoration(Valoration valoration) {
         if (validate(valoration.getEstrellas(), valoration.getComentario())) {
-            ValoracionRepository.getRepository().edit(valoration);
+            ValorationRepository.getRepository().edit(valoration);
             listener.onSavedChanges();
         }
     }
@@ -40,7 +40,7 @@ class ValorationInteractor {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                return ValoracionRepository.getRepository().getValoracion(userId, installationId);
+                return ValorationRepository.getRepository().getValoracion(userId, installationId);
             }
 
             @Override
@@ -59,7 +59,7 @@ class ValorationInteractor {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                return ValoracionRepository.getRepository().getValoraciones(installationId);
+                return ValorationRepository.getRepository().getValoraciones(installationId);
             }
 
             @Override

@@ -6,20 +6,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 
 import com.bilalmoreno.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
+import com.bilalmoreno.malagasport.ui.base.BaseActivity;
 import com.bilalmoreno.malagasport.ui.installation.InstallationActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements LoginContract.View {
+public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @BindView(R.id.tilUsuario)
     TextInputLayout tilUsuario;
@@ -50,10 +50,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         if (!user.isEmpty() && !password.isEmpty()) {
             presenter.validateCredentials(user, password);
+        } else {
+            tiedUsuario.setText(loginData.getString(MalagaSportApplication.USER_TAG, ""));
+            tiedPassword.setText(loginData.getString(MalagaSportApplication.PASSWORD_TAG, ""));
         }
-
-        tiedUsuario.setText(loginData.getString(MalagaSportApplication.USER_TAG, ""));
-        tiedPassword.setText(loginData.getString(MalagaSportApplication.PASSWORD_TAG, ""));
     }
 
     @OnClick(R.id.btIniciar)
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @OnClick(R.id.btRecuperar)
     public void recuperar(View view) {
-        intent = new Intent(LoginActivity.this, RecuperarActivity.class);
+        intent = new Intent(LoginActivity.this, RecoveryActivity.class);
         startActivity(intent);
     }
 
@@ -129,43 +129,4 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         tilPassword.setErrorEnabled(false);
     }
 
-    @Override
-    public void showProgress() {
-
-    }
-
-    @Override
-    public void hideProgress() {
-
-    }
-
-    @Override
-    public void showMessage(int resourceId) {
-
-    }
-
-    @Override
-    public void showMessage(int resourceId, int iconResourceId) {
-
-    }
-
-    @Override
-    public void showMessage(String message) {
-
-    }
-
-    @Override
-    public void showMessage(String message, int iconResourceId) {
-
-    }
-
-    @Override
-    public void showError(int resourceId) {
-
-    }
-
-    @Override
-    public void showError(String message) {
-
-    }
 }

@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.model.Valoration;
 import com.bilalmoreno.malagasport.data.db.repository.InstallationRepository;
-import com.bilalmoreno.malagasport.data.db.repository.ValoracionRepository;
+import com.bilalmoreno.malagasport.data.db.repository.ValorationRepository;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class InstallationInteractor {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                valorations = ValoracionRepository.getRepository().getValoraciones(installationId);
+                valorations = ValorationRepository.getRepository().getValoraciones(installationId);
                 return InstallationRepository.getRepository().getInstalacion(installationId);
             }
 
@@ -41,7 +41,7 @@ public class InstallationInteractor {
     }
 
     public boolean userHasRated(int installationId) {
-        return ValoracionRepository.getRepository().userHasRated(installationId);
+        return ValorationRepository.getRepository().userHasRated(installationId);
     }
 
     public interface OnLoadFinishedListener {

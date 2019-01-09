@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Usuario;
-import com.bilalmoreno.malagasport.data.db.repository.UsuarioRepository;
+import com.bilalmoreno.malagasport.data.db.repository.UserRepository;
 import com.bilalmoreno.malagasport.ui.installation.InstallationActivity;
 import com.bilalmoreno.malagasport.ui.workout.WorkoutListFragment;
 
@@ -31,7 +31,7 @@ public class DashBoardActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Usuario usuario = new Usuario("bilalmoreno92@gmail.com", "bilalmoreno92@gmail.com", "BilalMoreno92", Calendar.getInstance());
         usuario.addFavorito(1);
-        UsuarioRepository.getRepository().setUsuario(usuario);
+        UserRepository.getRepository().setUsuario(usuario);
 
     }
 

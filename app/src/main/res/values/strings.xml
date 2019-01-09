@@ -57,4 +57,6 @@
     <string name="logout">Cerrar sesión</string>
     <string name="app">App</string>
     <string name="about">Acerca de...</string>
+    <string name="msg_err_register_failed">Ya existe una cuenta con este correo electrónico</string>
+    <string name="msg_err_account_not_exists">Este correo no está registrado en el sistema.</string>
 </resources>

@@ -24,8 +24,6 @@ public class MachineAdapter extends ArrayAdapter {
         super(context, R.layout.item_maquina);
         this.listener = listener;
         machines = new ArrayList<>();
-//        Collections.sort(machines, orden);
-//        addAll(machines);
     }
 
     @NonNull

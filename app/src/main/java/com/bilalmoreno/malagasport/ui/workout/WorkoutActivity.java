@@ -6,10 +6,10 @@ import android.widget.Toast;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.ui.base.BaseActivity;
+import com.bilalmoreno.malagasport.ui.MainNavigationActivity;
 import com.bilalmoreno.malagasport.ui.installation.InstallationListFragment;
 
-public class WorkoutActivity extends BaseActivity implements MachineListFragment.OnMachineShow, WorkoutListFragment.OnWorkoutShow {
+public class WorkoutActivity extends MainNavigationActivity implements MachineListFragment.OnMachineShow, WorkoutListFragment.OnWorkoutShow {
 
     WorkoutListFragment workoutListFragment;
     MachineListFragment machineListFragment;

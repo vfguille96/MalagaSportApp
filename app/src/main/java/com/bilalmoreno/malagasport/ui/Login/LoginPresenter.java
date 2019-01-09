@@ -1,18 +1,18 @@
 package com.bilalmoreno.malagasport.ui.Login;
 
-public class LoginPresenter implements LoginContract.Presenter, LoginInteractor.LoginInteractorListener {
+public class LoginPresenter implements LoginContract.Presenter, UserInteractor.LoginListener {
 
     private LoginContract.View view;
-    private LoginInteractor interactor;
+    private UserInteractor interactor;
 
     public LoginPresenter(LoginContract.View view) {
         this.view = view;
-        interactor = new LoginInteractor(this);
+        interactor = new UserInteractor(this);
     }
 
     @Override
     public void validateCredentials(String user, String password) {
-        interactor.validate(user, password);
+        interactor.validateCredentials(user, password);
     }
 
     @Override
