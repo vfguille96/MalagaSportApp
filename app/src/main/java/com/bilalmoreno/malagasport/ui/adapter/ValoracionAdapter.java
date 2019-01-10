@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bilalmoreno.MalagaSportApplication;
+import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Valoration;
 import com.bilalmoreno.malagasport.data.db.repository.UserRepository;

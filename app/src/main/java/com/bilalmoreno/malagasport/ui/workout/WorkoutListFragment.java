@@ -8,6 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -67,6 +70,40 @@ public class WorkoutListFragment extends BaseFragment implements WorkoutListCont
 
         presenter = new WorkoutListPresenter(this);
         presenter.load();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_workout_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_menu_sort_az:
+                adapter.sort(new Installation.OrdenAlfabeticoAscendente());
+                break;
+            case R.id.action_menu_sort_za:
+                adapter.sort(new Installation.OrdenAlfabeticoDescendente());
+                break;
+            case R.id.action_menu_sort_machines_count_ascending:
+                adapter.sort(new Installation.OrdenMaquinasCountAscendente());
+                break;
+            case R.id.action_menu_sort_machines_count_descending:
+                adapter.sort(new Installation.OrdenMaquinasCountDescendente());
+                break;
+            default:
+                return false;
+        }
+        adapter.notifyDataSetChanged();
+        return true;
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.bilalmoreno.malagasport.data.db.repository.MachineRepository;
 import com.bilalmoreno.malagasport.data.db.repository.PistaRepository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Installation {
@@ -204,5 +205,43 @@ public class Installation {
             }
         }
         return false;
+    }
+
+    public static class OrdenAlfabeticoDescendente implements Comparator<Installation> {
+
+        @Override
+        public int compare(Installation installationA, Installation installationB) {
+            int result = installationB.nombre.compareToIgnoreCase(installationA.nombre);
+            if (result == 0) {
+                result = installationA.id - installationB.id;
+            }
+            return result;
+        }
+    }
+
+    public static class OrdenAlfabeticoAscendente implements Comparator<Installation> {
+
+        @Override
+        public int compare(Installation installationA, Installation installationB) {
+            int result = installationA.nombre.compareToIgnoreCase(installationB.nombre);
+            if (result == 0) {
+                result = installationA.id - installationB.id;
+            }
+            return result;
+        }
+    }
+
+    public static class OrdenMaquinasCountAscendente implements Comparator<Installation> {
+        @Override
+        public int compare(Installation installationA, Installation installationB) {
+            return installationA.getMaquinas().size() - installationB.getMaquinas().size();
+        }
+    }
+
+    public static class OrdenMaquinasCountDescendente implements Comparator<Installation> {
+        @Override
+        public int compare(Installation installationA, Installation installationB) {
+            return installationB.getMaquinas().size() - installationA.getMaquinas().size();
+        }
     }
 }

@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -12,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bilalmoreno.MalagaSportApplication;
+import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.model.Valoration;
@@ -94,6 +97,34 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_installation, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_menu_sort_after_first:
+                adapter.sort(new Valoration.OrdenFechaDescendente());
+                break;
+            case R.id.action_menu_sort_before_first:
+                adapter.sort(new Valoration.OrdenFechaAscendente());
+                break;
+            default:
+                return false;
+        }
+        adapter.notifyDataSetChanged();
+        return true;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         if (!presenter.userHasRated(idInstalacion)) {
@@ -109,7 +140,7 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
 
     @Override
     public void onClick(View v) {
-        callback.onValorationShow(ValoracionFragment.VALORACION_ADD, MalagaSportApplication.getUserId(), idInstalacion);
+        callback.onValorationAdd(MalagaSportApplication.getUserId(), idInstalacion);
     }
 
     @Override
@@ -126,15 +157,18 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
     }
 
     public interface OnValorationShow {
-        void onValorationShow(int action, String userId, int installationId);
+        void onValorationEdit(String userId, int installationId);
 
+        void onValorationAdd(String userId, int idInstalacion);
     }
 
     private class OnItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Valoration valoration = adapter.getItem(position);
-            callback.onValorationShow(ValoracionFragment.VALORACION_EDIT, valoration.getIdUsuario(), valoration.getIdInstlacion());
+            if (valoration.getIdUsuario().equals(MalagaSportApplication.getUserId())) {
+                callback.onValorationEdit(valoration.getIdUsuario(), valoration.getIdInstlacion());
+            }
         }
     }
 

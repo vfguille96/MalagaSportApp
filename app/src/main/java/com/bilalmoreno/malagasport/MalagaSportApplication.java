@@ -1,4 +1,4 @@
-package com.bilalmoreno;
+package com.bilalmoreno.malagasport;
 
 import android.app.Application;
 

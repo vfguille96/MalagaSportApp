@@ -14,6 +14,8 @@ import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutHolder> {
@@ -69,6 +71,11 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
 
     public Installation getItem(int position) {
         return instalaciones.get(position);
+    }
+
+    public void sort(Comparator<Installation> comparator) {
+        Collections.sort(instalaciones, comparator);
+        notifyDataSetChanged();
     }
 
     public interface WorkoutListListener extends View.OnClickListener {

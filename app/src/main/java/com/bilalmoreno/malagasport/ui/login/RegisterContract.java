@@ -1,9 +1,11 @@
-package com.bilalmoreno.malagasport.ui.Login;
+package com.bilalmoreno.malagasport.ui.login;
 
 import com.bilalmoreno.malagasport.ui.base.BaseView;
 
-public interface RecoveryContract {
+public interface RegisterContract {
     interface View extends BaseView {
+        void setNameEmptyError();
+
         void setEmailEmptyError();
 
         void setInvalidEmailError();
@@ -14,18 +16,24 @@ public interface RecoveryContract {
 
         void setPasswordRepeatError();
 
+        void setBirthDateEmptyError();
+
+        void onRegisterSucess();
+
+        void hideNameError();
+
         void hideEmailError();
 
         void hidePasswordError();
 
         void hidePasswordRepeatError();
 
-        void onChangePasswordSuccess();
+        void hideDateError();
 
-        void onChangePasswordFailed();
+        void setRegisterFailedError();
     }
 
     interface Presenter {
-        void validateChangePassword(String email, String password, String passwordRepeat);
+        void validateRegister(String nombre, String email, String password, String passwordRepeat, String birthDate);
     }
 }

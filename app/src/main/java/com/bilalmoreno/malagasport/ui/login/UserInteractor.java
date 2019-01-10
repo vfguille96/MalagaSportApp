@@ -1,18 +1,19 @@
-package com.bilalmoreno.malagasport.ui.Login;
+package com.bilalmoreno.malagasport.ui.login;
 
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-import com.bilalmoreno.MalagaSportApplication;
+import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.data.db.repository.UserRepository;
 
 import java.text.ParseException;
 import java.util.Calendar;
 
-import static com.bilalmoreno.MalagaSportApplication.MIN_PASSWORD_LENGTH;
+import static com.bilalmoreno.malagasport.MalagaSportApplication.MIN_PASSWORD_LENGTH;
 
-class UserInteractor {
+public class UserInteractor {
 
+    private AuthenticationListener splashListener;
     private LoginListener loginListener;
     private RegisterListener registerListener;
     private RecoveryListener recoveryListener;
@@ -21,16 +22,26 @@ class UserInteractor {
         this.loginListener = loginListener;
         this.registerListener = null;
         this.recoveryListener = null;
+        this.splashListener = null;
     }
 
-    public UserInteractor(RegisterListener registerListener) {
+    public UserInteractor(@NonNull RegisterListener registerListener) {
         this.registerListener = registerListener;
         this.loginListener = null;
         this.recoveryListener = null;
+        this.splashListener = null;
     }
 
-    public UserInteractor(RecoveryListener recoveryListener) {
+    public UserInteractor(@NonNull RecoveryListener recoveryListener) {
         this.recoveryListener = recoveryListener;
+        this.loginListener = null;
+        this.registerListener = null;
+        this.splashListener = null;
+    }
+
+    public UserInteractor(@NonNull AuthenticationListener splashListener) {
+        this.splashListener = splashListener;
+        this.recoveryListener = null;
         this.loginListener = null;
         this.registerListener = null;
     }
@@ -51,15 +62,28 @@ class UserInteractor {
             protected void onPostExecute(Void aVoid) {
                 if (validarPassword(password) & validarEmail(user)) {
                     if (UserRepository.getRepository().validarCredenciales(user, password)) {
-                        loginListener.onAuthenticationSucess();
+                        if (loginListener != null) {
+                            loginListener.onAuthenticationSucess();
+                        }
+                        if (splashListener != null) {
+                            splashListener.onAuthenticationSucess();
+                        }
                     } else {
-                        loginListener.onAuthenticationError();
+                        if (loginListener != null) {
+                            loginListener.onAuthenticationError();
+                        }
+                        if (splashListener != null) {
+                            splashListener.onAuthenticationError();
+                        }
+                    }
+                } else {
+                    if (splashListener != null) {
+                        splashListener.onAuthenticationError();
                     }
                 }
             }
         }.execute();
     }
-
 
     public void validateRegister(final String nombre, final String email, final String password, final String passwordRepeat, final String birthDate) {
         new AsyncTask<Void, Void, Void>() {
@@ -237,11 +261,7 @@ class UserInteractor {
         void onValidPassword();
     }
 
-    public interface LoginListener extends UserBaseListener {
-        void onAuthenticationSucess();
-
-        void onAuthenticationError();
-    }
+    public interface LoginListener extends UserBaseListener, AuthenticationListener { }
 
     private interface ValidatePasswordListener extends UserBaseListener {
         void onInvalidPasswordError();
@@ -269,5 +289,11 @@ class UserInteractor {
         void onChangePasswordSuccess();
 
         void onChangePasswordFailed();
+    }
+
+    public interface AuthenticationListener {
+        void onAuthenticationSucess();
+
+        void onAuthenticationError();
     }
 }

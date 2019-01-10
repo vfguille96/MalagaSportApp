@@ -1,6 +1,6 @@
 package com.bilalmoreno.malagasport.data.db.repository;
 
-import com.bilalmoreno.MalagaSportApplication;
+import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.data.db.model.Usuario;
 
 import java.util.ArrayList;

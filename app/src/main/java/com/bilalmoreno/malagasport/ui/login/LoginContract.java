@@ -1,4 +1,4 @@
-package com.bilalmoreno.malagasport.ui.Login;
+package com.bilalmoreno.malagasport.ui.login;
 
 import com.bilalmoreno.malagasport.ui.base.BaseView;
 

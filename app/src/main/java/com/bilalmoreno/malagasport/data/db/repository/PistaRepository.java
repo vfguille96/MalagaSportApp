@@ -1,5 +1,6 @@
 package com.bilalmoreno.malagasport.data.db.repository;
 
+import com.bilalmoreno.malagasport.data.db.model.ActividadDeportiva;
 import com.bilalmoreno.malagasport.data.db.model.Pista;
 
 import java.util.ArrayList;
@@ -24,12 +25,12 @@ public class PistaRepository {
 
     private void inicializar() {
         //TODO Inicializar PistaRepository
-        add(new Pista(1, "Basket", true, "30x25 m"));
-        add(new Pista(2, "Basket", false, "30x25 m"));
-        add(new Pista(3, "Futbol sala", true, "60x30 m"));
-        add(new Pista(4, "Futbol sala", false, "60x30 m"));
-        add(new Pista(5, "Volleyball", true, "6x3 m"));
-        add(new Pista(6, "Volley-Playa", false, "6x3 m"));
+        add(new Pista(1, "Basket", true, "30x25 m", ActividadDeportiva.BALONCESTO));
+        add(new Pista(2, "Basket", false, "30x25 m", ActividadDeportiva.BALONCESTO));
+        add(new Pista(3, "Futbol sala", true, "60x30 m", ActividadDeportiva.FUTBOL_SALA));
+        add(new Pista(4, "Futbol sala", false, "60x30 m", ActividadDeportiva.FUTBOL_SALA));
+        add(new Pista(5, "Volleyball", true, "6x3 m", ActividadDeportiva.VOLEYBOL));
+        add(new Pista(6, "Volley-Playa", false, "6x3 m", ActividadDeportiva.VOLEY_PLAYA));
     }
 
     private void add(Pista pista) {

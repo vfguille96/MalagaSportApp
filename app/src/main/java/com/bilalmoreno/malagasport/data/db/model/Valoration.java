@@ -1,6 +1,9 @@
 package com.bilalmoreno.malagasport.data.db.model;
 
+import com.bilalmoreno.malagasport.MalagaSportApplication;
+
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Objects;
 
@@ -80,5 +83,39 @@ public class Valoration implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(idInstlacion, idUsuario);
+    }
+
+    public static class OrdenFechaDescendente implements Comparator<Valoration> {
+
+        @Override
+        public int compare(Valoration valorationA, Valoration valorationB) {
+            if (valorationA.idUsuario.equals(MalagaSportApplication.getUserId())) {
+                return 1;
+            } else if (valorationB.idUsuario.equals(MalagaSportApplication.getUserId())) {
+                return -1;
+            }
+            int result = valorationB.fechaEdicion.compareTo(valorationA.fechaEdicion);
+            if (result == 0) {
+                result = valorationA.idUsuario.compareTo(valorationB.idUsuario);
+            }
+            return result;
+        }
+    }
+
+    public static class OrdenFechaAscendente implements Comparator<Valoration> {
+
+        @Override
+        public int compare(Valoration valorationA, Valoration valorationB) {
+            if (valorationA.idUsuario.equals(MalagaSportApplication.getUserId())) {
+                return 1;
+            } else if (valorationB.idUsuario.equals(MalagaSportApplication.getUserId())) {
+                return -1;
+            }
+            int result = valorationA.fechaEdicion.compareTo(valorationB.fechaEdicion);
+            if (result == 0) {
+                result = valorationA.idUsuario.compareTo(valorationB.idUsuario);
+            }
+            return result;
+        }
     }
 }

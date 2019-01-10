@@ -7,15 +7,20 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
+import com.bilalmoreno.malagasport.data.db.model.Machine;
 import com.bilalmoreno.malagasport.ui.adapter.InstallationAdapter;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class InstallationListFragment extends BaseFragment implements InstallationListContract.View, InstallationAdapter.InstallationListListener {
 
@@ -35,22 +40,6 @@ public class InstallationListFragment extends BaseFragment implements Installati
             fragment.primaryActionButton = primaryActionButton;
         }
         return fragment;
-    }
-
-    @Override
-    public void onClick(View view) {
-        callback.onInstallationShow(adapter.getItem(rvInstallations.getChildAdapterPosition(view)).getId());
-    }
-
-    @Override
-    public void showInstallations(ArrayList<Installation> installations) {
-        adapter.clear();
-        adapter.addAll(installations);
-        notifyDataSetChanged();
-    }
-
-    private void notifyDataSetChanged() {
-        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -86,17 +75,46 @@ public class InstallationListFragment extends BaseFragment implements Installati
         presenter.load();
     }
 
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        primaryActionButton.onPrimaryActionButtonHide();
-//    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        primaryActionButton.onPrimaryActionButtonHide();
-//    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_installation_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_menu_sort_az:
+                adapter.sort(new Installation.OrdenAlfabeticoAscendente());
+                break;
+            case R.id.action_menu_sort_za:
+                adapter.sort(new Installation.OrdenAlfabeticoDescendente());
+                break;
+            default:
+                return false;
+        }
+        adapter.notifyDataSetChanged();
+        return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        callback.onInstallationShow(adapter.getItem(rvInstallations.getChildAdapterPosition(view)).getId());
+    }
+
+    @Override
+    public void showInstallations(ArrayList<Installation> installations) {
+        Collections.sort(installations, new Installation.OrdenAlfabeticoAscendente());
+        adapter.clear();
+        adapter.addAll(installations);
+        adapter.notifyDataSetChanged();
+    }
 
     public interface OnInstallationShow {
         void onInstallationShow(int installationId);

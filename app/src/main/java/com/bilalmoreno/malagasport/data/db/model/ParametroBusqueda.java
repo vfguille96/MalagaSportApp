@@ -2,7 +2,7 @@ package com.bilalmoreno.malagasport.data.db.model;
 
 import java.util.Objects;
 
-public class ParametroBusqueda {
+public final class ParametroBusqueda {
     public static final int AJEDREZ = ActividadDeportiva.AJEDREZ;
     public static final int ATLETISMO = ActividadDeportiva.ATLETISMO;
     public static final int BALONCESTO = ActividadDeportiva.BALONCESTO;
@@ -29,26 +29,4 @@ public class ParametroBusqueda {
     public static final int ILUMINACION = 201;
     public static final int MOV_REDUCIDA = 202;
     int id;
-
-    public ParametroBusqueda(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return o instanceof ParametroBusqueda && id == ((ParametroBusqueda) o).id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

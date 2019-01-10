@@ -19,20 +19,23 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.bilalmoreno.MalagaSportApplication;
+import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.model.Usuario;
-import com.bilalmoreno.malagasport.ui.Login.LoginActivity;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;
 import com.bilalmoreno.malagasport.ui.installation.InstallationFragment;
 import com.bilalmoreno.malagasport.ui.installation.InstallationListFragment;
 import com.bilalmoreno.malagasport.ui.installation.ValoracionFragment;
+import com.bilalmoreno.malagasport.ui.login.LoginActivity;
 import com.bilalmoreno.malagasport.ui.workout.MachineListFragment;
 import com.bilalmoreno.malagasport.ui.workout.WorkoutListFragment;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 
 public class MainNavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, BaseFragment.PrimaryActionButton, InstallationListFragment.OnInstallationShow, InstallationFragment.OnValorationShow, ValoracionFragment.OnValorationSavedChanges, MachineListFragment.OnMachineShow, WorkoutListFragment.OnWorkoutShow {
+        implements NavigationView.OnNavigationItemSelectedListener, BaseFragment.PrimaryActionButton, InstallationListFragment.OnInstallationShow, InstallationFragment.OnValorationShow, ValoracionFragment.OnValorationSavedChanges, MachineListFragment.OnMachineShow, WorkoutListFragment.OnWorkoutShow, OnMapReadyCallback {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -46,6 +49,7 @@ public class MainNavigationActivity extends AppCompatActivity
     private SettingsFragment settingsFragment;
     private WorkoutListFragment workoutListFragment;
     private MachineListFragment machineListFragment;
+    private SupportMapFragment mapFragment;
 
     public void onPrimaryActionButtonHide() {
         primaryActionButton.hide();
@@ -101,8 +105,18 @@ public class MainNavigationActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.navigation, menu);
+        getMenuInflater().inflate(R.menu.menu_navigation, menu);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        installationListFragment = InstallationListFragment.getInstance(null, this);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.content, installationListFragment, InstallationListFragment.TAG);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -141,12 +155,14 @@ public class MainNavigationActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        // Handle menu_navigation view item clicks here.
         int id = item.getItemId();
 
         Intent intent = null;
 
         if (id == R.id.map) {
+
+            loadMap();
 
         } else if (id == R.id.installationList) {
             installationListFragment = (InstallationListFragment) getSupportFragmentManager().findFragmentByTag(InstallationListFragment.TAG);
@@ -195,6 +211,11 @@ public class MainNavigationActivity extends AppCompatActivity
         return true;
     }
 
+    private void loadMap() {
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
     public void hideKeyboard() {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         View view = getCurrentFocus();
@@ -205,13 +226,27 @@ public class MainNavigationActivity extends AppCompatActivity
     }
 
     @Override
-    public void onValorationShow(int action, String userId, int installationId) {
+    public void onValorationEdit(String userId, int installationId) {
         Bundle bundle = new Bundle();
-        if (action == ValoracionFragment.VALORACION_EDIT) {
-            bundle.putInt(ValoracionFragment.ACTION_TAG, ValoracionFragment.VALORACION_EDIT);
-        } else {
-            bundle.putInt(ValoracionFragment.ACTION_TAG, ValoracionFragment.VALORACION_ADD);
-        }
+
+        bundle.putInt(ValoracionFragment.ACTION_TAG, ValoracionFragment.VALORACION_EDIT);
+        bundle.putInt(Installation.TAG, installationId);
+        bundle.putString(Usuario.TAG, userId);
+
+        valoracionFragment = ValoracionFragment.getInstance(bundle, this);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content, valoracionFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onValorationAdd(String userId, int installationId) {
+
+        Bundle bundle = new Bundle();
+
+        bundle.putInt(ValoracionFragment.ACTION_TAG, ValoracionFragment.VALORACION_ADD);
         bundle.putInt(Installation.TAG, installationId);
         bundle.putString(Usuario.TAG, userId);
 
@@ -258,5 +293,17 @@ public class MainNavigationActivity extends AppCompatActivity
         fragmentTransaction.replace(R.id.content, machineListFragment, MachineListFragment.TAG);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        if (mapFragment == null) {
+            loadMap();
+        } else {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content, mapFragment, "map");
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
     }
 }

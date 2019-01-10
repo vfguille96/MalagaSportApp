@@ -1,4 +1,4 @@
-package com.bilalmoreno.malagasport.ui.Login;
+package com.bilalmoreno.malagasport.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 
-import com.bilalmoreno.MalagaSportApplication;
+import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
+import com.bilalmoreno.malagasport.ui.MainNavigationActivity;
 import com.bilalmoreno.malagasport.ui.base.BaseActivity;
-import com.bilalmoreno.malagasport.ui.installation.InstallationActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -114,7 +114,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             editor.putString(MalagaSportApplication.PASSWORD_TAG, tiedPassword.getText().toString());
             editor.apply();
         }
-        intent = new Intent(LoginActivity.this, InstallationActivity.class);
+        intent = new Intent(LoginActivity.this, MainNavigationActivity.class);
         startActivity(intent);
         finish();
     }

@@ -1,4 +1,4 @@
-package com.bilalmoreno.malagasport.ui.Login;
+package com.bilalmoreno.malagasport.ui.login;
 
 public class LoginPresenter implements LoginContract.Presenter, UserInteractor.LoginListener {
 
