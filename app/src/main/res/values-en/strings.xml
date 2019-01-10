@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">MálagaSport</string>
     <string name="desarrollado_por">Developed by Bilal Moreno Ahmed</string>
-    <string name="instalaciones_title">Installations</string>
     <string name="mapa_title">Map</string>
     <string name="instalaciones">Installations</string>
     <string name="favoritos">Favorites</string>
@@ -36,4 +35,21 @@
     <string name="orden_desdendente">Descending order</string>
     <string name="workout">Workout</string>
     <string name="app_description">MálagaSport is a App to offer to citizens information about sport installations (sport tracks, workout, skateparks, ...) and sport events of Málaga. User can valorate installations and comment to informate to other users about the state of place where they want to go.</string>
+    <string name="meteo_on_map_sumary_off">Shows weather info on Map.</string>
+    <string name="meteo_on_map_sumary_on">Coming soon</string>
+    <string name="info_meteo">Weather information</string>
+    <string name="from">From:</string>
+    <string name="tu_valoracion">Your rate:</string>
+    <string name="nueva_valoracion">New valoration:</string>
+    <string name="editar_valoracion">Edit valoration:</string>
+    <string name="comentario">Your comment</string>
+    <string name="msg_err_empty_comment">You must write a comment</string>
+    <string name="msg_err_valoracion">You must rate with at least one star</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_subtitle">The App for Malaga\'s sporters</string>
+    <string name="settings">Settings</string>
+    <string name="msg_error_general">Unexpected error has ocurred</string>
+    <string name="logout">Logout</string>
+    <string name="about">About...</string>
 </resources>
