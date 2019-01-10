@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.repository.InstallationRepository;
-import com.bilalmoreno.malagasport.data.db.repository.UsuarioRepository;
+import com.bilalmoreno.malagasport.data.db.repository.UserRepository;
 
 import java.util.ArrayList;
 
@@ -60,7 +60,7 @@ public class InstalacionAdapter extends ArrayAdapter {
         if (!installation.getIluminacion()) {
             instalacionHolder.ivIluminacion.setVisibility(View.GONE);
         }
-        if (UsuarioRepository.getRepository().getUsuario().getFavoritos().contains(installation.getId())) {
+        if (UserRepository.getRepository().getUsuario().getFavoritos().contains(installation.getId())) {
             instalacionHolder.ivFav.setImageResource(R.drawable.ic_fav_32dp);
         } else {
             instalacionHolder.ivFav.setImageResource(R.drawable.ic_no_fav_32dp);

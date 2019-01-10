@@ -2,6 +2,7 @@ package com.bilalmoreno.malagasport.data.db.model;
 
 
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Evento {
@@ -170,11 +171,27 @@ public class Evento {
         return Objects.hash(id);
     }
 
-    public static final class Destinatarios {
-        private static final int ADULTOS = 1;
-        private static final int JOVENES = 2;
-        private static final int INFANTIL = 3;
-        private static final int TERCERA_EDAD = 4;
-        private static final int TODOS_PUBLICOS = 5;
+    public static class OrdenFechaDescendente implements Comparator<Evento> {
+
+        @Override
+        public int compare(Evento eventoA, Evento eventoB) {
+            int result = eventoB.fechaInicio.compareTo(eventoA.fechaInicio);
+            if (result == 0) {
+                result = eventoA.horario.compareTo(eventoB.horario);
+            }
+            return result;
+        }
+    }
+
+    public static class OrdenFechaAscendente implements Comparator<Evento> {
+
+        @Override
+        public int compare(Evento eventoA, Evento eventoB) {
+            int result = eventoA.fechaInicio.compareTo(eventoB.fechaInicio);
+            if (result == 0) {
+                result = eventoA.horario.compareTo(eventoB.horario);
+            }
+            return result;
+        }
     }
 }

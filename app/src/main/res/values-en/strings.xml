@@ -31,8 +31,8 @@
     <string name="new_password">New password</string>
     <string name="recuperar">Password recovery</string>
     <string name="msg_password_changed">Password has been changed</string>
-    <string name="orden_ascendente">Ascending order</string>
-    <string name="orden_desdendente">Descending order</string>
+    <string name="sort_level_asceding">Ascending level order</string>
+    <string name="sort_level_descending">Descending level order</string>
     <string name="workout">Workout</string>
     <string name="app_description">MálagaSport is a App to offer to citizens information about sport installations (sport tracks, workout, skateparks, ...) and sport events of Málaga. User can valorate installations and comment to informate to other users about the state of place where they want to go.</string>
     <string name="meteo_on_map_sumary_off">Shows weather info on Map.</string>

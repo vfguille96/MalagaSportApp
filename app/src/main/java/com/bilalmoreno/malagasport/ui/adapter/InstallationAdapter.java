@@ -11,9 +11,12 @@ import android.widget.TextView;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.repository.UsuarioRepository;
+import com.bilalmoreno.malagasport.data.db.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapter.InstallationHolder> {
 
@@ -54,7 +57,7 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
         if (!installation.getIluminacion()) {
             installationHolder.ivIluminacion.setVisibility(View.GONE);
         }
-        if (UsuarioRepository.getRepository().getUsuario().getFavoritos().contains(installation.getId())) {
+        if (UserRepository.getRepository().getUsuario().getFavoritos().contains(installation.getId())) {
             installationHolder.ivFav.setImageResource(R.drawable.ic_fav_32dp);
         } else {
             installationHolder.ivFav.setImageResource(R.drawable.ic_no_fav_32dp);
@@ -68,6 +71,10 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
 
     public Installation getItem(int position) {
         return instalaciones.get(position);
+    }
+
+    public void sort(Comparator<Installation> comparator) {
+        Collections.sort(instalaciones, comparator);
     }
 
     public interface InstallationListListener extends View.OnClickListener {

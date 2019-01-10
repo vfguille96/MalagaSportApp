@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/side_nav_bar"
     android:theme="@style/AppTheme.SplashTheme"
-    tools:context=".ui.SplashActivity">
+    tools:context=".ui.splash.SplashActivity">
 
     <TextView
         android:id="@+id/tvAppName"

@@ -35,8 +35,8 @@
     <string name="new_password">Nueva contraseña</string>
     <string name="recuperar">Recuperar contraseña</string>
     <string name="msg_password_changed">La constraseña ha sido cambiada</string>
-    <string name="orden_ascendente">Orden ascendente</string>
-    <string name="orden_desdendente">Orden desdendente</string>
+    <string name="sort_level_asceding">Orden nivel ascendente</string>
+    <string name="sort_level_descending">Orden nivel desdendente</string>
     <string name="info_meteo">Información meteorológica</string>
     <string name="meteo_on_map_sumary_off">Muestra información meteorológica sobre el mapa.</string>
     <string name="meteo_on_map_sumary_on">Opción disponible próximamente.</string>
@@ -52,7 +52,19 @@
     <string name="msg_error_general">Ocurrió un error inesperado.</string>
     <string name="logout">Cerrar sesión</string>
     <string name="app" translatable="false">App</string>
+<<<<<<< HEAD
+    <string name="about">Acerca de la app</string>
+    <string name="msg_err_register_failed">Ya existe una cuenta con este correo electrónico</string>
+    <string name="msg_err_account_not_exists">Este correo no está registrado en el sistema.</string>
+    <string name="sort_az">Orden A-Z</string>
+    <string name="sort_za">Orden Z-A</string>
+    <string name="sort_before_first">Orden recientes primero</string>
+    <string name="sort_after_first">Orden antiguos primero</string>
+    <string name="sort_machines_count_asceding">Número máquinas ascendente</string>
+    <string name="sort_machines_count_descending">Número máquinas descendente</string>
+=======
     <string name="about">Acerca de...</string>
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
+>>>>>>> e3ddba55838644e5d0ffcfc90c0f5cffdf131759
 </resources>

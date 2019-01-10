@@ -1,4 +1,4 @@
-package com.bilalmoreno.malagasport.ui.base;
+package com.bilalmoreno.malagasport.ui.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,9 +10,9 @@ import android.view.View;
 
 import com.bilalmoreno.malagasport.R;
 
-public class ProgressDialogFragment extends DialogFragment {
+public class ProgressBarFragment extends DialogFragment {
 
-    public static final String TAG = "ProgressDialogFragment";
+    public static final String TAG = "ProgressBarFragment";
 
     @NonNull
     @Override

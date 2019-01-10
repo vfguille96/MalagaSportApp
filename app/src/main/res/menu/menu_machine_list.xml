@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/miOrdenarAscendente"
+        android:id="@+id/action_menu_sort_level_ascending"
         android:icon="@android:drawable/arrow_up_float"
-        android:title="@string/orden_ascendente" />
+        android:title="@string/sort_level_asceding" />
     <item
-        android:id="@+id/miOrdenDescendente"
+        android:id="@+id/action_menu_sort_level_descending"
         android:icon="@android:drawable/arrow_down_float"
-        android:title="@string/orden_desdendente" />
+        android:title="@string/sort_level_descending" />
 </menu>

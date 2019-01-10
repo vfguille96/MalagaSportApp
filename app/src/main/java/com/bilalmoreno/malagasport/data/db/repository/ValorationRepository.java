@@ -1,27 +1,27 @@
 package com.bilalmoreno.malagasport.data.db.repository;
 
-import com.bilalmoreno.MalagaSportApplication;
+import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.data.db.model.Valoration;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class ValoracionRepository {
-    private static ValoracionRepository repository;
+public class ValorationRepository {
+    private static ValorationRepository repository;
 
     static {
-        repository = new ValoracionRepository();
+        repository = new ValorationRepository();
     }
 
     private ArrayList<Valoration> valoraciones;
 
-    private ValoracionRepository() {
+    private ValorationRepository() {
         valoraciones = new ArrayList<>();
         inicializar();
     }
 
-    public static ValoracionRepository getRepository() {
+    public static ValorationRepository getRepository() {
         return repository;
     }
 

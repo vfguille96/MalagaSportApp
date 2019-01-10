@@ -1,5 +1,6 @@
 package com.bilalmoreno.malagasport.data.db.model;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Pista {
@@ -14,11 +15,12 @@ public class Pista {
         this.id = id;
     }
 
-    public Pista(int id, String nombre, boolean iluminacion, String dimensiones) {
+    public Pista(int id, String nombre, boolean iluminacion, String dimensiones, int actividadDeportiva) {
         this.id = id;
         this.nombre = nombre;
         this.iluminacion = iluminacion;
         this.dimensiones = dimensiones;
+        this.actividadDeportiva = actividadDeportiva;
     }
 
     public int getId() {
@@ -78,5 +80,21 @@ public class Pista {
     public int hashCode() {
 
         return Objects.hash(nombre, iluminacion, dimensiones, actividadDeportiva, pavimento);
+    }
+
+    public static class OrdenNivelDescendente implements Comparator<Installation> {
+
+        @Override
+        public int compare(Installation installationA, Installation installationB) {
+            return installationB.getNiveles().compareTo(installationA.getNiveles());
+        }
+    }
+
+    public static class OrdenNivelAscendente implements Comparator<Installation> {
+
+        @Override
+        public int compare(Installation installationA, Installation installationB) {
+            return installationA.getNiveles().compareTo(installationB.getNiveles());
+        }
     }
 }

@@ -6,22 +6,23 @@ import com.bilalmoreno.malagasport.data.db.repository.MachineRepository;
 import com.bilalmoreno.malagasport.data.db.repository.PistaRepository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Filtro {
     private String nombre;
-    private ArrayList<ParametroBusqueda> parametrosBusqueda;
+    private ArrayList<Integer> parametrosBusqueda;
 
     public Filtro(String nombre) {
         this.nombre = nombre;
         this.parametrosBusqueda = new ArrayList<>();
     }
 
-    public Filtro(String nombre, ArrayList<ParametroBusqueda> parametrosBusqueda) {
+    public Filtro(String nombre, ArrayList<Integer> parametrosBusqueda) {
         this.nombre = nombre;
         this.parametrosBusqueda = parametrosBusqueda;
     }
 
-    public void add(ParametroBusqueda parametroBusqueda) {
+    public void add(int parametroBusqueda) {
         if (!parametrosBusqueda.contains(parametroBusqueda)) {
             parametrosBusqueda.add(parametroBusqueda);
         }
@@ -29,9 +30,9 @@ public class Filtro {
 
     public int matches(Installation installation) {
         int matches = 0;
-        for (ParametroBusqueda parametro :
+        for (int parametro :
                 parametrosBusqueda) {
-            switch (parametro.getId()) {
+            switch (parametro) {
                 case ParametroBusqueda.ILUMINACION:
                     if (matchIluminacion(installation)) {
                         matches++;
@@ -63,7 +64,7 @@ public class Filtro {
                     }
                     break;
                 default: //Actividades deportivas
-                    if (matchActividadDeportiva(installation, parametro.getId())) {
+                    if (matchActividadDeportiva(installation, parametro)) {
                         matches++;
                     }
                     break;
@@ -109,4 +110,27 @@ public class Filtro {
         return false;
     }
 
+    public static class OrdenAlfabeticoDescendente implements Comparator<Filtro> {
+
+        @Override
+        public int compare(Filtro filtroA, Filtro filtroB) {
+            int result = filtroB.nombre.compareToIgnoreCase(filtroA.nombre);
+            if (result == 0) {
+                result = filtroA.parametrosBusqueda.size() - filtroB.parametrosBusqueda.size();
+            }
+            return result;
+        }
+    }
+
+    public static class OrdenAlfabeticoAscendente implements Comparator<Filtro> {
+
+        @Override
+        public int compare(Filtro filtroA, Filtro filtroB) {
+            int result = filtroA.nombre.compareToIgnoreCase(filtroB.nombre);
+            if (result == 0) {
+                result = filtroA.parametrosBusqueda.size() - filtroB.parametrosBusqueda.size();
+            }
+            return result;
+        }
+    }
 }

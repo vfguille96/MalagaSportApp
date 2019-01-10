@@ -12,10 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bilalmoreno.malagasport.R;
+import com.bilalmoreno.malagasport.ui.dialog.ProgressBarFragment;
 
 public class BaseFragment extends Fragment implements BaseView {
 
-    private ProgressDialogFragment progressDialog;
+    private ProgressBarFragment progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,9 +26,9 @@ public class BaseFragment extends Fragment implements BaseView {
 
     @Override
     public void showProgress() {
-        progressDialog = new ProgressDialogFragment();
+        progressDialog = new ProgressBarFragment();
         progressDialog.setCancelable(false);
-        progressDialog.show(getFragmentManager(), ProgressDialogFragment.TAG);
+        progressDialog.show(getFragmentManager(), ProgressBarFragment.TAG);
     }
 
     @Override
@@ -78,7 +79,7 @@ public class BaseFragment extends Fragment implements BaseView {
             ivIcon.setVisibility(View.VISIBLE);
         }
 
-        layout.setPadding(5, 0, 0, 0);
+        layout.setPadding(8, 8, 8, 8);
         layout.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.white));
         layout.addView(view);
         snackbar.show();

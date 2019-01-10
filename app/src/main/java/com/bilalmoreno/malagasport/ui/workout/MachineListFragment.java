@@ -72,7 +72,7 @@ public class MachineListFragment extends BaseFragment implements MachineListCont
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_maquina_list, menu);
+        inflater.inflate(R.menu.menu_machine_list, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -103,10 +103,10 @@ public class MachineListFragment extends BaseFragment implements MachineListCont
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.miOrdenarAscendente:
+            case R.id.action_menu_sort_level_ascending:
                 adapter.sort(new Machine.OrdenNivelAscendente());
                 break;
-            case R.id.miOrdenDescendente:
+            case R.id.action_menu_sort_level_descending:
                 adapter.sort(new Machine.OrdenNivelDescendente());
                 break;
             default:
