@@ -13,7 +13,7 @@
             android:id="@+id/installationList"
             android:checked="true"
             android:icon="@drawable/ic_action_installation"
-            android:title="@string/instalaciones_title" />
+            android:title="@string/instalaciones" />
         <item
             android:id="@+id/workoutList"
             android:icon="@drawable/ic_action_workout"
