@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -43,13 +44,8 @@ public class MainNavigationActivity extends AppCompatActivity
     private NavigationView navigationView;
     private FloatingActionButton primaryActionButton;
 
-    private InstallationListFragment installationListFragment;
-    private InstallationFragment installationFragment;
-    private ValoracionFragment valoracionFragment;
-    private SettingsFragment settingsFragment;
-    private WorkoutListFragment workoutListFragment;
-    private MachineListFragment machineListFragment;
-    private SupportMapFragment mapFragment;
+    private Fragment fragment;
+    private String tag;
 
     public void onPrimaryActionButtonHide() {
         primaryActionButton.hide();
@@ -86,6 +82,15 @@ public class MainNavigationActivity extends AppCompatActivity
 
         primaryActionButton = findViewById(R.id.fab);
         primaryActionButton.hide();
+        if (savedInstanceState == null) {
+            tag = InstallationListFragment.TAG;
+            fragment = InstallationListFragment.getInstance(null, this);
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.content, fragment, tag);
+            fragmentTransaction.commit();
+        } else {
+            fragment = getSupportFragmentManager().findFragmentByTag(tag);
+        }
     }
 
     @Override
@@ -112,11 +117,7 @@ public class MainNavigationActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        installationListFragment = InstallationListFragment.getInstance(null, this);
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.content, installationListFragment, InstallationListFragment.TAG);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+
     }
 
     @Override
@@ -128,12 +129,7 @@ public class MainNavigationActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            settingsFragment = new SettingsFragment();
-
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content, settingsFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            showSettings();
             return true;
         } else if (id == R.id.action_logout) {
             SharedPreferences loginData = getSharedPreferences(MalagaSportApplication.LOGIN_DATA_TAG, Context.MODE_PRIVATE);
@@ -161,59 +157,78 @@ public class MainNavigationActivity extends AppCompatActivity
         Intent intent = null;
 
         if (id == R.id.map) {
-
-            loadMap();
+            Toast.makeText(this, "Map", Toast.LENGTH_SHORT).show();
+            showMap();
 
         } else if (id == R.id.installationList) {
-            installationListFragment = (InstallationListFragment) getSupportFragmentManager().findFragmentByTag(InstallationListFragment.TAG);
-
-            if (installationListFragment == null) {
-                installationListFragment = InstallationListFragment.getInstance(null, this);
-            }
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content, installationListFragment, InstallationListFragment.TAG);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            showInstallationList();
 
         } else if (id == R.id.workoutList) {
-            workoutListFragment = (WorkoutListFragment) getSupportFragmentManager().findFragmentByTag(WorkoutListFragment.TAG);
-
-            if (workoutListFragment == null) {
-                workoutListFragment = WorkoutListFragment.getInstance(null, this);
-            }
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content, workoutListFragment, WorkoutListFragment.TAG);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            showWorkoutList();
 
         } else if (id == R.id.favs) {
 
         } else if (id == R.id.eventsList) {
 
         } else if (id == R.id.settings) {
-            settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag(SettingsFragment.TAG);
-
-            if (settingsFragment == null) {
-                settingsFragment = new SettingsFragment();
-            }
-
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content, settingsFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            showSettings();
 
         } else if (id == R.id.about) {
             intent = new Intent(MainNavigationActivity.this, AboutActivity.class);
             startActivity(intent);
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void loadMap() {
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+    private void showWorkoutList() {
+        tag = WorkoutListFragment.TAG;
+        fragment = getSupportFragmentManager().findFragmentByTag(tag);
+
+        if (fragment == null) {
+            fragment = WorkoutListFragment.getInstance(null, this);
+        }
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content, fragment, tag);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void showInstallationList() {
+        tag = InstallationListFragment.TAG;
+        fragment = getSupportFragmentManager().findFragmentByTag(tag);
+        if (fragment == null) {
+            fragment = InstallationListFragment.getInstance(null, this);
+        }
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content, fragment, tag);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void showSettings() {
+        tag = SettingsFragment.TAG;
+        fragment = getSupportFragmentManager().findFragmentByTag(tag);
+        if (fragment == null) {
+            fragment = new SettingsFragment();
+        }
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content, fragment, tag);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void showMap() {
+        tag = GoogleMapFragment.TAG;
+        fragment = getSupportFragmentManager().findFragmentByTag(tag);
+        if (fragment == null) {
+            fragment = new GoogleMapFragment();
+        }
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content, fragment, tag);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     public void hideKeyboard() {
@@ -233,10 +248,10 @@ public class MainNavigationActivity extends AppCompatActivity
         bundle.putInt(Installation.TAG, installationId);
         bundle.putString(Usuario.TAG, userId);
 
-        valoracionFragment = ValoracionFragment.getInstance(bundle, this);
+        fragment = ValoracionFragment.getInstance(bundle, this);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content, valoracionFragment);
+        fragmentTransaction.replace(R.id.content, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -250,10 +265,10 @@ public class MainNavigationActivity extends AppCompatActivity
         bundle.putInt(Installation.TAG, installationId);
         bundle.putString(Usuario.TAG, userId);
 
-        valoracionFragment = ValoracionFragment.getInstance(bundle, this);
+        fragment = ValoracionFragment.getInstance(bundle, this);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content, valoracionFragment);
+        fragmentTransaction.replace(R.id.content, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -263,10 +278,10 @@ public class MainNavigationActivity extends AppCompatActivity
         Bundle bundle = new Bundle();
         bundle.putInt(Installation.TAG, installationId);
 
-        installationFragment = InstallationFragment.getInstance(bundle, this);
+        fragment = InstallationFragment.getInstance(bundle, this);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content, installationFragment);
+        fragmentTransaction.replace(R.id.content, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -287,21 +302,21 @@ public class MainNavigationActivity extends AppCompatActivity
         Bundle bundle = new Bundle();
         bundle.putInt(Installation.TAG, installationId);
 
-        machineListFragment = MachineListFragment.getInstance(bundle);
+        fragment = MachineListFragment.getInstance(bundle);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content, machineListFragment, MachineListFragment.TAG);
+        fragmentTransaction.replace(R.id.content, fragment, MachineListFragment.TAG);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        if (mapFragment == null) {
-            loadMap();
+        if (fragment == null) {
+            showMap();
         } else {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content, mapFragment, "map");
+            fragmentTransaction.replace(R.id.content, fragment, "map");
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
