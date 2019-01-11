@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MálagaSport</string>
     <string name="desarrollado_por">Desarrollado por Bilal Moreno Ahmed</string>
-    <string name="app_description">MálagaSport es una aplicación destinada a ofrecer a los ciudadanos información acerca de las instalaciones deportivas (pistas deportivas, workout, skateparks...) y los eventos deportivos de Málaga. Los usuarios pueden valorar las instalaciones y dejar su comentario para que otros se informen mejor del estado de los lugares a los que quieren ir.</string>
+    <string name="app_description">MálagaSport es una aplicación destinada a ofrecer a los ciudadanos información acerca de las instalaciones deportivas (pistas deportivas, workout, skateparks&#8230;) y los eventos deportivos de Málaga. Los usuarios pueden valorar las instalaciones y dejar su comentario para que otros se informen mejor del estado de los lugares a los que quieren ir.</string>
     <string name="mapa_title">Mapa</string>
     <string name="instalaciones">Instalaciones</string>
     <string name="workout">Workout</string>
@@ -49,22 +49,18 @@
     <string name="msg_err_valoracion">Debe puntuar al menos con una estrella</string>
     <string name="nav_header_subtitle">La app para los deportistas de Málaga</string>
     <string name="settings">Ajustes</string>
-    <string name="msg_error_general">Ocurrió un error inesperado.</string>
+    <string name="msg_error_general">Ocurrió un error inesperado</string>
     <string name="logout">Cerrar sesión</string>
     <string name="app" translatable="false">App</string>
-<<<<<<< HEAD
-    <string name="about">Acerca de la app</string>
     <string name="msg_err_register_failed">Ya existe una cuenta con este correo electrónico</string>
-    <string name="msg_err_account_not_exists">Este correo no está registrado en el sistema.</string>
+    <string name="msg_err_account_not_exists">Este correo no está registrado en el sistema</string>
     <string name="sort_az">Orden A-Z</string>
     <string name="sort_za">Orden Z-A</string>
     <string name="sort_before_first">Orden recientes primero</string>
     <string name="sort_after_first">Orden antiguos primero</string>
     <string name="sort_machines_count_asceding">Número máquinas ascendente</string>
     <string name="sort_machines_count_descending">Número máquinas descendente</string>
-=======
-    <string name="about">Acerca de...</string>
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
->>>>>>> e3ddba55838644e5d0ffcfc90c0f5cffdf131759
+    <string name="about">Acerca de esta app</string>
 </resources>
