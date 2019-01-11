@@ -63,4 +63,7 @@
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
     <string name="about">Acerca de esta app</string>
+    <string name="map_settings">Mapa</string>
+    <string name="valoration_delete">Eliminar valoración</string>
+    <string name="msg_error_valoration_delete">No se pudo encontrar la valoración</string>
 </resources>

@@ -24,16 +24,18 @@ import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.model.Usuario;
+import com.bilalmoreno.malagasport.ui.about.AboutActivity;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;
 import com.bilalmoreno.malagasport.ui.installation.InstallationFragment;
 import com.bilalmoreno.malagasport.ui.installation.InstallationListFragment;
-import com.bilalmoreno.malagasport.ui.installation.ValoracionFragment;
 import com.bilalmoreno.malagasport.ui.login.LoginActivity;
-import com.bilalmoreno.malagasport.ui.workout.MachineListFragment;
+import com.bilalmoreno.malagasport.ui.machine.MachineListFragment;
+import com.bilalmoreno.malagasport.ui.map.GoogleMapFragment;
+import com.bilalmoreno.malagasport.ui.settings.SettingsFragment;
+import com.bilalmoreno.malagasport.ui.valoration.ValoracionFragment;
 import com.bilalmoreno.malagasport.ui.workout.WorkoutListFragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 
 public class MainNavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, BaseFragment.PrimaryActionButton, InstallationListFragment.OnInstallationShow, InstallationFragment.OnValorationShow, ValoracionFragment.OnValorationSavedChanges, MachineListFragment.OnMachineShow, WorkoutListFragment.OnWorkoutShow, OnMapReadyCallback {
@@ -157,7 +159,6 @@ public class MainNavigationActivity extends AppCompatActivity
         Intent intent = null;
 
         if (id == R.id.map) {
-            Toast.makeText(this, "Map", Toast.LENGTH_SHORT).show();
             showMap();
 
         } else if (id == R.id.installationList) {
@@ -289,6 +290,7 @@ public class MainNavigationActivity extends AppCompatActivity
     @Override
     public void onValorationSavedChanges() {
         onBackPressed();
+
     }
 
     @Override

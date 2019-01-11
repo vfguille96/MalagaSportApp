@@ -9,5 +9,6 @@ public interface SplashContract {
         void onAuthenticationSucess();
     }
 
-    interface Presenter extends LoginContract.Presenter { }
+    interface Presenter extends LoginContract.Presenter {
+    }
 }

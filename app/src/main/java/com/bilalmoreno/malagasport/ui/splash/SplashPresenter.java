@@ -1,13 +1,12 @@
 package com.bilalmoreno.malagasport.ui.splash;
 
 
-import com.bilalmoreno.malagasport.ui.login.LoginContract;
-import com.bilalmoreno.malagasport.ui.login.UserInteractor;
+import com.bilalmoreno.malagasport.ui.interactor.UserInteractor;
 
 public class SplashPresenter implements SplashContract.Presenter, UserInteractor.AuthenticationListener {
 
-    private SplashContract.View view;
     UserInteractor interactor;
+    private SplashContract.View view;
 
     public SplashPresenter(SplashContract.View view) {
         this.view = view;

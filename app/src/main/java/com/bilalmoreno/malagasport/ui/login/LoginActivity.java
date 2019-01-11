@@ -14,6 +14,8 @@ import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.ui.MainNavigationActivity;
 import com.bilalmoreno.malagasport.ui.base.BaseActivity;
+import com.bilalmoreno.malagasport.ui.recovery.RecoveryActivity;
+import com.bilalmoreno.malagasport.ui.register.RegisterActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

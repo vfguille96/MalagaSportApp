@@ -91,4 +91,8 @@ public class ValorationRepository {
         }
         return false;
     }
+
+    public boolean delete(Valoration valoration) {
+        return valoraciones.remove(valoration);
+    }
 }

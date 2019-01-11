@@ -1,7 +1,5 @@
 package com.bilalmoreno.malagasport.data.db.model;
 
-import java.util.Objects;
-
 public final class ParametroBusqueda {
     public static final int AJEDREZ = ActividadDeportiva.AJEDREZ;
     public static final int ATLETISMO = ActividadDeportiva.ATLETISMO;

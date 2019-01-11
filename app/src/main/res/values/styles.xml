@@ -31,7 +31,7 @@
 
     <!--Tema aplicado a los botones-->
     <style name="AppTheme.Button" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/shape_dashboard_button_background</item>
+        <item name="android:background">@drawable/shape_button</item>
         <item name="android:textColor">@color/colorPrimaryText</item>
         <item name="android:elevation">@dimen/button_elevation</item>
     </style>
