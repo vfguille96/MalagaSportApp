@@ -90,9 +90,9 @@ public class Valoration implements Serializable {
         @Override
         public int compare(Valoration valorationA, Valoration valorationB) {
             if (valorationA.idUsuario.equals(MalagaSportApplication.getUserId())) {
-                return 1;
-            } else if (valorationB.idUsuario.equals(MalagaSportApplication.getUserId())) {
                 return -1;
+            } else if (valorationB.idUsuario.equals(MalagaSportApplication.getUserId())) {
+                return 1;
             }
             int result = valorationB.fechaEdicion.compareTo(valorationA.fechaEdicion);
             if (result == 0) {
@@ -107,9 +107,9 @@ public class Valoration implements Serializable {
         @Override
         public int compare(Valoration valorationA, Valoration valorationB) {
             if (valorationA.idUsuario.equals(MalagaSportApplication.getUserId())) {
-                return 1;
-            } else if (valorationB.idUsuario.equals(MalagaSportApplication.getUserId())) {
                 return -1;
+            } else if (valorationB.idUsuario.equals(MalagaSportApplication.getUserId())) {
+                return 1;
             }
             int result = valorationA.fechaEdicion.compareTo(valorationB.fechaEdicion);
             if (result == 0) {

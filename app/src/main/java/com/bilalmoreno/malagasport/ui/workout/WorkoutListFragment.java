@@ -55,7 +55,7 @@ public class WorkoutListFragment extends BaseFragment implements WorkoutListCont
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_workout_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_workout_list, container, false);
         if (rootView != null) {
             rvWorkout = rootView.findViewById(R.id.rvWorkout);
         }

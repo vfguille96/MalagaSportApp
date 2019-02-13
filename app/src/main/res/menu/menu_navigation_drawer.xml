@@ -6,9 +6,9 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/map"
+            android:enabled="true"
             android:icon="@drawable/ic_action_map"
-            android:title="@string/mapa_title"
-            android:enabled="true"/>
+            android:title="@string/mapa_title" />
         <item
             android:id="@+id/installationList"
             android:checked="true"
@@ -20,15 +20,15 @@
             android:title="@string/workout" />
         <item
             android:id="@+id/favs"
+            android:enabled="false"
             android:icon="@drawable/ic_action_fav"
-            android:title="@string/favoritos"
-            android:enabled="false"/>
+            android:title="@string/favoritos" />
 
         <item
             android:id="@+id/eventsList"
+            android:enabled="false"
             android:icon="@drawable/ic_action_calendar"
-            android:title="@string/eventos"
-            android:enabled="false"/>
+            android:title="@string/eventos" />
         <item android:title="@string/app">
             <menu>
                 <item
@@ -38,9 +38,9 @@
 
                 <item
                     android:id="@+id/about"
+                    android:checkable="false"
                     android:icon="@android:drawable/ic_menu_help"
-                    android:title="@string/about"
-                    android:checkable="false"/>
+                    android:title="@string/about" />
 
             </menu>
         </item>

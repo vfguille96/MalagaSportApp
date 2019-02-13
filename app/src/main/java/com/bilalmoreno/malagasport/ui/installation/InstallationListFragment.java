@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.model.Machine;
 import com.bilalmoreno.malagasport.ui.adapter.InstallationAdapter;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;
 
@@ -55,7 +54,7 @@ public class InstallationListFragment extends BaseFragment implements Installati
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_instalacion_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_instalacion_list, container, false);
         if (rootView != null) {
             rvInstallations = rootView.findViewById(R.id.lvInstalaciones);
 

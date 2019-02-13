@@ -26,6 +26,11 @@ public class MalagaSportApplication extends Application {
      */
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
     /*
+    Tags settings
+     */
+    public static final String SETTINGS = "settings";
+    public static final String METEO_ON_MAP = "meteo_on_map";
+    /*
     ID del usuario que inicia sesión
      */
     private static String userId;

@@ -60,4 +60,7 @@
     <string name="sort_after_first">Order old first</string>
     <string name="sort_machines_count_asceding">Machines number ascending</string>
     <string name="sort_machines_count_descending">Machines number descending</string>
+    <string name="map_settings">Map</string>
+    <string name="valoration_delete">Delete valoration</string>
+    <string name="msg_error_valoration_delete">The valortion couldn\'t be found</string>
 </resources>

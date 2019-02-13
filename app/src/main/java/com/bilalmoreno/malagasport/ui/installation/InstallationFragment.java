@@ -23,6 +23,7 @@ import com.bilalmoreno.malagasport.ui.adapter.ValoracionAdapter;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class InstallationFragment extends BaseFragment implements InstallationContract.View, View.OnClickListener {
 
@@ -66,7 +67,7 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_instalacion, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_instalacion, container, false);
         if (rootView != null) {
             tvDireccion = rootView.findViewById(R.id.tvDireccion);
             ivMovRed = rootView.findViewById(R.id.ivMovRed);
@@ -128,7 +129,7 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
     public void onResume() {
         super.onResume();
         if (!presenter.userHasRated(idInstalacion)) {
-            primaryActionButton.onPrimaryActionButtonShow(R.drawable.ic_menu_share, this);
+            primaryActionButton.onPrimaryActionButtonShow(R.drawable.ic_menu_add, this);
         }
     }
 
@@ -153,6 +154,7 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
             ivMovRed.setVisibility(View.VISIBLE);
         }
         adapter.clear();
+        Collections.sort(valorations, new Valoration.OrdenFechaDescendente());
         adapter.addAll(valorations);
     }
 
