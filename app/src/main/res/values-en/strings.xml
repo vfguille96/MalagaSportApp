@@ -9,7 +9,7 @@
     <string name="configuracion">Configuration</string>
     <string name="acerca_de">About</string>
     <string name="email">Email</string>
-    <string name="usuario">User</string>
+    <string name="currentUser">User</string>
     <string name="password">Password</string>
     <string name="password_missing"><u>Password recovery</u></string>
     <string name="keep_loged_in">Remember session</string>
@@ -40,8 +40,8 @@
     <string name="info_meteo">Weather information</string>
     <string name="from">From:</string>
     <string name="tu_valoracion">Your rate:</string>
-    <string name="nueva_valoracion">New valoration</string>
-    <string name="editar_valoracion">Edit valoration</string>
+    <string name="nueva_valoracion">New rate</string>
+    <string name="editar_valoracion">Edit rate</string>
     <string name="comentario">Your comment</string>
     <string name="msg_err_empty_comment">You must write a comment</string>
     <string name="msg_err_valoracion">You must rate with at least one star</string>
@@ -61,6 +61,6 @@
     <string name="sort_machines_count_asceding">Machines number ascending</string>
     <string name="sort_machines_count_descending">Machines number descending</string>
     <string name="map_settings">Map</string>
-    <string name="valoration_delete">Delete valoration</string>
+    <string name="valoration_delete">Delete rate</string>
     <string name="msg_error_valoration_delete">The valortion couldn\'t be found</string>
 </resources>

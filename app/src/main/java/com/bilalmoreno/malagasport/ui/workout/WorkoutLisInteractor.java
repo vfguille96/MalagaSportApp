@@ -3,7 +3,8 @@ package com.bilalmoreno.malagasport.ui.workout;
 import android.os.AsyncTask;
 
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.repository.InstallationRepository;
+import com.bilalmoreno.malagasport.data.db.model.Workout;
+import com.bilalmoreno.malagasport.data.repository.InstallationRepository;
 
 import java.util.ArrayList;
 
@@ -16,26 +17,26 @@ public class WorkoutLisInteractor {
     }
 
     void load() {
-        new AsyncTask<Void, Void, ArrayList<Installation>>() {
+        new AsyncTask<Void, Void, ArrayList<Workout>>() {
             @Override
-            protected ArrayList<Installation> doInBackground(Void... voids) {
+            protected ArrayList<Workout> doInBackground(Void... voids) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                return InstallationRepository.getRepository().getWorkout();
+                return InstallationRepository.getInstance().getWorkouts();
             }
 
             @Override
-            protected void onPostExecute(ArrayList<Installation> installations) {
-                loadFinishedListener.onSuccess(installations);
+            protected void onPostExecute(ArrayList<Workout> workouts) {
+                loadFinishedListener.onSuccess(workouts);
             }
         }.execute();
     }
 
     public interface OnLoadFinishedListener {
-        void onSuccess(ArrayList<Installation> installations);
+        void onSuccess(ArrayList<Workout> installations);
 
         void onError(int resourceErrorMessage);
     }

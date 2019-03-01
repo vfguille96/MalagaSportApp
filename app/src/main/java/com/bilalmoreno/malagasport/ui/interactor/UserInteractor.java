@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import com.bilalmoreno.malagasport.MalagaSportApplication;
-import com.bilalmoreno.malagasport.data.db.repository.UserRepository;
+import com.bilalmoreno.malagasport.data.repository.UserRepository;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -47,21 +47,8 @@ public class UserInteractor {
     }
 
     public void validateCredentials(final String user, final String password) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
                 if (validarPassword(password) & validarEmail(user)) {
-                    if (UserRepository.getRepository().validarCredenciales(user, password)) {
+                    if (UserRepository.getInstance().validarCredenciales(user, password)) {
                         if (loginListener != null) {
                             loginListener.onAuthenticationSucess();
                         }
@@ -81,24 +68,9 @@ public class UserInteractor {
                         splashListener.onAuthenticationError();
                     }
                 }
-            }
-        }.execute();
     }
 
     public void validateRegister(final String nombre, final String email, final String password, final String passwordRepeat, final String birthDate) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
                 Calendar calendar = Calendar.getInstance();
                 if (validarFechaNac(birthDate) & validarPasswordRepeat(password, passwordRepeat) & validarPassword(password) & validarEmail(email) & validarNombre(nombre)) {
                     try {
@@ -106,39 +78,22 @@ public class UserInteractor {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                    if (UserRepository.getRepository().registrarUsuario(email, email, nombre, calendar, password)) {
+                    if (UserRepository.getInstance().registrarUsuario(email, email, nombre, calendar.getTime(), password)) {
                         registerListener.onRegisterSuccess();
                     } else {
                         registerListener.onRegisterFailed();
                     }
                 }
-            }
-        }.execute();
     }
 
     public void validateChangePassword(final String email, final String password, final String passwordRepeat) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
                 if (validarPasswordRepeat(password, passwordRepeat) & validarPassword(password) & validarEmail(email)) {
-                    if (UserRepository.getRepository().changePassword(email, password)) {
+                    if (UserRepository.getInstance().changePassword(email, password)) {
                         recoveryListener.onChangePasswordSuccess();
                     } else {
                         recoveryListener.onChangePasswordFailed();
                     }
                 }
-            }
-        }.execute();
     }
 
     private boolean validarEmail(String email) {

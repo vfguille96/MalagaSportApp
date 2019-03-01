@@ -18,8 +18,8 @@ import android.widget.TextView;
 import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.model.Valoration;
-import com.bilalmoreno.malagasport.ui.adapter.ValoracionAdapter;
+import com.bilalmoreno.malagasport.data.db.model.Rate;
+import com.bilalmoreno.malagasport.ui.adapter.RateAdapter;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ import java.util.Collections;
 
 public class InstallationFragment extends BaseFragment implements InstallationContract.View, View.OnClickListener {
 
-    ValoracionAdapter adapter;
+    RateAdapter adapter;
 
     TextView tvDireccion;
 
@@ -35,10 +35,10 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
 
     ImageView ivIluminacion;
 
-    ListView lvValoraciones;
+    ListView lvRates;
     private PrimaryActionButton primaryActionButton;
     private InstallationContract.Presenter presenter;
-    private OnValorationShow callback;
+    private OnRateShow callback;
     private OnItemClickListener listener;
     private int idInstalacion;
 
@@ -58,7 +58,7 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            callback = (OnValorationShow) context;
+            callback = (OnRateShow) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implements OnInstallationShow");
         }
@@ -72,7 +72,7 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
             tvDireccion = rootView.findViewById(R.id.tvDireccion);
             ivMovRed = rootView.findViewById(R.id.ivMovRed);
             ivIluminacion = rootView.findViewById(R.id.ivIluminacion);
-            lvValoraciones = rootView.findViewById(R.id.lvValoraciones);
+            lvRates = rootView.findViewById(R.id.lvValoraciones);
         }
         return rootView;
     }
@@ -86,9 +86,9 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
 
                 listener = new OnItemClickListener();
 
-                adapter = new ValoracionAdapter(getContext());
-                lvValoraciones.setAdapter(adapter);
-                lvValoraciones.setOnItemClickListener(listener);
+                adapter = new RateAdapter(getContext());
+                lvRates.setAdapter(adapter);
+                lvRates.setOnItemClickListener(listener);
 
 
                 presenter = new InstallationPresenter(this);
@@ -113,10 +113,10 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_menu_sort_after_first:
-                adapter.sort(new Valoration.OrdenFechaDescendente());
+                adapter.sort(new Rate.OrdenFechaDescendente());
                 break;
             case R.id.action_menu_sort_before_first:
-                adapter.sort(new Valoration.OrdenFechaAscendente());
+                adapter.sort(new Rate.OrdenFechaAscendente());
                 break;
             default:
                 return false;
@@ -141,11 +141,11 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
 
     @Override
     public void onClick(View v) {
-        callback.onValorationAdd(MalagaSportApplication.getUserId(), idInstalacion);
+        callback.onRateAdd(MalagaSportApplication.getUserId(), idInstalacion);
     }
 
     @Override
-    public void showInstallation(Installation installation, ArrayList<Valoration> valorations) {
+    public void showInstallation(Installation installation, ArrayList<Rate> rates) {
         tvDireccion.setText(installation.getDireccion());
         if (installation.getIluminacion()) {
             ivIluminacion.setVisibility(View.VISIBLE);
@@ -154,22 +154,22 @@ public class InstallationFragment extends BaseFragment implements InstallationCo
             ivMovRed.setVisibility(View.VISIBLE);
         }
         adapter.clear();
-        Collections.sort(valorations, new Valoration.OrdenFechaDescendente());
-        adapter.addAll(valorations);
+        Collections.sort(rates, new Rate.OrdenFechaDescendente());
+        adapter.addAll(rates);
     }
 
-    public interface OnValorationShow {
-        void onValorationEdit(String userId, int installationId);
+    public interface OnRateShow {
+        void onRateEdit(String userId, int installationId);
 
-        void onValorationAdd(String userId, int idInstalacion);
+        void onRateAdd(String userId, int idInstalacion);
     }
 
     private class OnItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Valoration valoration = adapter.getItem(position);
-            if (valoration.getIdUsuario().equals(MalagaSportApplication.getUserId())) {
-                callback.onValorationEdit(valoration.getIdUsuario(), valoration.getIdInstlacion());
+            Rate rate = adapter.getItem(position);
+            if (rate.getIdUsuario().equals(MalagaSportApplication.getUserId())) {
+                callback.onRateEdit(rate.getIdUsuario(), rate.getIdInstlacion());
             }
         }
     }

@@ -9,9 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
-import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.repository.UserRepository;
+import com.bilalmoreno.malagasport.data.db.model.Workout;
+import com.bilalmoreno.malagasport.data.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,20 +23,20 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
 
     private final Context context;
     private WorkoutListListener listener;
-    private ArrayList<Installation> instalaciones;
+    private ArrayList<Workout> workouts;
 
     public WorkoutAdapter(Context context, WorkoutListListener listener) {
         this.context = context;
         this.listener = listener;
-        instalaciones = new ArrayList<>();
+        workouts = new ArrayList<>();
     }
 
     public void clear() {
-        instalaciones.clear();
+        workouts.clear();
     }
 
-    public void addAll(ArrayList<Installation> installations) {
-        this.instalaciones.addAll(installations);
+    public void addAll(ArrayList<Workout> workouts) {
+        this.workouts.addAll(workouts);
     }
 
     @NonNull
@@ -47,17 +48,17 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutHolder workoutHolder, int i) {
-        Installation installation = instalaciones.get(i);
+        Workout workout = workouts.get(i);
         workoutHolder.itemView.setOnClickListener(listener);
-        workoutHolder.tvNombre.setText(installation.getNombre());
-        workoutHolder.tvDireccion.setText(installation.getDireccion());
-        workoutHolder.tvNumeMaquinas.setText(String.valueOf(installation.getMaquinas().size()));
-        workoutHolder.tvNiveles.setText(installation.getNiveles());
-        workoutHolder.ivMovReducida.setImageResource(R.drawable.ic_mov_red);
-        if (!installation.getAccesoMovReducida()) {
-            workoutHolder.ivMovReducida.setVisibility(View.GONE);
-        }
-        if (UserRepository.getRepository().getUsuario().getFavoritos().contains(installation.getId())) {
+        workoutHolder.tvNombre.setText(workout.getNombre());
+        workoutHolder.tvDireccion.setText(workout.getDireccion());
+        workoutHolder.tvNumeMaquinas.setText(String.valueOf(workout.getMaquinas().size()));
+        workoutHolder.tvNiveles.setText(workout.getNiveles());
+//        workoutHolder.ivMovReducida.setImageResource(R.drawable.ic_mov_red);
+//        if (!workout.getAccesoMovReducida()) {
+//            workoutHolder.ivMovReducida.setVisibility(View.GONE);
+//        }
+        if (UserRepository.getInstance().getUser(MalagaSportApplication.getUserId()).getFavoritos().contains(workout.getId())) {
             workoutHolder.ivFav.setImageResource(R.drawable.ic_fav_32dp);
         } else {
             workoutHolder.ivFav.setImageResource(R.drawable.ic_no_fav_32dp);
@@ -66,15 +67,15 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
 
     @Override
     public int getItemCount() {
-        return instalaciones.size();
+        return workouts.size();
     }
 
-    public Installation getItem(int position) {
-        return instalaciones.get(position);
+    public Workout getItem(int position) {
+        return workouts.get(position);
     }
 
-    public void sort(Comparator<Installation> comparator) {
-        Collections.sort(instalaciones, comparator);
+    public void sort(Comparator<Workout> comparator) {
+        Collections.sort(workouts, comparator);
         notifyDataSetChanged();
     }
 

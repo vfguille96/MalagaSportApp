@@ -1,6 +1,7 @@
 package com.bilalmoreno.malagasport.ui.workout;
 
 import com.bilalmoreno.malagasport.data.db.model.Installation;
+import com.bilalmoreno.malagasport.data.db.model.Workout;
 
 import java.util.ArrayList;
 
@@ -21,9 +22,9 @@ public class WorkoutListPresenter implements WorkoutListContract.Presenter, Work
     }
 
     @Override
-    public void onSuccess(ArrayList<Installation> installations) {
+    public void onSuccess(ArrayList<Workout> workouts) {
         view.hideProgress();
-        view.showWorkouts(installations);
+        view.showWorkouts(workouts);
     }
 
     @Override

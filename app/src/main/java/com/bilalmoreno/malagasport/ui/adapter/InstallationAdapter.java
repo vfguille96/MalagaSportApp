@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.repository.UserRepository;
+import com.bilalmoreno.malagasport.data.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,7 +56,7 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
         if (!installation.getIluminacion()) {
             installationHolder.ivIluminacion.setVisibility(View.GONE);
         }
-        if (UserRepository.getRepository().getUsuario().getFavoritos().contains(installation.getId())) {
+        if (UserRepository.getInstance().getCurrentUser().getFavoritos().contains(installation.getId())) {
             installationHolder.ivFav.setImageResource(R.drawable.ic_fav_32dp);
         } else {
             installationHolder.ivFav.setImageResource(R.drawable.ic_no_fav_32dp);

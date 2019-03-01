@@ -3,8 +3,8 @@ package com.bilalmoreno.malagasport.ui.interactor;
 import android.os.AsyncTask;
 
 import com.bilalmoreno.malagasport.data.db.model.Machine;
-import com.bilalmoreno.malagasport.data.db.repository.InstallationRepository;
-import com.bilalmoreno.malagasport.data.db.repository.MachineRepository;
+import com.bilalmoreno.malagasport.data.repository.InstallationRepository;
+import com.bilalmoreno.malagasport.data.repository.MachineRepository;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class MachineListInteractor {
         this.loadFinishedListener = loadFinishedListener;
     }
 
-    public void load(final int installationId) {
+    public void load(final int workoutId) {
         new AsyncTask<Void, Void, ArrayList<Machine>>() {
             @Override
             protected ArrayList<Machine> doInBackground(Void... voids) {
@@ -25,7 +25,7 @@ public class MachineListInteractor {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                return MachineRepository.getRepository().getMaquinas(InstallationRepository.getRepository().getInstalacion(installationId).getMaquinas());
+                return MachineRepository.getInstance().getList(workoutId);
             }
 
             @Override

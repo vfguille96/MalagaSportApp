@@ -3,7 +3,7 @@ package com.bilalmoreno.malagasport.ui.installation;
 import android.os.AsyncTask;
 
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.repository.InstallationRepository;
+import com.bilalmoreno.malagasport.data.repository.InstallationRepository;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class InstallationListInteractor {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                return InstallationRepository.getRepository().getInstalaciones();
+                return InstallationRepository.getInstance().getInstallations();
             }
 
             @Override

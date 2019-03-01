@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
+import com.bilalmoreno.malagasport.data.db.model.Workout;
 import com.bilalmoreno.malagasport.ui.adapter.WorkoutAdapter;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;
 
@@ -88,16 +89,16 @@ public class WorkoutListFragment extends BaseFragment implements WorkoutListCont
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_menu_sort_az:
-                adapter.sort(new Installation.OrdenAlfabeticoAscendente());
+                adapter.sort(new Workout.OrdenAlfabeticoAscendente());
                 break;
             case R.id.action_menu_sort_za:
-                adapter.sort(new Installation.OrdenAlfabeticoDescendente());
+                adapter.sort(new Workout.OrdenAlfabeticoDescendente());
                 break;
             case R.id.action_menu_sort_machines_count_ascending:
-                adapter.sort(new Installation.OrdenMaquinasCountAscendente());
+                adapter.sort(new Workout.OrdenMaquinasCountAscendente());
                 break;
             case R.id.action_menu_sort_machines_count_descending:
-                adapter.sort(new Installation.OrdenMaquinasCountDescendente());
+                adapter.sort(new Workout.OrdenMaquinasCountDescendente());
                 break;
             default:
                 return false;
@@ -112,7 +113,7 @@ public class WorkoutListFragment extends BaseFragment implements WorkoutListCont
     }
 
     @Override
-    public void showWorkouts(ArrayList<Installation> workouts) {
+    public void showWorkouts(ArrayList<Workout> workouts) {
         adapter.clear();
         adapter.addAll(workouts);
         notifyDataSetChanged();
@@ -123,6 +124,6 @@ public class WorkoutListFragment extends BaseFragment implements WorkoutListCont
     }
 
     public interface OnWorkoutShow {
-        void onWorkoutMachinesShow(int installationId);
+        void onWorkoutMachinesShow(int workoutId);
     }
 }

@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.model.Usuario;
+import com.bilalmoreno.malagasport.data.db.model.User;
 import com.bilalmoreno.malagasport.ui.about.AboutActivity;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;
 import com.bilalmoreno.malagasport.ui.installation.InstallationFragment;
@@ -32,13 +32,13 @@ import com.bilalmoreno.malagasport.ui.login.LoginActivity;
 import com.bilalmoreno.malagasport.ui.machine.MachineListFragment;
 import com.bilalmoreno.malagasport.ui.map.GoogleMapFragment;
 import com.bilalmoreno.malagasport.ui.settings.SettingsFragment;
-import com.bilalmoreno.malagasport.ui.valoration.ValoracionFragment;
+import com.bilalmoreno.malagasport.ui.rate.RateFragment;
 import com.bilalmoreno.malagasport.ui.workout.WorkoutListFragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
 public class MainNavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, BaseFragment.PrimaryActionButton, InstallationListFragment.OnInstallationShow, InstallationFragment.OnValorationShow, ValoracionFragment.OnValorationSavedChanges, MachineListFragment.OnMachineShow, WorkoutListFragment.OnWorkoutShow, OnMapReadyCallback {
+        implements NavigationView.OnNavigationItemSelectedListener, BaseFragment.PrimaryActionButton, InstallationListFragment.OnInstallationShow, InstallationFragment.OnRateShow, RateFragment.OnRateSavedChanges, MachineListFragment.OnMachineShow, WorkoutListFragment.OnWorkoutShow, OnMapReadyCallback {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -114,7 +114,7 @@ public class MainNavigationActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_navigation, menu);
         return true;
-    }
+}
 
     @Override
     protected void onResume() {
@@ -242,14 +242,14 @@ public class MainNavigationActivity extends AppCompatActivity
     }
 
     @Override
-    public void onValorationEdit(String userId, int installationId) {
+    public void onRateEdit(String userId, int installationId) {
         Bundle bundle = new Bundle();
 
-        bundle.putInt(ValoracionFragment.ACTION_TAG, ValoracionFragment.VALORACION_EDIT);
+        bundle.putInt(RateFragment.ACTION_TAG, RateFragment.RATE_EDIT);
         bundle.putInt(Installation.TAG, installationId);
-        bundle.putString(Usuario.TAG, userId);
+        bundle.putString(User.TAG, userId);
 
-        fragment = ValoracionFragment.getInstance(bundle, this);
+        fragment = RateFragment.getInstance(bundle, this);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content, fragment);
@@ -258,15 +258,15 @@ public class MainNavigationActivity extends AppCompatActivity
     }
 
     @Override
-    public void onValorationAdd(String userId, int installationId) {
+    public void onRateAdd(String userId, int installationId) {
 
         Bundle bundle = new Bundle();
 
-        bundle.putInt(ValoracionFragment.ACTION_TAG, ValoracionFragment.VALORACION_ADD);
+        bundle.putInt(RateFragment.ACTION_TAG, RateFragment.RATE_ADD);
         bundle.putInt(Installation.TAG, installationId);
-        bundle.putString(Usuario.TAG, userId);
+        bundle.putString(User.TAG, userId);
 
-        fragment = ValoracionFragment.getInstance(bundle, this);
+        fragment = RateFragment.getInstance(bundle, this);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content, fragment);
@@ -288,9 +288,8 @@ public class MainNavigationActivity extends AppCompatActivity
     }
 
     @Override
-    public void onValorationSavedChanges() {
+    public void onRateSavedChanges() {
         onBackPressed();
-
     }
 
     @Override

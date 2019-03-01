@@ -3,9 +3,9 @@ package com.bilalmoreno.malagasport.ui.interactor;
 import android.os.AsyncTask;
 
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.model.Valoration;
-import com.bilalmoreno.malagasport.data.db.repository.InstallationRepository;
-import com.bilalmoreno.malagasport.data.db.repository.ValorationRepository;
+import com.bilalmoreno.malagasport.data.db.model.Rate;
+import com.bilalmoreno.malagasport.data.repository.InstallationRepository;
+import com.bilalmoreno.malagasport.data.repository.RateRepository;
 
 import java.util.ArrayList;
 
@@ -20,32 +20,27 @@ public class InstallationInteractor {
     public void load(final int installationId) {
         new AsyncTask<Void, Void, Installation>() {
 
-            private ArrayList<Valoration> valorations;
+            private ArrayList<Rate> rates;
 
             @Override
             protected Installation doInBackground(Void... voids) {
-                try {
-                    Thread.sleep(1500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                valorations = ValorationRepository.getRepository().getValoraciones(installationId);
-                return InstallationRepository.getRepository().getInstalacion(installationId);
+                rates = RateRepository.getInstance().getRates(installationId);
+                return InstallationRepository.getInstance().getInstalacion(installationId);
             }
 
             @Override
             protected void onPostExecute(final Installation installation) {
-                onLoadFinishedListener.onSuccess(installation, valorations);
+                onLoadFinishedListener.onSuccess(installation, rates);
             }
         }.execute();
     }
 
     public boolean userHasRated(int installationId) {
-        return ValorationRepository.getRepository().userHasRated(installationId);
+        return RateRepository.getInstance().userHasRated(installationId);
     }
 
     public interface OnLoadFinishedListener {
-        void onSuccess(Installation installation, ArrayList<Valoration> valorations);
+        void onSuccess(Installation installation, ArrayList<Rate> rates);
 
         void onError(int resourceErrorMessage);
     }

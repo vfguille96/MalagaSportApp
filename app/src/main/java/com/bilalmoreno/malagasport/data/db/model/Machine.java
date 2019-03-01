@@ -10,6 +10,7 @@ public class Machine {
     private String funcion;
     private String desarollo;
     private String precauciones;
+    private int workout;
 
     public Machine(int id) {
         this.id = id;
@@ -68,14 +69,26 @@ public class Machine {
         this.precauciones = precauciones;
     }
 
+    public int getWorkout() {
+        return workout;
+    }
+
+    public void setWorkout(int workout) {
+        this.workout = workout;
+    }
+
     @Override
     public boolean equals(Object o) {
-        return o instanceof Machine && ((Machine) o).getId() == this.id;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Machine machine = (Machine) o;
+        return nivel == machine.nivel &&
+                Objects.equals(nombre, machine.nombre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(nombre);
     }
 
     public static class OrdenNivelAscendente implements Comparator<Machine> {

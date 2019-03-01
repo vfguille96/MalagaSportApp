@@ -10,7 +10,7 @@
     <string name="configuracion">Configuración</string>
     <string name="acerca_de">Acerca de</string>
     <string name="email">Correo electrónico</string>
-    <string name="usuario">Usuario</string>
+    <string name="currentUser">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="password_missing"><u>Recuperar contraseña</u></string>
     <string name="keep_loged_in">Recordar sesión</string>
@@ -18,7 +18,7 @@
     <string name="register">Registrarse</string>
     <string name="nivel">Nivel: </string>
     <string name="num_maquinas">Maquinas: </string>
-    <string name="nombre_usuario">Nombre de usuario</string>
+    <string name="nombre_usuario">Nombre de currentUser</string>
     <string name="password_repeat">Repetir contraseña</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
     <string name="msg_err_empty_email">El correo electrónico no puede estar vacío</string>
@@ -66,4 +66,10 @@
     <string name="map_settings">Mapa</string>
     <string name="valoration_delete">Eliminar valoración</string>
     <string name="msg_error_valoration_delete">No se pudo encontrar la valoración</string>
+    <string name="notification_channel_description">Notificaciones acerca del estado de la base de datos local de la App.</string>
+    <string name="notification_channel_name">Cambios de la base de datos</string>
+    <string name="notification_updating_title">Actualizando...</string>
+    <string name="notification_updating_text">Actialuzando base de datos.</string>
+    <string name="notification_updated_title">Actualizado</string>
+    <string name="notification_updated_text">La base de datos fué actualizada.</string>
 </resources>

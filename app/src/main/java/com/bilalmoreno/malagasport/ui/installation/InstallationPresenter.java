@@ -1,7 +1,7 @@
 package com.bilalmoreno.malagasport.ui.installation;
 
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.model.Valoration;
+import com.bilalmoreno.malagasport.data.db.model.Rate;
 import com.bilalmoreno.malagasport.ui.interactor.InstallationInteractor;
 
 import java.util.ArrayList;
@@ -28,9 +28,9 @@ public class InstallationPresenter implements InstallationContract.Presenter, In
     }
 
     @Override
-    public void onSuccess(Installation installation, ArrayList<Valoration> valorations) {
+    public void onSuccess(Installation installation, ArrayList<Rate> rates) {
         view.hideProgress();
-        view.showInstallation(installation, valorations);
+        view.showInstallation(installation, rates);
     }
 
     @Override

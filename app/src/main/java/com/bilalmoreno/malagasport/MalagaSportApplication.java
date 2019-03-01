@@ -1,14 +1,23 @@
 package com.bilalmoreno.malagasport;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 public class MalagaSportApplication extends Application {
 
     /*
-    Tags para las propiedades compartidas de la app.
+    Tags para las preferencias compartidas de la app.
      */
     public static final String LOGIN_DATA_TAG = "loginData";
     public static final String USER_TAG = "userEmail";
@@ -24,7 +33,7 @@ public class MalagaSportApplication extends Application {
     /*
     Formato de fecha por defecto
      */
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     /*
     Tags settings
      */
@@ -34,6 +43,24 @@ public class MalagaSportApplication extends Application {
     ID del usuario que inicia sesión
      */
     private static String userId;
+    /*
+    Notificaciones
+     */
+    public static final String CHANNEL_DB_CHANGES_ID = "db_changes";
+    /*
+    Context
+     */
+    private static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        context = getApplicationContext();
+    }
 
     /**
      * Metodo que devuelve el ID del usuario de la sesión actual.

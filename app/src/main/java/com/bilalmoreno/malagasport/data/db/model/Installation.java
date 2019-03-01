@@ -1,7 +1,6 @@
 package com.bilalmoreno.malagasport.data.db.model;
 
-import com.bilalmoreno.malagasport.data.db.repository.MachineRepository;
-import com.bilalmoreno.malagasport.data.db.repository.PistaRepository;
+import com.bilalmoreno.malagasport.data.repository.TrackRepository;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -23,7 +22,6 @@ public class Installation {
     private String horario;
     private String precio;
     private ArrayList<Integer> pistas;
-    private ArrayList<Integer> maquinas;
 
     public Installation(int id, String nombre, String direccion, double latitud, double longitud, boolean tarjetaJoven, boolean accesoMovReducida) {
         this.id = id;
@@ -34,7 +32,6 @@ public class Installation {
         this.tarjetaJoven = tarjetaJoven;
         this.accesoMovReducida = accesoMovReducida;
         pistas = new ArrayList<>();
-        maquinas = new ArrayList<>();
     }
 
     public Installation(int id) {
@@ -46,7 +43,6 @@ public class Installation {
         this.tarjetaJoven = false;
         this.accesoMovReducida = false;
         pistas = new ArrayList<>();
-        maquinas = new ArrayList<>();
     }
 
     public int getId() {
@@ -153,17 +149,11 @@ public class Installation {
         return pistas;
     }
 
-    public ArrayList<Integer> getMaquinas() {
-        return maquinas;
-    }
 
     public void addPista(Integer idPista) {
         pistas.add(idPista);
     }
 
-    public void addMaquina(Integer idMaquina) {
-        maquinas.add(idMaquina);
-    }
 
     @Override
     public boolean equals(Object object) {
@@ -175,32 +165,11 @@ public class Installation {
         return Objects.hash(id);
     }
 
-    public String getNiveles() {
-        if (maquinas.size() == 0) {
-            return "0";
-        }
-        int nivelMinimo = MachineRepository.getRepository().getMaquina(maquinas.get(0)).getNivel();
-        int nivelMaximo = MachineRepository.getRepository().getMaquina(maquinas.get(0)).getNivel();
-        for (int idMaquina :
-                maquinas) {
-            Machine machine = MachineRepository.getRepository().getMaquina(idMaquina);
-            if (machine.getNivel() < nivelMinimo) {
-                nivelMinimo = machine.getNivel();
-            } else if (machine.getNivel() > nivelMaximo) {
-                nivelMaximo = machine.getNivel();
-            }
-        }
-        if (nivelMaximo == nivelMinimo) {
-            return String.valueOf(nivelMaximo);
-        }
-        return String.valueOf(nivelMinimo) + "-" + String.valueOf(nivelMaximo);
-    }
-
     public boolean getIluminacion() {
         for (int idPista :
                 pistas) {
-            Pista pista = PistaRepository.getRepository().getPista(idPista);
-            if (pista.getIluminacion()) {
+            Track track = TrackRepository.getInstance().get(idPista);
+            if (track.getIluminacion()) {
                 return true;
             }
         }
@@ -228,20 +197,6 @@ public class Installation {
                 result = installationA.id - installationB.id;
             }
             return result;
-        }
-    }
-
-    public static class OrdenMaquinasCountAscendente implements Comparator<Installation> {
-        @Override
-        public int compare(Installation installationA, Installation installationB) {
-            return installationA.getMaquinas().size() - installationB.getMaquinas().size();
-        }
-    }
-
-    public static class OrdenMaquinasCountDescendente implements Comparator<Installation> {
-        @Override
-        public int compare(Installation installationA, Installation installationB) {
-            return installationB.getMaquinas().size() - installationA.getMaquinas().size();
         }
     }
 }
