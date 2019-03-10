@@ -15,7 +15,7 @@ public class Properties_ {
     private String uRL;
     @SerializedName("PRECIOS")
     @Expose
-    private Object pRECIOS;
+    private String pRECIOS;
     @SerializedName("DIRECCION")
     @Expose
     private String dIRECCION;
@@ -33,13 +33,13 @@ public class Properties_ {
     private String nOMBRE;
     @SerializedName("DESCRIPCION")
     @Expose
-    private Object dESCRIPCION;
+    private String dESCRIPCION;
     @SerializedName("HORARIOS")
     @Expose
-    private Object hORARIOS;
+    private String hORARIOS;
     @SerializedName("CONTACTO")
     @Expose
-    private Object cONTACTO;
+    private String cONTACTO;
     @SerializedName("EMAIL")
     @Expose
     private String eMAIL;
@@ -63,11 +63,11 @@ public class Properties_ {
         this.uRL = uRL;
     }
 
-    public Object getPRECIOS() {
+    public String getPRECIOS() {
         return pRECIOS;
     }
 
-    public void setPRECIOS(Object pRECIOS) {
+    public void setPRECIOS(String pRECIOS) {
         this.pRECIOS = pRECIOS;
     }
 
@@ -111,27 +111,27 @@ public class Properties_ {
         this.nOMBRE = nOMBRE;
     }
 
-    public Object getDESCRIPCION() {
+    public String getDESCRIPCION() {
         return dESCRIPCION;
     }
 
-    public void setDESCRIPCION(Object dESCRIPCION) {
+    public void setDESCRIPCION(String dESCRIPCION) {
         this.dESCRIPCION = dESCRIPCION;
     }
 
-    public Object getHORARIOS() {
+    public String getHORARIOS() {
         return hORARIOS;
     }
 
-    public void setHORARIOS(Object hORARIOS) {
+    public void setHORARIOS(String hORARIOS) {
         this.hORARIOS = hORARIOS;
     }
 
-    public Object getCONTACTO() {
+    public String getCONTACTO() {
         return cONTACTO;
     }
 
-    public void setCONTACTO(Object cONTACTO) {
+    public void setCONTACTO(String cONTACTO) {
         this.cONTACTO = cONTACTO;
     }
 

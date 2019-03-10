@@ -29,7 +29,7 @@ public class UserDao {
 
         int result = cursor.getCount();
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return result == 1;
@@ -65,7 +65,7 @@ public class UserDao {
             }
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return user;

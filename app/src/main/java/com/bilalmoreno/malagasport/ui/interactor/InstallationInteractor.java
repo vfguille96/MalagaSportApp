@@ -18,21 +18,25 @@ public class InstallationInteractor {
     }
 
     public void load(final int installationId) {
-        new AsyncTask<Void, Void, Installation>() {
+        Installation installation = InstallationRepository.getInstance().getInstalacion(installationId);
+        ArrayList<Rate> rates = RateRepository.getInstance().getRates(installationId);
+        onLoadFinishedListener.onSuccess(installation, rates);
 
-            private ArrayList<Rate> rates;
-
-            @Override
-            protected Installation doInBackground(Void... voids) {
-                rates = RateRepository.getInstance().getRates(installationId);
-                return InstallationRepository.getInstance().getInstalacion(installationId);
-            }
-
-            @Override
-            protected void onPostExecute(final Installation installation) {
-                onLoadFinishedListener.onSuccess(installation, rates);
-            }
-        }.execute();
+//        new AsyncTask<Void, Void, Installation>() {
+//
+//            private ArrayList<Rate> rates;
+//
+//            @Override
+//            protected Installation doInBackground(Void... voids) {
+//                rates = RateRepository.getInstance().getRates(installationId);
+//                return InstallationRepository.getInstance().getInstalacion(installationId);
+//            }
+//
+//            @Override
+//            protected void onPostExecute(final Installation installation) {
+//                onLoadFinishedListener.onSuccess(installation, rates);
+//            }
+//        }.execute();
     }
 
     public boolean userHasRated(int installationId) {

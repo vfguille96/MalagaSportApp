@@ -19,13 +19,18 @@ import android.widget.Toast;
 import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
+import com.bilalmoreno.malagasport.data.repository.InstallationRepository;
 import com.bilalmoreno.malagasport.data.service.api.InstallationsApiAdapter;
+import com.bilalmoreno.malagasport.data.service.model.installation.Feature;
+import com.bilalmoreno.malagasport.data.service.model.installation.INFOESP;
 import com.bilalmoreno.malagasport.data.service.model.installation.Installations;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -95,6 +100,41 @@ public class MalagaSportService extends IntentService implements Callback<Instal
     @Override
     public void onResponse(Call<Installations> call, Response<Installations> response) {
         //TODO Tratar contenido e insertar en la base de datos
+
+        Installations installations = response.body();
+        for (Feature feature :
+                installations.getFeatures()) {
+            int id = feature.getProperties().getID();
+            String name = feature.getProperties().getNOMBRE();
+            String address = feature.getProperties().getDIRECCION();
+            Double latitude = feature.getGeometry().getCoordinates().get(1);
+            Double longitude = feature.getGeometry().getCoordinates().get(0);
+            boolean redMovility = feature.getProperties().getACCESOPMR().equalsIgnoreCase("Si");
+            boolean youngCard = feature.getProperties().getTARJETAJOVEN().equalsIgnoreCase("Si");
+            String description = feature.getProperties().getDESCRIPCION();
+            String web = feature.getProperties().getURL();
+            String email = feature.getProperties().getEMAIL();
+            String phone = feature.getProperties().getCONTACTO();
+            String schedule = feature.getProperties().getHORARIOS();
+            String price = feature.getProperties().getPRECIOS();
+
+            Installation installation = new Installation(id, name, address, latitude, longitude, youngCard, redMovility);
+            installation.setDescripcion(description);
+            installation.setWeb(web);
+            installation.setEmail(email);
+            installation.setTelefono(phone);
+            installation.setHorario(schedule);
+            installation.setPrecio(price);
+
+            InstallationRepository.getInstance().add(installation);
+
+            //TODO Insertar pistas deportivas o Tracks (aún sin uso en el prototipo)
+//            for (INFOESP infoEsp :
+//                    feature.getProperties().getINFOESP()) {
+//                String sportSpace = infoEsp.getEspacioDeportivo();
+//
+//            }
+        }
     }
 
     @Override

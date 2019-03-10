@@ -19,14 +19,13 @@ public class RateDao {
 
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
-        String selection = MalagaSportContract.RateEntry.COL_INSTALLATION + " = ?";
-        String[] selectionArgs = new String[] {String.valueOf(installationId)};
+        String selection = MalagaSportContract.RateEntry.COL_INSTALLATION + " = " + installationId;
 
         Cursor cursor = database.query(
                 MalagaSportContract.RateEntry.TABLE_NAME,
                 MalagaSportContract.RateEntry.ALL_COLUMNS,
                 selection,
-                selectionArgs,
+                null,
                 null,
                 null,
                 MalagaSportContract.RateEntry.SORT_DEFAULT
@@ -54,7 +53,7 @@ public class RateDao {
             } while (cursor.moveToNext());
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return list;
@@ -83,8 +82,8 @@ public class RateDao {
 
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
-        String selection = MalagaSportContract.RateEntry.COL_USER + " = ?, " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = ?" ;
-        String[] selectionArgs = new String[] {idUsuario, String.valueOf(idInstalacion)};
+        String selection = MalagaSportContract.RateEntry.COL_USER + " = ? AND " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = " + idInstalacion ;
+        String[] selectionArgs = new String[] {idUsuario};
 
         Cursor cursor = database.query(
                 MalagaSportContract.RateEntry.TABLE_NAME,
@@ -111,7 +110,7 @@ public class RateDao {
             }
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return rate;
@@ -120,8 +119,8 @@ public class RateDao {
     public boolean edit(Rate rate) {
         SQLiteDatabase sqLiteDatabase = MalagaSportOpenHelper.getInstance().openDatabase();
 
-        String whereClause = MalagaSportContract.RateEntry.COL_USER + " = ?, " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = ?";
-        String[] whereArgs = new String[] {rate.getIdUsuario(), String.valueOf(rate.getIdInstlacion())};
+        String whereClause = MalagaSportContract.RateEntry.COL_USER + " = ? AND " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = " + rate.getIdInstlacion();
+        String[] whereArgs = new String[] {rate.getIdUsuario()};
 
         ContentValues values = new ContentValues();
         values.put(MalagaSportContract.RateEntry.COL_INSTALLATION, rate.getIdInstlacion());
@@ -146,8 +145,8 @@ public class RateDao {
     public boolean hasUserRated(String userId, int installationId) {
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
-        String selection = MalagaSportContract.RateEntry.COL_USER + " = ?, " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = ?";
-        String[] selectionArgs = new String[] {userId, String.valueOf(installationId)};
+        String selection = MalagaSportContract.RateEntry.COL_USER + " = ? AND " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = " + installationId;
+        String[] selectionArgs = new String[] {userId};
 
         Cursor cursor = database.query(
                 MalagaSportContract.RateEntry.TABLE_NAME,
@@ -159,14 +158,17 @@ public class RateDao {
                 null
         );
 
-        return cursor.getCount() == 1;
+        int result = cursor.getCount();
+        MalagaSportOpenHelper.getInstance().closeDatabase();
+
+        return result == 1;
     }
 
     public boolean delete(Rate rate) {
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
-        String whereClause = MalagaSportContract.RateEntry.COL_USER + " = ?, " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = ?";
-        String[] whereArgs = new String[] {rate.getIdUsuario(), String.valueOf(rate.getIdInstlacion())};
+        String whereClause = MalagaSportContract.RateEntry.COL_USER + " = ? AND " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = " + rate.getIdInstlacion();
+        String[] whereArgs = new String[] {rate.getIdUsuario()};
 
         int result = database.delete(
                 MalagaSportContract.RateEntry.TABLE_NAME,
@@ -174,6 +176,7 @@ public class RateDao {
                 whereArgs
         );
 
+        MalagaSportOpenHelper.getInstance().closeDatabase();
         return result == 1;
     }
 }

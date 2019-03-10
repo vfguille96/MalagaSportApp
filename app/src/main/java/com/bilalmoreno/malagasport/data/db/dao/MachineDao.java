@@ -47,7 +47,7 @@ public class MachineDao {
             } while (cursor.moveToNext());
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return list;
@@ -103,7 +103,7 @@ public class MachineDao {
             machine.setWorkout(cursor.getInt(cursor.getColumnIndex(MalagaSportContract.MachineEntry.COL_WORKOUT)));
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return machine;
@@ -143,7 +143,7 @@ public class MachineDao {
             } while (cursor.moveToNext());
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return list;

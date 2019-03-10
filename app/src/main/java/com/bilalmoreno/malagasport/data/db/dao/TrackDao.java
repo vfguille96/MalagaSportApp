@@ -44,7 +44,7 @@ public class TrackDao {
             } while (cursor.moveToNext());
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return list;
@@ -76,6 +76,8 @@ public class TrackDao {
                     cursor.getInt(cursor.getColumnIndex(MalagaSportContract.TrackEntry.COL_ACTIVITY))
             );
         }
+
+        MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return track;
     }

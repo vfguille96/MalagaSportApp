@@ -48,7 +48,7 @@ public class InstallationDao {
             } while (cursor.moveToNext());
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return list;
@@ -114,7 +114,7 @@ public class InstallationDao {
             installation.setPrecio(cursor.getString(cursor.getColumnIndex(MalagaSportContract.InstallationEntry.COL_PRICE)));
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return installation;

@@ -33,11 +33,11 @@ public class InstallationRepository {
         return workoutDao.getAll();
     }
 
-    private boolean add(Installation installation) {
+    public boolean add(Installation installation) {
         return installationDao.add(installation);
     }
 
-    private boolean add(Workout workout) {
+    public boolean add(Workout workout) {
         return workoutDao.add(workout);
     }
 

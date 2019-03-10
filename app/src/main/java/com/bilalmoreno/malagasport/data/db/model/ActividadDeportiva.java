@@ -20,4 +20,6 @@ public final class ActividadDeportiva {
     public static final int VOLEYBOL = 16;
     public static final int VOLEY_PLAYA = 17;
     public static final int WORKOUT = 100;
+
+
 }

@@ -39,7 +39,7 @@ public class WorkoutDao {
             } while (cursor.moveToNext());
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return list;
@@ -89,7 +89,7 @@ public class WorkoutDao {
             workout.setLongitude(cursor.getDouble(cursor.getColumnIndex(MalagaSportContract.WorkoutEntry.COL_LONGITUDE)));
         }
 
-        cursor.close();
+//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return workout;    }
