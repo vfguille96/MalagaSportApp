@@ -9,6 +9,8 @@ import com.bilalmoreno.malagasport.data.repository.MachineRepository;
 import com.bilalmoreno.malagasport.data.service.model.workout.Feature;
 import com.bilalmoreno.malagasport.data.service.model.workout.Workouts;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -21,6 +23,11 @@ public class WorkoutsCallback extends Callback implements retrofit2.Callback<Wor
 
     @Override
     public void onResponse(Call<Workouts> call, final Response<Workouts> response) {
+        final ArrayList<Workout> addWorkouts = new ArrayList<>();
+        final ArrayList<Workout> updateWorkouts = new ArrayList<>();
+        final ArrayList<Machine> addMachines = new ArrayList<>();
+        final ArrayList<Machine> updateMachines = new ArrayList<>();
+
         AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
@@ -35,9 +42,9 @@ public class WorkoutsCallback extends Callback implements retrofit2.Callback<Wor
                     workout.setLongitude(feature.getGeometry().getCoordinates().get(0));
 
                     if (InstallationRepository.getInstance().getWorkout(workout.getId()) == null) {
-                        InstallationRepository.getInstance().add(workout);
+                        addWorkouts.add(workout);
                     } else {
-                        InstallationRepository.getInstance().update(workout);
+                        updateWorkouts.add(workout);
                     }
 
                     Machine machine = new Machine(Integer.valueOf(feature.getProperties().getIdMaquina()),
@@ -50,12 +57,21 @@ public class WorkoutsCallback extends Callback implements retrofit2.Callback<Wor
                     machine.setWorkout(workout.getId());
 
                     if (MachineRepository.getInstance().get(machine.getId()) == null) {
-                        MachineRepository.getInstance().add(machine);
+                        addMachines.add(machine);
                     } else {
-                        MachineRepository.getInstance().update(machine);
+                        updateMachines.add(machine);
                     }
                 }
             return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                InstallationRepository.getInstance().addWorkouts(addWorkouts);
+                InstallationRepository.getInstance().updateWorkouts(updateWorkouts);
+                MachineRepository.getInstance().add(addMachines);
+                MachineRepository.getInstance().update(updateMachines);
+                listener.onCallFinish();
             }
         } .execute();
 

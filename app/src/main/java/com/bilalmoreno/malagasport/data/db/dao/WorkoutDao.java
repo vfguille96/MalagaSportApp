@@ -121,7 +121,7 @@ public class WorkoutDao {
 //                        cursor.getString(cursor.getColumnIndex(MalagaSportContract.MachineEntry.COL_CAUTIONS))
 //                );
 //                machine.setWorkout(cursor.getInt(cursor.getColumnIndex(MalagaSportContract.MachineEntry.COL_WORKOUT)));
-//                machines.add(machine);
+//                machines.addInstallations(machine);
 //            } while (cursor.moveToNext());
 //        }
 //
@@ -147,5 +147,50 @@ public class WorkoutDao {
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return result == 1;
+    }
+
+    public boolean update(ArrayList<Workout> workouts) {
+        int result = 0;
+
+        SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
+
+        for (Workout workout :
+                workouts) {
+            String whereClause = MalagaSportContract.WorkoutEntry._ID + " = " + workout.getId();
+
+            ContentValues values = new ContentValues();
+            values.put(MalagaSportContract.WorkoutEntry.COL_NAME, workout.getNombre());
+            values.put(MalagaSportContract.WorkoutEntry.COL_LOCATION, workout.getDireccion());
+            values.put(MalagaSportContract.WorkoutEntry.COL_LATITUDE, workout.getLatitude());
+            values.put(MalagaSportContract.WorkoutEntry.COL_LONGITUDE, workout.getLongitude());
+
+            result += database.update(MalagaSportContract.WorkoutEntry.TABLE_NAME, values, whereClause, null);
+        }
+
+        MalagaSportOpenHelper.getInstance().closeDatabase();
+
+        return result == 1;
+    }
+
+    public boolean add(ArrayList<Workout> addWorkouts) {
+        SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
+        int result = 0;
+
+        for (Workout workout :
+                addWorkouts) {
+            ContentValues values = new ContentValues();
+            values.put(MalagaSportContract.WorkoutEntry._ID, workout.getId());
+            values.put(MalagaSportContract.WorkoutEntry.COL_NAME, workout.getNombre());
+            values.put(MalagaSportContract.WorkoutEntry.COL_LOCATION, workout.getDireccion());
+            values.put(MalagaSportContract.WorkoutEntry.COL_LATITUDE, workout.getLatitude());
+            values.put(MalagaSportContract.WorkoutEntry.COL_LONGITUDE, workout.getLongitude());
+
+            if (database.insert(MalagaSportContract.WorkoutEntry.TABLE_NAME, null, values) != -1) {
+                result++;
+            }
+        }
+        MalagaSportOpenHelper.getInstance().closeDatabase();
+
+        return result > 0;
     }
 }

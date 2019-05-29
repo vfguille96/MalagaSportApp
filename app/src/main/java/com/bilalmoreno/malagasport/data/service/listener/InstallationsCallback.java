@@ -7,6 +7,8 @@ import com.bilalmoreno.malagasport.data.repository.InstallationRepository;
 import com.bilalmoreno.malagasport.data.service.model.installation.Feature;
 import com.bilalmoreno.malagasport.data.service.model.installation.Installations;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -18,12 +20,15 @@ public class InstallationsCallback extends Callback implements retrofit2.Callbac
     }
 
     @Override
-    public void onResponse(Call<Installations> call, final Response<Installations> response) {
+    public void onResponse(final Call<Installations> call, final Response<Installations> response) {
 // Tratar contenido e insertar en la base de datos
+        final ArrayList<Installation> add = new ArrayList<>();
+        final ArrayList<Installation> update = new ArrayList<>();
 
         AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
+
                 Installations installations = response.body();
                 for (Feature feature :
                         installations.getFeatures()) {
@@ -50,9 +55,9 @@ public class InstallationsCallback extends Callback implements retrofit2.Callbac
                     installation.setPrecio(price);
 
                     if (InstallationRepository.getInstance().getInstalacion(id) == null) {
-                        InstallationRepository.getInstance().add(installation);
+                        add.add(installation);
                     } else {
-                        InstallationRepository.getInstance().update(installation);
+                        update.add(installation);
                     }
 
                     //TODO Insertar pistas deportivas o Tracks (aún sin uso en el prototipo)
@@ -63,6 +68,13 @@ public class InstallationsCallback extends Callback implements retrofit2.Callbac
                     //            }
                 }
                 return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                InstallationRepository.getInstance().addInstallations(add);
+                InstallationRepository.getInstance().updateInstallations(update);
+                listener.onCallFinish();
             }
         }.execute();
     }

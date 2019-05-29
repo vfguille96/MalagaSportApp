@@ -40,4 +40,12 @@ public class MachineRepository {
     public boolean update(Machine machine) {
         return dao.update(machine);
     }
+
+    public boolean add(ArrayList<Machine> machines) {
+        return dao.add(machines);
+    }
+
+    public boolean update(ArrayList<Machine> machines) {
+        return dao.update(machines);
+    }
 }
