@@ -82,8 +82,8 @@ public class RateDao {
 
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
-        String selection = MalagaSportContract.RateEntry.COL_USER + " = ? AND " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = " + idInstalacion ;
-        String[] selectionArgs = new String[] {idUsuario};
+        String selection = MalagaSportContract.RateEntry.COL_USER + " = ? AND " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = " + idInstalacion;
+        String[] selectionArgs = new String[]{idUsuario};
 
         Cursor cursor = database.query(
                 MalagaSportContract.RateEntry.TABLE_NAME,
@@ -120,7 +120,7 @@ public class RateDao {
         SQLiteDatabase sqLiteDatabase = MalagaSportOpenHelper.getInstance().openDatabase();
 
         String whereClause = MalagaSportContract.RateEntry.COL_USER + " = ? AND " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = " + rate.getIdInstlacion();
-        String[] whereArgs = new String[] {rate.getIdUsuario()};
+        String[] whereArgs = new String[]{rate.getIdUsuario()};
 
         ContentValues values = new ContentValues();
         values.put(MalagaSportContract.RateEntry.COL_INSTALLATION, rate.getIdInstlacion());
@@ -146,7 +146,7 @@ public class RateDao {
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
         String selection = MalagaSportContract.RateEntry.COL_USER + " = ? AND " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = " + installationId;
-        String[] selectionArgs = new String[] {userId};
+        String[] selectionArgs = new String[]{userId};
 
         Cursor cursor = database.query(
                 MalagaSportContract.RateEntry.TABLE_NAME,
@@ -168,7 +168,7 @@ public class RateDao {
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
         String whereClause = MalagaSportContract.RateEntry.COL_USER + " = ? AND " + MalagaSportContract.RateEntry.COL_INSTALLATION + " = " + rate.getIdInstlacion();
-        String[] whereArgs = new String[] {rate.getIdUsuario()};
+        String[] whereArgs = new String[]{rate.getIdUsuario()};
 
         int result = database.delete(
                 MalagaSportContract.RateEntry.TABLE_NAME,

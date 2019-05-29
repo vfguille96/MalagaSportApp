@@ -1,6 +1,5 @@
 package com.bilalmoreno.malagasport.data.db.model;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Track {

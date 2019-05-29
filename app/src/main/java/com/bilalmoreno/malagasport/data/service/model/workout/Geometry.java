@@ -1,7 +1,7 @@
-package com.bilalmoreno.malagasport.data.service.model.installation;
+
+package com.bilalmoreno.malagasport.data.service.model.workout;
 
 import java.util.List;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

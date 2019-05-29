@@ -17,8 +17,8 @@ import android.widget.ImageView;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.db.model.User;
 import com.bilalmoreno.malagasport.data.db.model.Rate;
+import com.bilalmoreno.malagasport.data.db.model.User;
 import com.bilalmoreno.malagasport.ui.MainNavigationActivity;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;
 

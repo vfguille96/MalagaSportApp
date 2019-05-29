@@ -1,14 +1,15 @@
 package com.bilalmoreno.malagasport;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
+import com.bilalmoreno.malagasport.data.service.MalagaSportService;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -29,7 +30,8 @@ public class MalagaSportApplication extends Application {
     /*
     Rquisitos password
      */
-    public static final int MIN_PASSWORD_LENGTH = 6;
+    public static final int MIN_PASSWORD_LENGTH = 8;
+    public static final int MAX_PASSWORD_LENGTH = 32;
     /*
     Formato de fecha por defecto
      */
@@ -40,13 +42,13 @@ public class MalagaSportApplication extends Application {
     public static final String SETTINGS = "settings";
     public static final String METEO_ON_MAP = "meteo_on_map";
     /*
-    ID del usuario que inicia sesión
-     */
-    private static String userId;
-    /*
     Notificaciones
      */
     public static final String CHANNEL_DB_CHANGES_ID = "db_changes";
+    /*
+    ID del usuario que inicia sesión
+     */
+    private static String userId;
     /*
     Context
      */
@@ -54,12 +56,6 @@ public class MalagaSportApplication extends Application {
 
     public static Context getContext() {
         return context;
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        context = getApplicationContext();
     }
 
     /**
@@ -78,5 +74,31 @@ public class MalagaSportApplication extends Application {
      */
     public static void setUserId(String userId) {
         MalagaSportApplication.userId = userId;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        context = getApplicationContext();
+        createNotificationChannel();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(context, MalagaSportService.class));
+        } else {
+            startService(new Intent(context, MalagaSportService.class));
+        }
+    }
+
+    /**
+     * Método que crea un canal de notificaciones para la aplicación en API 26 o superior.
+     * Este canal se usará para notificar al usuario cuando el servicio actualice la base de datos.
+     */
+    @TargetApi(Build.VERSION_CODES.O)
+    private void createNotificationChannel() {
+        NotificationChannel channel = new NotificationChannel(MalagaSportApplication.CHANNEL_DB_CHANGES_ID, getString(R.string.notification_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription(getString(R.string.notification_channel_description));
+        channel.enableLights(true);
+        channel.setLightColor(Color.BLUE);
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
     }
 }

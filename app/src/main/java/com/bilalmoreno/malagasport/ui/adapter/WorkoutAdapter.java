@@ -52,8 +52,8 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
         workoutHolder.itemView.setOnClickListener(listener);
         workoutHolder.tvNombre.setText(workout.getNombre());
         workoutHolder.tvDireccion.setText(workout.getDireccion());
-        workoutHolder.tvNumeMaquinas.setText(String.valueOf(workout.getMaquinas().size()));
-        workoutHolder.tvNiveles.setText(workout.getNiveles());
+//        workoutHolder.tvNumeMaquinas.setText(String.valueOf(workout.getMaquinas().size()));
+//        workoutHolder.tvNiveles.setText(workout.getNiveles());
 //        workoutHolder.ivMovReducida.setImageResource(R.drawable.ic_mov_red);
 //        if (!workout.getAccesoMovReducida()) {
 //            workoutHolder.ivMovReducida.setVisibility(View.GONE);

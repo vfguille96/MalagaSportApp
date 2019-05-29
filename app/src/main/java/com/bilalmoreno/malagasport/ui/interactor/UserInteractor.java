@@ -1,6 +1,5 @@
 package com.bilalmoreno.malagasport.ui.interactor;
 
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import com.bilalmoreno.malagasport.MalagaSportApplication;
@@ -9,6 +8,7 @@ import com.bilalmoreno.malagasport.data.repository.UserRepository;
 import java.text.ParseException;
 import java.util.Calendar;
 
+import static com.bilalmoreno.malagasport.MalagaSportApplication.MAX_PASSWORD_LENGTH;
 import static com.bilalmoreno.malagasport.MalagaSportApplication.MIN_PASSWORD_LENGTH;
 
 public class UserInteractor {
@@ -47,53 +47,53 @@ public class UserInteractor {
     }
 
     public void validateCredentials(final String user, final String password) {
-                if (validarPassword(password) & validarEmail(user)) {
-                    if (UserRepository.getInstance().validarCredenciales(user, password)) {
-                        if (loginListener != null) {
-                            loginListener.onAuthenticationSucess();
-                        }
-                        if (splashListener != null) {
-                            splashListener.onAuthenticationSucess();
-                        }
-                    } else {
-                        if (loginListener != null) {
-                            loginListener.onAuthenticationError();
-                        }
-                        if (splashListener != null) {
-                            splashListener.onAuthenticationError();
-                        }
-                    }
-                } else {
-                    if (splashListener != null) {
-                        splashListener.onAuthenticationError();
-                    }
+        if (validarPassword(password) & validarEmail(user)) {
+            if (UserRepository.getInstance().validarCredenciales(user, password)) {
+                if (loginListener != null) {
+                    loginListener.onAuthenticationSucess();
                 }
+                if (splashListener != null) {
+                    splashListener.onAuthenticationSucess();
+                }
+            } else {
+                if (loginListener != null) {
+                    loginListener.onAuthenticationError();
+                }
+                if (splashListener != null) {
+                    splashListener.onAuthenticationError();
+                }
+            }
+        } else {
+            if (splashListener != null) {
+                splashListener.onAuthenticationError();
+            }
+        }
     }
 
     public void validateRegister(final String nombre, final String email, final String password, final String passwordRepeat, final String birthDate) {
-                Calendar calendar = Calendar.getInstance();
-                if (validarFechaNac(birthDate) & validarPasswordRepeat(password, passwordRepeat) & validarPassword(password) & validarEmail(email) & validarNombre(nombre)) {
-                    try {
-                        calendar.setTime(MalagaSportApplication.DATE_FORMAT.parse(birthDate));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    if (UserRepository.getInstance().registrarUsuario(email, email, nombre, calendar.getTime(), password)) {
-                        registerListener.onRegisterSuccess();
-                    } else {
-                        registerListener.onRegisterFailed();
-                    }
-                }
+        Calendar calendar = Calendar.getInstance();
+        if (validarFechaNac(birthDate) & validarPasswordRepeat(password, passwordRepeat) & validarPassword(password) & validarEmail(email) & validarNombre(nombre)) {
+            try {
+                calendar.setTime(MalagaSportApplication.DATE_FORMAT.parse(birthDate));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (UserRepository.getInstance().registrarUsuario(email, email, nombre, calendar.getTime(), password)) {
+                registerListener.onRegisterSuccess();
+            } else {
+                registerListener.onRegisterFailed();
+            }
+        }
     }
 
     public void validateChangePassword(final String email, final String password, final String passwordRepeat) {
-                if (validarPasswordRepeat(password, passwordRepeat) & validarPassword(password) & validarEmail(email)) {
-                    if (UserRepository.getInstance().changePassword(email, password)) {
-                        recoveryListener.onChangePasswordSuccess();
-                    } else {
-                        recoveryListener.onChangePasswordFailed();
-                    }
-                }
+        if (validarPasswordRepeat(password, passwordRepeat) & validarPassword(password) & validarEmail(email)) {
+            if (UserRepository.getInstance().changePassword(email, password)) {
+                recoveryListener.onChangePasswordSuccess();
+            } else {
+                recoveryListener.onChangePasswordFailed();
+            }
+        }
     }
 
     private boolean validarEmail(String email) {
@@ -146,7 +146,7 @@ public class UserInteractor {
             }
             return false;
         }
-        if (password.length() < MIN_PASSWORD_LENGTH || password.length() > 20) {
+        if (password.length() < MIN_PASSWORD_LENGTH || password.length() > MAX_PASSWORD_LENGTH) {
             if (registerListener != null) {
                 registerListener.onInvalidPasswordError();
             }

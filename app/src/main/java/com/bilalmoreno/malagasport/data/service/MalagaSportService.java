@@ -4,41 +4,26 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.R;
-import com.bilalmoreno.malagasport.data.db.model.Installation;
-import com.bilalmoreno.malagasport.data.repository.InstallationRepository;
 import com.bilalmoreno.malagasport.data.service.api.InstallationsApiAdapter;
-import com.bilalmoreno.malagasport.data.service.model.installation.Feature;
-import com.bilalmoreno.malagasport.data.service.model.installation.INFOESP;
+import com.bilalmoreno.malagasport.data.service.api.WorkoutsApiAdapter;
+import com.bilalmoreno.malagasport.data.service.listener.InstallationsCallback;
+import com.bilalmoreno.malagasport.data.service.listener.WorkoutsCallback;
 import com.bilalmoreno.malagasport.data.service.model.installation.Installations;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.ArrayList;
+import com.bilalmoreno.malagasport.data.service.model.workout.Workouts;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class MalagaSportService extends IntentService implements Callback<Installations> {
+public class MalagaSportService extends IntentService implements InstallationsCallback.OnDownloadErrorListener {
     private static final String name = "MalagaSportService";
-    private Notification notification;
+    private Notification notificationSuccess;
+    private Notification notificationError;
     private NotificationManagerCompat notificationManager;
 
     /**
@@ -46,7 +31,6 @@ public class MalagaSportService extends IntentService implements Callback<Instal
      */
     public MalagaSportService() {
         super(name);
-        //TODO Inicializar DAO y demás objetos necesarios para sincronizar los datos
     }
 
     @Override
@@ -64,32 +48,109 @@ public class MalagaSportService extends IntentService implements Callback<Instal
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
-        //TODO Descargar, analizar y consolidar datos.
-        updateInstallations();
+        // Comenzar proceso de actualización
+        updateDataBase();
 
-        // Notificar que terminó la actualización
+        // Creación de la notificación de actualización existosa
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MalagaSportApplication.CHANNEL_DB_CHANGES_ID)
                 .setSmallIcon(R.drawable.ic_action_fav)
                 .setContentTitle(getString(R.string.notification_updated_title))
                 .setContentText(getString(R.string.notification_updated_text))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true);
-        notification = builder.build();
+        notificationSuccess = builder.build();
+
+        //Creación de la notificación de error
+        builder.setContentTitle(getString(R.string.error_update_title))
+        .setContentText(getString(R.string.error_update_text));
+        notificationError = builder.build();
+
+        //Estableciendo referencia al gestor de notifiaciones del sistema
         notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.notify(0, notification);
-//        stopSelf();
     }
 
-    private void updateInstallations() {
+    private void updateDataBase() {
+        // Baloncesto
         Call<Installations> call = InstallationsApiAdapter.getInstance().getBaloncesto();
-        call.enqueue(MalagaSportService.this);
+        call.enqueue(new InstallationsCallback(this));
+        // Ajedrez
+        call = InstallationsApiAdapter.getInstance().getAjedrez();
+        call.enqueue(new InstallationsCallback(this));
+        // Centros deportivos
+        call = InstallationsApiAdapter.getInstance().getCentrosDeportivos();
+        call.enqueue(new InstallationsCallback(this));
+        // Voley
+        call = InstallationsApiAdapter.getInstance().getVoley();
+        call.enqueue(new InstallationsCallback(this));
+        // Senderismo
+        call = InstallationsApiAdapter.getInstance().getSenderimos();
+        call.enqueue(new InstallationsCallback(this));
+        // Petanca
+        call = InstallationsApiAdapter.getInstance().getPetanca();
+        call.enqueue(new InstallationsCallback(this));
+        // Motos
+        call = InstallationsApiAdapter.getInstance().getMotor();
+        call.enqueue(new InstallationsCallback(this));
+        // Piscinas
+        call = InstallationsApiAdapter.getInstance().getPiscinas();
+        call.enqueue(new InstallationsCallback(this));
+        // Tenis
+        call = InstallationsApiAdapter.getInstance().getTenis();
+        call.enqueue(new InstallationsCallback(this));
+        // Voley playa
+        call = InstallationsApiAdapter.getInstance().getVoleyPlaya();
+        call.enqueue(new InstallationsCallback(this));
+        // Padel
+        call = InstallationsApiAdapter.getInstance().getPadel();
+        call.enqueue(new InstallationsCallback(this));
+        // Atletismo
+        call = InstallationsApiAdapter.getInstance().getAtletismo();
+        call.enqueue(new InstallationsCallback(this));
+        // Badminton
+        call = InstallationsApiAdapter.getInstance().getBadminton();
+        call.enqueue(new InstallationsCallback(this));
+        // Escalada
+        call = InstallationsApiAdapter.getInstance().getEscalada();
+        call.enqueue(new InstallationsCallback(this));
+        // Futbol 3
+        call = InstallationsApiAdapter.getInstance().getFutbol3();
+        call.enqueue(new InstallationsCallback(this));
+        // Futbol sala
+        call = InstallationsApiAdapter.getInstance().getFutbolSala();
+        call.enqueue(new InstallationsCallback(this));
+        // Salas deportivas
+        call = InstallationsApiAdapter.getInstance().getSalasDeportivas();
+        call.enqueue(new InstallationsCallback(this));
+        // Skate/BMX
+        call = InstallationsApiAdapter.getInstance().getSkateBMX();
+        call.enqueue(new InstallationsCallback(this));
+        // Aparatos
+        call = InstallationsApiAdapter.getInstance().getAparatos();
+        call.enqueue(new InstallationsCallback(this));
+        // Pistas polideportivas
+        call = InstallationsApiAdapter.getInstance().getPistasPolideportivas();
+        call.enqueue(new InstallationsCallback(this));
+        // Tenis de mesa
+        call = InstallationsApiAdapter.getInstance().getTenisMesa();
+        call.enqueue(new InstallationsCallback(this));
+        // Futbol playa
+        call = InstallationsApiAdapter.getInstance().getFutbolPlaya();
+        call.enqueue(new InstallationsCallback(this));
+        // Futbol
+        call = InstallationsApiAdapter.getInstance().getFutbol();
+        call.enqueue(new InstallationsCallback(this));
+        // Pabellones
+        call = InstallationsApiAdapter.getInstance().getPabellones();
+        call.enqueue(new InstallationsCallback(this));
+        // Workouts
+        Call<Workouts> callWorkout = WorkoutsApiAdapter.getInstance().getWorkouts();
+        callWorkout.enqueue(new WorkoutsCallback(this));
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "Stoping Service", Toast.LENGTH_SHORT).show();
-        //TODO Notificar que terminó la actualización
+        notificationManager.notify(0, notificationSuccess);
     }
 
     @Override
@@ -98,47 +159,7 @@ public class MalagaSportService extends IntentService implements Callback<Instal
     }
 
     @Override
-    public void onResponse(Call<Installations> call, Response<Installations> response) {
-        //TODO Tratar contenido e insertar en la base de datos
-
-        Installations installations = response.body();
-        for (Feature feature :
-                installations.getFeatures()) {
-            int id = feature.getProperties().getID();
-            String name = feature.getProperties().getNOMBRE();
-            String address = feature.getProperties().getDIRECCION();
-            Double latitude = feature.getGeometry().getCoordinates().get(1);
-            Double longitude = feature.getGeometry().getCoordinates().get(0);
-            boolean redMovility = feature.getProperties().getACCESOPMR().equalsIgnoreCase("Si");
-            boolean youngCard = feature.getProperties().getTARJETAJOVEN().equalsIgnoreCase("Si");
-            String description = feature.getProperties().getDESCRIPCION();
-            String web = feature.getProperties().getURL();
-            String email = feature.getProperties().getEMAIL();
-            String phone = feature.getProperties().getCONTACTO();
-            String schedule = feature.getProperties().getHORARIOS();
-            String price = feature.getProperties().getPRECIOS();
-
-            Installation installation = new Installation(id, name, address, latitude, longitude, youngCard, redMovility);
-            installation.setDescripcion(description);
-            installation.setWeb(web);
-            installation.setEmail(email);
-            installation.setTelefono(phone);
-            installation.setHorario(schedule);
-            installation.setPrecio(price);
-
-            InstallationRepository.getInstance().add(installation);
-
-            //TODO Insertar pistas deportivas o Tracks (aún sin uso en el prototipo)
-//            for (INFOESP infoEsp :
-//                    feature.getProperties().getINFOESP()) {
-//                String sportSpace = infoEsp.getEspacioDeportivo();
-//
-//            }
-        }
-    }
-
-    @Override
-    public void onFailure(Call<Installations> call, Throwable t) {
-        //TODO Notificar error
+    public void onDownloadError() {
+        notificationManager.notify(0, notificationError);
     }
 }

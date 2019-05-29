@@ -1,7 +1,6 @@
 package com.bilalmoreno.malagasport.data.db.model;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 

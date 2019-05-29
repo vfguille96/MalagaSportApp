@@ -1,6 +1,5 @@
 package com.bilalmoreno.malagasport.ui.workout;
 
-import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.model.Workout;
 
 import java.util.ArrayList;

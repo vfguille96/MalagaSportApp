@@ -33,7 +33,7 @@ public class MalagaSportOpenHelper extends SQLiteOpenHelper {
         return database;
     }
 
-    public void closeDatabase(){
+    public void closeDatabase() {
         if (openCounter.decrementAndGet() == 0) {
             database.close();
         }
@@ -68,7 +68,7 @@ public class MalagaSportOpenHelper extends SQLiteOpenHelper {
 //            Log.d("Database", MalagaSportContract.EventEntry.SQL_CREATE_ENTRIES);
 //            db.execSQL(MalagaSportContract.EventEntry.SQL_CREATE_ENTRIES);
             db.setTransactionSuccessful();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw e;
         } finally {
             db.endTransaction();

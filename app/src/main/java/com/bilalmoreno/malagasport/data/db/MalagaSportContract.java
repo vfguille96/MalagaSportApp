@@ -18,7 +18,7 @@ public final class MalagaSportContract {
         public static final String COL_LONGITUDE = "longitude";
 
         //Todas las columnas
-        public static final String[] ALL_COLUMNS = new String[] {_ID, COL_NAME, COL_LOCATION, COL_LATITUDE, COL_LONGITUDE};
+        public static final String[] ALL_COLUMNS = new String[]{_ID, COL_NAME, COL_LOCATION, COL_LATITUDE, COL_LONGITUDE};
 
         //Orden por defecto
         public static final String SORT_DEFAULT = COL_NAME;
@@ -54,10 +54,10 @@ public final class MalagaSportContract {
         public static final String COL_WORKOUT = "workout";
 
         //Todas las columnas
-        public static final String[] ALL_COLUMNS = new String[] {_ID, COL_NAME, COL_LEVEL, COL_FUNCTION, COL_DEVELOPMENT, COL_CAUTIONS, COL_WORKOUT};
+        public static final String[] ALL_COLUMNS = new String[]{_ID, COL_NAME, COL_LEVEL, COL_FUNCTION, COL_DEVELOPMENT, COL_CAUTIONS, COL_WORKOUT};
 
         //Columnas para el listado de tipos de máquinas (select distinct sin tener en cuenta el número de serie ni la zona de workout)
-        public static final String[] INFO_COLUMNS = new String[] {COL_NAME, COL_LEVEL, COL_FUNCTION, COL_DEVELOPMENT, COL_CAUTIONS};
+        public static final String[] INFO_COLUMNS = new String[]{COL_NAME, COL_LEVEL, COL_FUNCTION, COL_DEVELOPMENT, COL_CAUTIONS};
 
         //Orden por defecto
         public static final String SORT_DEFAULT = COL_LEVEL;
@@ -111,7 +111,7 @@ public final class MalagaSportContract {
         public static final String COL_PRICE = "price";
 
         //Todas las columnas
-        public static final String[] ALL_COLUMNS = new String[] {_ID, COL_NAME, COL_ADDRESS, COL_LATITUDE, COL_LONGITUDE, COL_YOUNG_CARD, COL_BARRIER_FREE, COL_DESCRIPTION,COL_WEB, COL_EMAIL, COL_PHONE, COL_SCHEDULE, COL_PRICE};
+        public static final String[] ALL_COLUMNS = new String[]{_ID, COL_NAME, COL_ADDRESS, COL_LATITUDE, COL_LONGITUDE, COL_YOUNG_CARD, COL_BARRIER_FREE, COL_DESCRIPTION, COL_WEB, COL_EMAIL, COL_PHONE, COL_SCHEDULE, COL_PRICE};
 
         //Orden por defecto
         public static final String SORT_DEFAULT = COL_NAME;
@@ -163,7 +163,7 @@ public final class MalagaSportContract {
         public static final String COL_INSTALLATION = "installation";
 
         //Todas las columnas
-        public static final String[] ALL_COLUMNS = new String[] {_ID, COL_NAME, COL_ILLUMINATION, COL_DIMENSIONS, COL_ACTIVITY, COL_MATERIAL, COL_INSTALLATION};
+        public static final String[] ALL_COLUMNS = new String[]{_ID, COL_NAME, COL_ILLUMINATION, COL_DIMENSIONS, COL_ACTIVITY, COL_MATERIAL, COL_INSTALLATION};
 
         //Orden por defecto
         public static final String SORT_DEFAULT = COL_ACTIVITY;
@@ -210,7 +210,7 @@ public final class MalagaSportContract {
         public static final String COL_PHOTO = "photo";
 
         //Todas las columnas
-        public static final String[] ALL_COLUMNS = new String[] {_ID, COL_EMAIL, COL_NAME, COL_BIRTHDAY, COL_PHOTO};
+        public static final String[] ALL_COLUMNS = new String[]{_ID, COL_EMAIL, COL_NAME, COL_BIRTHDAY, COL_PHOTO};
 
         //Orden por defecto
         public static final String SORT_DEFAULT = COL_EMAIL;
@@ -248,7 +248,7 @@ public final class MalagaSportContract {
         public static final String COL_COMMENT = "commnets";
 
         //Todas las columnas
-        public static final String[] ALL_COLUMNS = new String[] {COL_INSTALLATION, COL_USER, COL_DATE,COL_EDIT_DATE, COL_STARS, COL_COMMENT};
+        public static final String[] ALL_COLUMNS = new String[]{COL_INSTALLATION, COL_USER, COL_DATE, COL_EDIT_DATE, COL_STARS, COL_COMMENT};
 
         //Orden por defecto
         public static final String SORT_DEFAULT = COL_EDIT_DATE;
@@ -304,7 +304,7 @@ public final class MalagaSportContract {
         public static final String COL_INSTALLATION = "installation";
 
         //Todas las columnas
-        public static final String[] ALL_COLUMNS = new String[] {COL_USER, COL_INSTALLATION};
+        public static final String[] ALL_COLUMNS = new String[]{COL_USER, COL_INSTALLATION};
 
         //Orden por defecto
         public static final String SORT_DEFAULT = COL_USER;
@@ -336,7 +336,7 @@ public final class MalagaSportContract {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
     }
 
-    public static final class EventEntry implements BaseColumns{
+    public static final class EventEntry implements BaseColumns {
         //Nombre de la tabla
         public static final String TABLE_NAME = "event";
 
@@ -356,7 +356,7 @@ public final class MalagaSportContract {
         public static final String COL_WEB = "web";
 
         //Todas las columnas
-        public static final String[] ALL_COLUMNS = new String[] {_ID, COL_NAME, COL_INSTALLATION, COL_PLACE, COL_START_DATE, COL_END_DATE, COL_SCHEDULE, COL_DESCRIPTION, COL_BARRIER_FREE, COL_ORGANIZER, COL_FOR, COL_PHONE, COL_EMAIL, COL_WEB};
+        public static final String[] ALL_COLUMNS = new String[]{_ID, COL_NAME, COL_INSTALLATION, COL_PLACE, COL_START_DATE, COL_END_DATE, COL_SCHEDULE, COL_DESCRIPTION, COL_BARRIER_FREE, COL_ORGANIZER, COL_FOR, COL_PHONE, COL_EMAIL, COL_WEB};
 
         //Orden por defecto
         public static final String SORT_DEFAULT = COL_START_DATE;

@@ -18,7 +18,8 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission-sdk-23 android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <!--Permiso para ejecutar servicios en foreground-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -53,10 +54,15 @@
         <activity android:name=".ui.about.AboutActivity" />
         <activity android:name=".ui.recovery.RecoveryActivity" />
 
-        <service android:name=".data.service.MalagaSportService" android:exported="false" />
+        <service
+            android:name=".data.service.MalagaSportService"
+            android:exported="false" />
         <receiver android:name=".data.service.MalagaSportServiceBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.bilalmoreno.malagasport.android.action.RUN_SERVICE" />
             </intent-filter>
         </receiver>
 

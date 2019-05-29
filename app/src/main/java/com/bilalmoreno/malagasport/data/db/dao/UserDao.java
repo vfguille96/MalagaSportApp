@@ -15,7 +15,7 @@ public class UserDao {
     public boolean validateCredentials(String email, String password) {
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
-        String selection = MalagaSportContract.UserEntry._ID + " = '" + email +"' AND " + MalagaSportContract.UserEntry.COL_PASSWORD + " = '" + password + "'";
+        String selection = MalagaSportContract.UserEntry._ID + " = '" + email + "' AND " + MalagaSportContract.UserEntry.COL_PASSWORD + " = '" + password + "'";
 
         Cursor cursor = database.query(
                 MalagaSportContract.UserEntry.TABLE_NAME,
@@ -40,7 +40,7 @@ public class UserDao {
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
         String selection = MalagaSportContract.UserEntry._ID + " = ?";
-        String[] selectionArgs = new String[] {email};
+        String[] selectionArgs = new String[]{email};
 
         Cursor cursor = database.query(
                 MalagaSportContract.UserEntry.TABLE_NAME,
@@ -97,7 +97,7 @@ public class UserDao {
         values.put(MalagaSportContract.UserEntry.COL_PASSWORD, password);
 
         String whereClause = MalagaSportContract.UserEntry._ID + " = ?";
-        String[] whereArgs = new String[] {email.toLowerCase()};
+        String[] whereArgs = new String[]{email.toLowerCase()};
 
         int result = database.update(
                 MalagaSportContract.UserEntry.TABLE_NAME,

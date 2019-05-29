@@ -2,7 +2,6 @@ package com.bilalmoreno.malagasport.data.db.model;
 
 import android.support.annotation.NonNull;
 
-import com.bilalmoreno.malagasport.data.repository.MachineRepository;
 import com.bilalmoreno.malagasport.data.repository.TrackRepository;
 
 import java.util.ArrayList;

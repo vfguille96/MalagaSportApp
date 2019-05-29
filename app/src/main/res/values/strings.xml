@@ -18,7 +18,7 @@
     <string name="register">Registrarse</string>
     <string name="nivel">Nivel: </string>
     <string name="num_maquinas">Maquinas: </string>
-    <string name="nombre_usuario">Nombre de currentUser</string>
+    <string name="nombre_usuario">Nombre de usuario</string>
     <string name="password_repeat">Repetir contraseña</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
     <string name="msg_err_empty_email">El correo electrónico no puede estar vacío</string>
@@ -72,4 +72,6 @@
     <string name="notification_updating_text">Actialuzando base de datos.</string>
     <string name="notification_updated_title">Actualizado</string>
     <string name="notification_updated_text">La base de datos fué actualizada.</string>
+    <string name="error_update_title">Error de actualización</string>
+    <string name="error_update_text">La base de datos no se actualizó correctamente.</string>
 </resources>

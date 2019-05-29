@@ -1,4 +1,5 @@
-package com.bilalmoreno.malagasport.data.service.model.installation;
+
+package com.bilalmoreno.malagasport.data.service.model.workout;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -10,7 +11,7 @@ public class Crs {
     private String type;
     @SerializedName("properties")
     @Expose
-    private Properties properties;
+    private Properties_ properties;
 
     public String getType() {
         return type;
@@ -20,11 +21,11 @@ public class Crs {
         this.type = type;
     }
 
-    public Properties getProperties() {
+    public Properties_ getProperties() {
         return properties;
     }
 
-    public void setProperties(Properties properties) {
+    public void setProperties(Properties_ properties) {
         this.properties = properties;
     }
 

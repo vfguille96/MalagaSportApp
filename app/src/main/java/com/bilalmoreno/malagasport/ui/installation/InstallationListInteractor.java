@@ -20,11 +20,6 @@ public class InstallationListInteractor {
 
             @Override
             protected ArrayList<Installation> doInBackground(Void... voids) {
-                try {
-                    Thread.sleep(1500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 return InstallationRepository.getInstance().getInstallations();
             }
 

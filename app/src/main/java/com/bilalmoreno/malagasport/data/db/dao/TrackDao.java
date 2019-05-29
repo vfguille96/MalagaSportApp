@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.bilalmoreno.malagasport.data.db.MalagaSportContract;
 import com.bilalmoreno.malagasport.data.db.MalagaSportOpenHelper;
-import com.bilalmoreno.malagasport.data.db.model.ActividadDeportiva;
 import com.bilalmoreno.malagasport.data.db.model.Track;
 
 import java.util.ArrayList;
@@ -44,7 +43,6 @@ public class TrackDao {
             } while (cursor.moveToNext());
         }
 
-//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return list;

@@ -53,8 +53,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         if (!user.isEmpty() && !password.isEmpty()) {
             presenter.validateCredentials(user, password);
         } else {
-            tiedUsuario.setText(loginData.getString(MalagaSportApplication.USER_TAG, ""));
-            tiedPassword.setText(loginData.getString(MalagaSportApplication.PASSWORD_TAG, ""));
+            tiedUsuario.setText(user);
+            tiedPassword.setText(password);
         }
     }
 

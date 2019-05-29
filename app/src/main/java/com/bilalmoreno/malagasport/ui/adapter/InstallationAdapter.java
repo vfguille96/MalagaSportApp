@@ -31,6 +31,7 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
 
     public void clear() {
         instalaciones.clear();
+        notifyDataSetChanged();
     }
 
     public void addAll(ArrayList<Installation> installations) {

@@ -29,11 +29,15 @@ public class MachineRepository {
         return dao.getList(workoutId);
     }
 
-    private boolean add(Machine machine) {
+    public boolean add(Machine machine) {
         return dao.add(machine);
     }
 
     public Machine get(int machineId) {
         return dao.get(machineId);
+    }
+
+    public boolean update(Machine machine) {
+        return dao.update(machine);
     }
 }

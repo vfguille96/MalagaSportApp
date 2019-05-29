@@ -2,7 +2,6 @@ package com.bilalmoreno.malagasport.ui.workout;
 
 import android.os.AsyncTask;
 
-import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.model.Workout;
 import com.bilalmoreno.malagasport.data.repository.InstallationRepository;
 

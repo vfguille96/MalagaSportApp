@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bilalmoreno.malagasport.R;
-import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.model.Workout;
 import com.bilalmoreno.malagasport.ui.adapter.WorkoutAdapter;
 import com.bilalmoreno.malagasport.ui.base.BaseFragment;

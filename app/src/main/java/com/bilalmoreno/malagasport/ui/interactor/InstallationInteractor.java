@@ -1,7 +1,5 @@
 package com.bilalmoreno.malagasport.ui.interactor;
 
-import android.os.AsyncTask;
-
 import com.bilalmoreno.malagasport.data.db.model.Installation;
 import com.bilalmoreno.malagasport.data.db.model.Rate;
 import com.bilalmoreno.malagasport.data.repository.InstallationRepository;

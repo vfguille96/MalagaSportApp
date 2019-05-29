@@ -10,6 +10,7 @@ import android.os.Build;
 import java.util.Calendar;
 
 public class MalagaSportServiceBroadcastReceiver extends BroadcastReceiver {
+    public static final String RUN_SERVICE = "com.bilalmoreno.malagasport.android.action.RUN_SERVICE";
     private static final int REQUEST_SERVICE = 1487;
 
     @Override
@@ -28,6 +29,7 @@ public class MalagaSportServiceBroadcastReceiver extends BroadcastReceiver {
     /**
      * Método que crea una alarma en el sistema para que despierte al servicio de actualización de
      * la base de datos cada 24 horas.
+     *
      * @param context
      */
     private void setServiceAlarm(Context context) {

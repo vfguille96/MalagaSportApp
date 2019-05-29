@@ -1,9 +1,10 @@
-package com.bilalmoreno.malagasport.data.service.model.installation;
+
+package com.bilalmoreno.malagasport.data.service.model.workout;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Properties {
+public class Properties_ {
 
     @SerializedName("name")
     @Expose

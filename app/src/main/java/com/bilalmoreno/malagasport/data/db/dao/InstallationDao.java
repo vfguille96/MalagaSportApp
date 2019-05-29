@@ -20,7 +20,6 @@ public class InstallationDao {
                 MalagaSportContract.InstallationEntry.ALL_COLUMNS,
                 null,
                 null,
-
                 null,
                 null,
                 MalagaSportContract.InstallationEntry.SORT_DEFAULT
@@ -48,7 +47,6 @@ public class InstallationDao {
             } while (cursor.moveToNext());
         }
 
-//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return list;
@@ -84,7 +82,7 @@ public class InstallationDao {
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
         String selection = MalagaSportContract.InstallationEntry._ID + " = ?";
-        String[] selectionArgs = new String[] {String.valueOf(installationId)};
+        String[] selectionArgs = new String[]{String.valueOf(installationId)};
 
         Cursor cursor = database.query(
                 MalagaSportContract.InstallationEntry.TABLE_NAME,
@@ -114,9 +112,35 @@ public class InstallationDao {
             installation.setPrecio(cursor.getString(cursor.getColumnIndex(MalagaSportContract.InstallationEntry.COL_PRICE)));
         }
 
-//        cursor.close();
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return installation;
+    }
+
+    public boolean update(Installation installation) {
+        int result = 0;
+        SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
+
+        String whereClause = MalagaSportContract.InstallationEntry._ID + " = " + installation.getId();
+
+        ContentValues values = new ContentValues();
+        values.put(MalagaSportContract.InstallationEntry.COL_NAME, installation.getNombre());
+        values.put(MalagaSportContract.InstallationEntry.COL_ADDRESS, installation.getDireccion());
+        values.put(MalagaSportContract.InstallationEntry.COL_LATITUDE, installation.getLatitud());
+        values.put(MalagaSportContract.InstallationEntry.COL_LONGITUDE, installation.getLongitud());
+        values.put(MalagaSportContract.InstallationEntry.COL_YOUNG_CARD, installation.getTarjetaJoven());
+        values.put(MalagaSportContract.InstallationEntry.COL_BARRIER_FREE, installation.getAccesoMovReducida());
+        values.put(MalagaSportContract.InstallationEntry.COL_DESCRIPTION, installation.getDescripcion());
+        values.put(MalagaSportContract.InstallationEntry.COL_WEB, installation.getWeb());
+        values.put(MalagaSportContract.InstallationEntry.COL_EMAIL, installation.getEmail());
+        values.put(MalagaSportContract.InstallationEntry.COL_PHONE, installation.getTelefono());
+        values.put(MalagaSportContract.InstallationEntry.COL_SCHEDULE, installation.getHorario());
+        values.put(MalagaSportContract.InstallationEntry.COL_PRICE, installation.getPrecio());
+
+        result = database.update(MalagaSportContract.InstallationEntry.TABLE_NAME, values, whereClause, null);
+
+        MalagaSportOpenHelper.getInstance().closeDatabase();
+
+        return result == 1;
     }
 }

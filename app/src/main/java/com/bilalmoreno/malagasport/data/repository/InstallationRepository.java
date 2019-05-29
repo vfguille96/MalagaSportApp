@@ -48,4 +48,12 @@ public class InstallationRepository {
     public Workout getWorkout(int workoutId) {
         return workoutDao.get(workoutId);
     }
+
+    public boolean update(Installation installation) {
+        return installationDao.update(installation);
+    }
+
+    public boolean update(Workout workout) {
+        return workoutDao.update(workout);
+    }
 }

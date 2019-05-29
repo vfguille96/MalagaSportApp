@@ -34,4 +34,5 @@ public class WorkoutsApiAdapter {
             API_SERVICE = retrofit.create(WorkoutsApiService.class);
         }
         return API_SERVICE;
-    }}
+    }
+}

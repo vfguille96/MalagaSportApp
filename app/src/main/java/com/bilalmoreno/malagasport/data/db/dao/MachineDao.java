@@ -9,7 +9,6 @@ import com.bilalmoreno.malagasport.data.db.MalagaSportOpenHelper;
 import com.bilalmoreno.malagasport.data.db.model.Machine;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class MachineDao {
     public ArrayList<Machine> getAll() {
@@ -41,7 +40,7 @@ public class MachineDao {
                 );
 
 //                if (!list.contains(machine)) { //If no necesario si se hace select distinct sin incluir las columnas id y workout.
-                    list.add(machine);
+                list.add(machine);
 //                }
 
             } while (cursor.moveToNext());
@@ -78,7 +77,7 @@ public class MachineDao {
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
         String selection = MalagaSportContract.MachineEntry._ID + " = ?";
-        String[] selectionArgs = new String[] {String.valueOf(machineId)};
+        String[] selectionArgs = new String[]{String.valueOf(machineId)};
 
         Cursor cursor = database.query(
                 MalagaSportContract.MachineEntry.TABLE_NAME,
@@ -114,14 +113,13 @@ public class MachineDao {
 
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
-        String selection = MalagaSportContract.MachineEntry.COL_WORKOUT + " = ?";
-        String[] selectionArgs = new String[] {String.valueOf(workoutId)};
+        String selection = MalagaSportContract.MachineEntry.COL_WORKOUT + " = " + workoutId;
 
         Cursor cursor = database.query(
                 MalagaSportContract.MachineEntry.TABLE_NAME,
                 MalagaSportContract.MachineEntry.ALL_COLUMNS,
                 selection,
-                selectionArgs,
+                null,
                 null,
                 null,
                 MalagaSportContract.MachineEntry.SORT_DEFAULT + ", " + MalagaSportContract.MachineEntry.COL_NAME
@@ -147,5 +145,27 @@ public class MachineDao {
         MalagaSportOpenHelper.getInstance().closeDatabase();
 
         return list;
+    }
+
+    public boolean update(Machine machine) {
+        SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
+
+        int result = 0;
+
+        String whereClause = MalagaSportContract.MachineEntry._ID + " = " + machine.getId();
+
+        ContentValues values = new ContentValues();
+        values.put(MalagaSportContract.MachineEntry.COL_NAME, machine.getNombre());
+        values.put(MalagaSportContract.MachineEntry.COL_LEVEL, machine.getNivel());
+        values.put(MalagaSportContract.MachineEntry.COL_FUNCTION, machine.getFuncion());
+        values.put(MalagaSportContract.MachineEntry.COL_DEVELOPMENT, machine.getDesarollo());
+        values.put(MalagaSportContract.MachineEntry.COL_CAUTIONS, machine.getPrecauciones());
+        values.put(MalagaSportContract.MachineEntry.COL_WORKOUT, machine.getWorkout());
+
+        result = database.update(MalagaSportContract.MachineEntry.TABLE_NAME, values, whereClause, null);
+
+        MalagaSportOpenHelper.getInstance().closeDatabase();
+
+        return result == 1;
     }
 }

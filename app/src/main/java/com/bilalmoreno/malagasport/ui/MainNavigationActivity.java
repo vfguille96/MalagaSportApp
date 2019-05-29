@@ -31,14 +31,21 @@ import com.bilalmoreno.malagasport.ui.installation.InstallationListFragment;
 import com.bilalmoreno.malagasport.ui.login.LoginActivity;
 import com.bilalmoreno.malagasport.ui.machine.MachineListFragment;
 import com.bilalmoreno.malagasport.ui.map.GoogleMapFragment;
-import com.bilalmoreno.malagasport.ui.settings.SettingsFragment;
 import com.bilalmoreno.malagasport.ui.rate.RateFragment;
+import com.bilalmoreno.malagasport.ui.settings.SettingsFragment;
 import com.bilalmoreno.malagasport.ui.workout.WorkoutListFragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
 public class MainNavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, BaseFragment.PrimaryActionButton, InstallationListFragment.OnInstallationShow, InstallationFragment.OnRateShow, RateFragment.OnRateSavedChanges, MachineListFragment.OnMachineShow, WorkoutListFragment.OnWorkoutShow, OnMapReadyCallback {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        BaseFragment.PrimaryActionButton,
+        InstallationListFragment.OnInstallationShow,
+        InstallationFragment.OnRateShow,
+        RateFragment.OnRateSavedChanges,
+        MachineListFragment.OnMachineShow,
+        WorkoutListFragment.OnWorkoutShow,
+        OnMapReadyCallback {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -114,7 +121,7 @@ public class MainNavigationActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_navigation, menu);
         return true;
-}
+    }
 
     @Override
     protected void onResume() {

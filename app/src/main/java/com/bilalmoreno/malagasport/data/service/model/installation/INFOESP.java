@@ -1,4 +1,3 @@
-
 package com.bilalmoreno.malagasport.data.service.model.installation;
 
 import com.google.gson.annotations.Expose;

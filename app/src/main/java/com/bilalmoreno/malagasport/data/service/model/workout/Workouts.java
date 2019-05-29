@@ -1,31 +1,31 @@
-package com.bilalmoreno.malagasport.data.service.model.installation;
+
+package com.bilalmoreno.malagasport.data.service.model.workout;
 
 import java.util.List;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Installations {
+public class Workouts {
 
-    @SerializedName("crs")
-    @Expose
-    private Crs crs;
-    @SerializedName("totalFeatures")
-    @Expose
-    private Integer totalFeatures;
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("totalFeatures")
+    @Expose
+    private Integer totalFeatures;
     @SerializedName("features")
     @Expose
     private List<Feature> features = null;
+    @SerializedName("crs")
+    @Expose
+    private Crs crs;
 
-    public Crs getCrs() {
-        return crs;
+    public String getType() {
+        return type;
     }
 
-    public void setCrs(Crs crs) {
-        this.crs = crs;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Integer getTotalFeatures() {
@@ -36,20 +36,20 @@ public class Installations {
         this.totalFeatures = totalFeatures;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public List<Feature> getFeatures() {
         return features;
     }
 
     public void setFeatures(List<Feature> features) {
         this.features = features;
+    }
+
+    public Crs getCrs() {
+        return crs;
+    }
+
+    public void setCrs(Crs crs) {
+        this.crs = crs;
     }
 
 }

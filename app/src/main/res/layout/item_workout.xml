@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/list_padding">
@@ -72,7 +73,8 @@
         app:layout_constraintBottom_toTopOf="@id/tvMaquinas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDireccion"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:visibility="invisible" />
 
     <TextView
         android:id="@+id/tvNiveles"
@@ -84,7 +86,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvNivel"
         app:layout_constraintTop_toBottomOf="@+id/tvDireccion"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:visibility="invisible" />
 
     <TextView
         android:id="@+id/tvMaquinas"
@@ -92,7 +95,8 @@
         android:layout_height="wrap_content"
         android:text="@string/num_maquinas"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="invisible" />
 
     <TextView
         android:id="@+id/tvNumMaquinas"
@@ -103,6 +107,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivFav"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tvMaquinas" />
+        app:layout_constraintStart_toEndOf="@+id/tvMaquinas"
+        tools:visibility="invisible" />
 
 </android.support.constraint.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.bilalmoreno.malagasport.ui.interactor;
 import android.os.AsyncTask;
 
 import com.bilalmoreno.malagasport.data.db.model.Machine;
-import com.bilalmoreno.malagasport.data.repository.InstallationRepository;
 import com.bilalmoreno.malagasport.data.repository.MachineRepository;
 
 import java.util.ArrayList;
