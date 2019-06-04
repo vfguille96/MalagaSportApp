@@ -22,7 +22,6 @@ public class InstallationsCallback extends Callback implements retrofit2.Callbac
     @Override
     public void onResponse(final Call<Installations> call, final Response<Installations> response) {
 // Tratar contenido e insertar en la base de datos
-        final ArrayList<Installation> add = new ArrayList<>();
         final ArrayList<Installation> update = new ArrayList<>();
 
         AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
@@ -54,11 +53,7 @@ public class InstallationsCallback extends Callback implements retrofit2.Callbac
                     installation.setHorario(schedule);
                     installation.setPrecio(price);
 
-                    if (InstallationRepository.getInstance().getInstalacion(id) == null) {
-                        add.add(installation);
-                    } else {
-                        update.add(installation);
-                    }
+                    update.add(installation);
 
                     //TODO Insertar pistas deportivas o Tracks (aún sin uso en el prototipo)
                     //            for (INFOESP infoEsp :
@@ -72,7 +67,6 @@ public class InstallationsCallback extends Callback implements retrofit2.Callbac
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                InstallationRepository.getInstance().addInstallations(add);
                 InstallationRepository.getInstance().updateInstallations(update);
                 listener.onCallFinish();
             }

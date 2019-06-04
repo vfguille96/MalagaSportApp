@@ -152,7 +152,7 @@ public class WorkoutDao {
     public boolean update(ArrayList<Workout> workouts) {
         int result = 0;
 
-        SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
+       SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
 
         for (Workout workout :
                 workouts) {
@@ -164,7 +164,16 @@ public class WorkoutDao {
             values.put(MalagaSportContract.WorkoutEntry.COL_LATITUDE, workout.getLatitude());
             values.put(MalagaSportContract.WorkoutEntry.COL_LONGITUDE, workout.getLongitude());
 
-            result += database.update(MalagaSportContract.WorkoutEntry.TABLE_NAME, values, whereClause, null);
+            Cursor cursor = database.query(MalagaSportContract.WorkoutEntry.TABLE_NAME, MalagaSportContract.WorkoutEntry.ALL_COLUMNS, whereClause, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                result += database.update(MalagaSportContract.WorkoutEntry.TABLE_NAME, values, whereClause, null);
+            } else {
+                values.put(MalagaSportContract.WorkoutEntry._ID, workout.getId());
+                if (database.insert(MalagaSportContract.WorkoutEntry.TABLE_NAME, null, values) != -1) {
+                    result++;
+                }
+            }
+            cursor.close();
         }
 
         MalagaSportOpenHelper.getInstance().closeDatabase();

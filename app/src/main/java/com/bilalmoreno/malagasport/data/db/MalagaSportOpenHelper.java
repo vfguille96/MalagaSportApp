@@ -26,14 +26,15 @@ public class MalagaSportOpenHelper extends SQLiteOpenHelper {
         return openHelper;
     }
 
-    public SQLiteDatabase openDatabase() {
+
+    public synchronized SQLiteDatabase openDatabase() {
         if (openCounter.incrementAndGet() == 1) {
             database = getWritableDatabase();
         }
         return database;
     }
 
-    public void closeDatabase() {
+    public synchronized void closeDatabase() {
         if (openCounter.decrementAndGet() == 0) {
             database.close();
         }

@@ -51,6 +51,12 @@ public class InstallationListFragment extends BaseFragment implements Installati
         }
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        presenter.finish();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,6 +69,20 @@ public class InstallationListFragment extends BaseFragment implements Installati
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        presenter = new InstallationListPresenter(this);
+        presenter.load();
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.finish();
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         adapter = new InstallationAdapter(getContext(), this);
         rvInstallations.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -70,8 +90,7 @@ public class InstallationListFragment extends BaseFragment implements Installati
 
 //        primaryActionButton.onPrimaryActionButtonShow(R.drawable.ic_menu_send);
 
-        presenter = new InstallationListPresenter(this);
-        presenter.load();
+
     }
 
     @Override

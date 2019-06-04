@@ -71,32 +71,6 @@ public class MachineDao {
         return result != -1; //Verdad si la inserción fué satisfactoria.
     }
 
-    public boolean add(ArrayList<Machine> machines) {
-        SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
-
-        int result = 0;
-
-        for (Machine machine :
-                machines) {
-
-            ContentValues values = new ContentValues();
-            values.put(MalagaSportContract.MachineEntry._ID, machine.getId());
-            values.put(MalagaSportContract.MachineEntry.COL_NAME, machine.getNombre());
-            values.put(MalagaSportContract.MachineEntry.COL_LEVEL, machine.getNivel());
-            values.put(MalagaSportContract.MachineEntry.COL_FUNCTION, machine.getFuncion());
-            values.put(MalagaSportContract.MachineEntry.COL_DEVELOPMENT, machine.getDesarollo());
-            values.put(MalagaSportContract.MachineEntry.COL_CAUTIONS, machine.getPrecauciones());
-            values.put(MalagaSportContract.MachineEntry.COL_WORKOUT, machine.getWorkout());
-
-            if (database.insert(MalagaSportContract.MachineEntry.TABLE_NAME, null, values) != -1) {
-                result++;
-            }
-        }
-        MalagaSportOpenHelper.getInstance().closeDatabase();
-
-        return result > 0;
-    }
-
     public Machine get(int machineId) {
         Machine machine = null;
 
@@ -212,7 +186,17 @@ public class MachineDao {
             values.put(MalagaSportContract.MachineEntry.COL_CAUTIONS, machine.getPrecauciones());
             values.put(MalagaSportContract.MachineEntry.COL_WORKOUT, machine.getWorkout());
 
-            result += database.update(MalagaSportContract.MachineEntry.TABLE_NAME, values, whereClause, null);
+            Cursor cursor = database.query(MalagaSportContract.MachineEntry.TABLE_NAME, MalagaSportContract.MachineEntry.ALL_COLUMNS, whereClause, null, null, null, null, null);
+
+            if (cursor.moveToFirst()) {
+                result += database.update(MalagaSportContract.MachineEntry.TABLE_NAME, values, whereClause, null);
+            } else {
+                values.put(MalagaSportContract.MachineEntry._ID, machine.getId());
+                if (database.insert(MalagaSportContract.MachineEntry.TABLE_NAME, null, values) != -1) {
+                    result++;
+                }
+            }
+            cursor.close();
         }
         MalagaSportOpenHelper.getInstance().closeDatabase();
 

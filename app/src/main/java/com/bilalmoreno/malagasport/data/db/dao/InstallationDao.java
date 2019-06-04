@@ -77,36 +77,6 @@ public class InstallationDao {
         return result != -1; //Verdad si la inserción fué satisfactoria.
     }
 
-    public boolean add(ArrayList<Installation> installations) {
-        SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
-        int result = 0;
-
-        for (Installation installation :
-                installations) {
-            ContentValues values = new ContentValues();
-            values.put(MalagaSportContract.InstallationEntry._ID, installation.getId());
-            values.put(MalagaSportContract.InstallationEntry.COL_NAME, installation.getNombre());
-            values.put(MalagaSportContract.InstallationEntry.COL_ADDRESS, installation.getDireccion());
-            values.put(MalagaSportContract.InstallationEntry.COL_LATITUDE, installation.getLatitud());
-            values.put(MalagaSportContract.InstallationEntry.COL_LONGITUDE, installation.getLongitud());
-            values.put(MalagaSportContract.InstallationEntry.COL_YOUNG_CARD, installation.getTarjetaJoven() ? 1 : 0);
-            values.put(MalagaSportContract.InstallationEntry.COL_BARRIER_FREE, installation.getAccesoMovReducida() ? 1 : 0);
-            values.put(MalagaSportContract.InstallationEntry.COL_DESCRIPTION, installation.getDescripcion());
-            values.put(MalagaSportContract.InstallationEntry.COL_WEB, installation.getWeb());
-            values.put(MalagaSportContract.InstallationEntry.COL_EMAIL, installation.getEmail());
-            values.put(MalagaSportContract.InstallationEntry.COL_PHONE, installation.getTelefono());
-            values.put(MalagaSportContract.InstallationEntry.COL_SCHEDULE, installation.getHorario());
-            values.put(MalagaSportContract.InstallationEntry.COL_PRICE, installation.getPrecio());
-
-            if (database.insert(MalagaSportContract.InstallationEntry.TABLE_NAME, null, values) != -1) {
-                result++;
-            }
-        }
-        MalagaSportOpenHelper.getInstance().closeDatabase();
-
-        return result != -1; //Verdad si la inserción fué satisfactoria.
-    }
-
     public Installation get(int installationId) {
         Installation installation = null;
         SQLiteDatabase database = MalagaSportOpenHelper.getInstance().openDatabase();
@@ -196,7 +166,15 @@ public class InstallationDao {
             values.put(MalagaSportContract.InstallationEntry.COL_SCHEDULE, installation.getHorario());
             values.put(MalagaSportContract.InstallationEntry.COL_PRICE, installation.getPrecio());
 
-            result += database.update(MalagaSportContract.InstallationEntry.TABLE_NAME, values, whereClause, null);
+            Cursor cursor = database.query(MalagaSportContract.InstallationEntry.TABLE_NAME, MalagaSportContract.InstallationEntry.ALL_COLUMNS, whereClause, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                result += database.update(MalagaSportContract.InstallationEntry.TABLE_NAME, values, whereClause, null);
+            } else {
+                values.put(MalagaSportContract.InstallationEntry._ID, installation.getId());
+                if (database.insert(MalagaSportContract.InstallationEntry.TABLE_NAME, null, values) != -1) {
+                    result ++;
+                }
+            }
         }
         MalagaSportOpenHelper.getInstance().closeDatabase();
 

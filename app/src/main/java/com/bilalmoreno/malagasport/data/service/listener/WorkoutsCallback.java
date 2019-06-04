@@ -16,6 +16,7 @@ import retrofit2.Response;
 
 public class WorkoutsCallback extends Callback implements retrofit2.Callback<Workouts> {
     private OnDownloadErrorListener listener;
+    private static AsyncTask<Void, Void, Void> asyncTask;
 
     public WorkoutsCallback(OnDownloadErrorListener listener) {
         this.listener = listener;
@@ -23,17 +24,15 @@ public class WorkoutsCallback extends Callback implements retrofit2.Callback<Wor
 
     @Override
     public void onResponse(Call<Workouts> call, final Response<Workouts> response) {
-        final ArrayList<Workout> addWorkouts = new ArrayList<>();
-        final ArrayList<Workout> updateWorkouts = new ArrayList<>();
-        final ArrayList<Machine> addMachines = new ArrayList<>();
-        final ArrayList<Machine> updateMachines = new ArrayList<>();
+        final ArrayList<Workout> workouts = new ArrayList<>();
+        final ArrayList<Machine> machines = new ArrayList<>();
 
         AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                Workouts workouts = response.body();
+                Workouts workoutsBody = response.body();
                 for (Feature feature :
-                        workouts.getFeatures()) {
+                        workoutsBody.getFeatures()) {
                     Workout workout = new Workout(Integer.valueOf(feature.getProperties().getIdZonamusculacion()),
                             feature.getProperties().getNomzonamusculacion(),
                             feature.getProperties().getUbicacion()
@@ -41,11 +40,7 @@ public class WorkoutsCallback extends Callback implements retrofit2.Callback<Wor
                     workout.setLatitude(feature.getGeometry().getCoordinates().get(1));
                     workout.setLongitude(feature.getGeometry().getCoordinates().get(0));
 
-                    if (InstallationRepository.getInstance().getWorkout(workout.getId()) == null) {
-                        addWorkouts.add(workout);
-                    } else {
-                        updateWorkouts.add(workout);
-                    }
+                    workouts.add(workout);
 
                     Machine machine = new Machine(Integer.valueOf(feature.getProperties().getIdMaquina()),
                             feature.getProperties().getNommaquina(),
@@ -56,26 +51,18 @@ public class WorkoutsCallback extends Callback implements retrofit2.Callback<Wor
                     );
                     machine.setWorkout(workout.getId());
 
-                    if (MachineRepository.getInstance().get(machine.getId()) == null) {
-                        addMachines.add(machine);
-                    } else {
-                        updateMachines.add(machine);
-                    }
+                    machines.add(machine);
                 }
             return null;
             }
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                InstallationRepository.getInstance().addWorkouts(addWorkouts);
-                InstallationRepository.getInstance().updateWorkouts(updateWorkouts);
-                MachineRepository.getInstance().add(addMachines);
-                MachineRepository.getInstance().update(updateMachines);
-                listener.onCallFinish();
+                if (InstallationRepository.getInstance().updateWorkouts(workouts)) {
+                    MachineRepository.getInstance().update(machines);
+                }
             }
-        } .execute();
-
-
+        }.execute();
     }
 
     @Override

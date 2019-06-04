@@ -1,4 +1,4 @@
-package com.bilalmoreno.malagasport.ui.installation;
+package com.bilalmoreno.malagasport.ui.interactor;
 
 import android.os.AsyncTask;
 
@@ -10,13 +10,14 @@ import java.util.ArrayList;
 public class InstallationListInteractor {
 
     private OnLoadFinishedListener loadFinishedListener;
+    private AsyncTask<Void, Void, ArrayList<Installation>> load;
 
     public InstallationListInteractor(OnLoadFinishedListener loadFinishedListener) {
         this.loadFinishedListener = loadFinishedListener;
     }
 
     public void load() {
-        new AsyncTask<Void, Void, ArrayList<Installation>>() {
+        load = new AsyncTask<Void, Void, ArrayList<Installation>>() {
 
             @Override
             protected ArrayList<Installation> doInBackground(Void... voids) {
@@ -27,7 +28,12 @@ public class InstallationListInteractor {
             protected void onPostExecute(ArrayList<Installation> installations) {
                 loadFinishedListener.onSuccess(installations);
             }
-        }.execute();
+        };
+        load.execute();
+    }
+
+    public void finish() {
+        load.cancel(true);
     }
 
     public interface OnLoadFinishedListener {

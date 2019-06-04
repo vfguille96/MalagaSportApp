@@ -57,16 +57,8 @@ public class InstallationRepository {
         return workoutDao.update(workout);
     }
 
-    public boolean addInstallations(ArrayList<Installation> installations) {
-        return installationDao.add(installations);
-    }
-
     public boolean updateInstallations(ArrayList<Installation> installations) {
         return installationDao.update(installations);
-    }
-
-    public boolean addWorkouts(ArrayList<Workout> workouts) {
-        return workoutDao.add(workouts);
     }
 
     public boolean updateWorkouts(ArrayList<Workout> workouts) {

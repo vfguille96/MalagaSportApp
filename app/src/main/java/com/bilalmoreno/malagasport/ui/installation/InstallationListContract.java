@@ -12,5 +12,7 @@ public interface InstallationListContract {
 
     interface Presenter {
         void load();
+
+        void finish();
     }
 }
