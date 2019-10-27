@@ -2,14 +2,16 @@ package com.bilalmoreno.malagasport.ui.base;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.ViewCompat;
+
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class FabBehavior extends CoordinatorLayout.Behavior<FloatingActionButton> {
     private static final String TAG = "ScrollingFABBehavior";
@@ -61,6 +63,4 @@ public class FabBehavior extends CoordinatorLayout.Behavior<FloatingActionButton
         }
         return axes == ViewCompat.SCROLL_AXIS_VERTICAL;
     }
-
-
 }

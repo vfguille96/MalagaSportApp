@@ -1,6 +1,6 @@
 package com.bilalmoreno.malagasport.data.db.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bilalmoreno.malagasport.data.repository.TrackRepository;
 

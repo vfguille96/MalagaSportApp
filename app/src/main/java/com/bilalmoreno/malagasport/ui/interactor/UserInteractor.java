@@ -1,6 +1,6 @@
 package com.bilalmoreno.malagasport.ui.interactor;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bilalmoreno.malagasport.MalagaSportApplication;
 import com.bilalmoreno.malagasport.data.repository.UserRepository;

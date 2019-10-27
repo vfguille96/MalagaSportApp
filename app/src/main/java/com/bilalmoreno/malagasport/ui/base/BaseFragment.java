@@ -2,10 +2,11 @@ package com.bilalmoreno.malagasport.ui.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.ui.dialog.ProgressBarFragment;
+import com.google.android.material.snackbar.Snackbar;
 
 public class BaseFragment extends Fragment implements BaseView {
 

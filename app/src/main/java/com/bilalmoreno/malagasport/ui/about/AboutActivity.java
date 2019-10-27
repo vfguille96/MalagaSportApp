@@ -1,8 +1,9 @@
 package com.bilalmoreno.malagasport.ui.about;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bilalmoreno.malagasport.R;
 import com.vansuita.materialabout.builder.AboutBuilder;

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/default_padding"
     tools:context=".ui.login.LoginActivity"
     tools:layout_editor_absoluteY="81dp">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -16,81 +16,39 @@
         app:cardCornerRadius="@dimen/item_radius"
         app:layout_constraintBottom_toTopOf="@+id/btRegistro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilUsuario"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/default_padding"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp">
+            app:errorTextAppearance="@style/Widget.TextInputLayout.Error"
+            app:hintTextAppearance="@style/Widget.TextInputLayout">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorTextAppearance="@style/Widget.TextInputLayout.Error"
-                app:hintTextAppearance="@style/Widget.TextInputLayout"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="35dp">
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/tiedUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/email"
-                    android:inputType="textEmailAddress"
-                    android:theme="@style/Widget.EditText.TextInputEditText" />
-            </android.support.design.widget.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:errorTextAppearance="@style/Widget.TextInputLayout.Error"
+            app:hintTextAppearance="@style/Widget.TextInputLayout">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin"
-                app:errorTextAppearance="@style/Widget.TextInputLayout.Error"
-                app:hintTextAppearance="@style/Widget.TextInputLayout"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="115dp">
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/tiedPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:theme="@style/Widget.EditText.TextInputEditText" />
-            </android.support.design.widget.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiedUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:theme="@style/Widget.EditText.TextInputEditText" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/default_margin"
-                android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/cbRecordar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/keep_loged_in" />
-
-                <Button
-                    android:id="@+id/btRecuperar"
-                    style="@style/AppTheme.ButtonTransparent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/password_missing"
-                    android:textAlignment="textEnd" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btRegistro"
@@ -119,11 +77,43 @@
         app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/btRecuperar"
+        style="@style/AppTheme.ButtonTransparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password_missing"
+        android:textAlignment="textEnd"
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="328dp" />
+
+    <CheckBox
+        android:id="@+id/cbRecordar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/keep_loged_in"
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="294dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/tiedPassword"
+        android:layout_width="398dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:theme="@style/Widget.EditText.TextInputEditText"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="249dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,10 +5,10 @@ import com.bilalmoreno.malagasport.ui.interactor.UserInteractor;
 
 public class SplashPresenter implements SplashContract.Presenter, UserInteractor.AuthenticationListener {
 
-    UserInteractor interactor;
+    private UserInteractor interactor;
     private SplashContract.View view;
 
-    public SplashPresenter(SplashContract.View view) {
+    SplashPresenter(SplashContract.View view) {
         this.view = view;
         interactor = new UserInteractor(this);
     }

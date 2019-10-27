@@ -2,13 +2,13 @@ package com.bilalmoreno.malagasport.ui.recovery;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.bilalmoreno.malagasport.R;
 import com.bilalmoreno.malagasport.ui.base.BaseActivity;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

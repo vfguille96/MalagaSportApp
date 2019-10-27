@@ -62,7 +62,8 @@ public class WorkoutsCallback extends Callback implements retrofit2.Callback<Wor
                     MachineRepository.getInstance().update(machines);
                 }
             }
-        }.execute();
+        }//.execute();
+        ;
     }
 
     @Override

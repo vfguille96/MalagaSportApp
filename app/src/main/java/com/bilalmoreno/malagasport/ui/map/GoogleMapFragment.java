@@ -1,6 +1,5 @@
 package com.bilalmoreno.malagasport.ui.map;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
 
-import com.bilalmoreno.malagasport.util.Map;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -23,7 +19,6 @@ import java.util.ArrayList;
 import static com.bilalmoreno.malagasport.util.Map.LATITUDE;
 import static com.bilalmoreno.malagasport.util.Map.LONGITUDE;
 import static com.bilalmoreno.malagasport.util.Map.ZOOM_FAR;
-import static com.bilalmoreno.malagasport.util.Map.ZOOM_NEAR;
 
 public class GoogleMapFragment extends SupportMapFragment implements OnMapReadyCallback, GoogleMapContract.View {
 
