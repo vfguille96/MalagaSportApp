@@ -20,7 +20,7 @@
 
     <!--Tema aplicado a la LoginActivity-->
     <style name="AppTheme.LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorSecondaryLight</item>
     </style>
 
     <style name="AppTheme.ButtonTransparent">

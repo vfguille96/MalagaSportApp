@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llyBack"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grandient_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvLoginTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/productsansregular"
+        android:text="@string/login_button"
+        android:textAppearance="@android:style/TextAppearance.Material.Display1"
+        android:textColor="#DCFFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="32dp"
+        android:textColorHint="#CDFFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLoginTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiedUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/productsansregular"
+            android:hint="@string/email" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:textColorHint="#CCFFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilUsuario">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiedPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/productsansregular"
+            android:hint="@string/password" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btRegistro"
+        style="@android:style/Widget.Material.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_button_login"
+        android:fontFamily="@font/productsansmedium"
+        android:padding="16dp"
+        android:text="@string/register"
+        android:textColor="#CBFFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbRecordar" />
+
+    <Button
+        android:id="@+id/btIniciar"
+        style="@android:style/Widget.Material.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_button_login"
+        android:fontFamily="@font/productsansmedium"
+        android:padding="16dp"
+        android:text="@string/login_button"
+        android:textColor="#CCFFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btRegistro" />
+
+    <Button
+        android:id="@+id/btRecuperar"
+        style="@android:style/Widget.Material.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/productsansregular"
+        android:text="@string/password_missing"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/btIniciar"
+        app:layout_constraintStart_toStartOf="@+id/btIniciar"
+        app:layout_constraintTop_toBottomOf="@+id/btIniciar" />
+
+    <CheckBox
+        android:id="@+id/cbRecordar"
+        style="@android:style/Widget.Material.Light.CompoundButton.CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/productsansmedium"
+        android:text="@string/keep_loged_in"
+        android:textColor="#B2FFFFFF"
+        app:layout_constraintStart_toStartOf="@+id/tilPassword"
+        app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

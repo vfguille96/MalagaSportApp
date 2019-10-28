@@ -5,4 +5,8 @@
     <color name="colorPrimaryLight">#58a5f0</color>
     <color name="colorPrimaryText">#ffffff</color>
     <color name="colorAccent">#58cff0</color>
+
+    <color name="colorSecondary">#00589b</color>
+    <color name="colorSecondaryDark">#00306c</color>
+    <color name="colorSecondaryLight">#4e84cc</color>
 </resources>

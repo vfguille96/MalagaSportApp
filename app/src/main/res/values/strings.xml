@@ -15,7 +15,7 @@
     <string name="password_missing"><u>Recuperar contraseña</u></string>
     <string name="keep_loged_in">Recordar sesión</string>
     <string name="login_button">Iniciar sesión</string>
-    <string name="register">Registrarse</string>
+    <string name="register">Registrar</string>
     <string name="nivel">Nivel: </string>
     <string name="num_maquinas">Maquinas: </string>
     <string name="nombre_usuario">Nombre de usuario</string>
@@ -74,4 +74,5 @@
     <string name="notification_updated_text">La base de datos fué actualizada.</string>
     <string name="error_update_title">Error de actualización</string>
     <string name="error_update_text">La base de datos no se actualizó correctamente.</string>
+    <string name="usuario">Usuario</string>
 </resources>

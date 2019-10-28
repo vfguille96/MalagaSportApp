@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_material);
 
         ButterKnife.bind(this);
 
